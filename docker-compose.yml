@@ -1,0 +1,31 @@
+# Full Next.js (включая /admin и API). Данные CMS и загрузки лучше вынести на тома или bind-mount.
+# Подготовка: скопируйте .env.example в .env и задайте ADMIN_* и при необходимости SMTP_*.
+#
+# Запуск: docker compose up -d --build
+#
+# Персистентность (раскомментируйте и создайте каталоги):
+#   mkdir -p ./data/uploads
+#   cp src/content/cms-store.json ./data/cms-store.json   # если нужен текущий снимок
+# volumes:
+#   - ./data/cms-store.json:/app/src/content/cms-store.json
+#   - ./data/uploads:/app/public/uploads
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        # Должен совпадать с публичным URL (OG, sitemap, JSON-LD). Для локальной сборки: http://localhost:3000
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://artellrock.ru}
+        NEXT_PUBLIC_BASE_PATH: ${NEXT_PUBLIC_BASE_PATH:-}
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://artellrock.ru}
+      NEXT_PUBLIC_BASE_PATH: ${NEXT_PUBLIC_BASE_PATH:-}
+    # volumes:
+    #   - ./data/cms-store.json:/app/src/content/cms-store.json
+    #   - ./data/uploads:/app/public/uploads

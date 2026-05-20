@@ -1,0 +1,105 @@
+# GitLab CI — Node 22 (см. .nvmrc / package.json engines).
+# Переменные CI/CD (Settings → CI/CD → Variables):
+#   DEPLOY_PLATFORM — github-pages | cloudflare | server (только main; пусто = GitLab Pages артефакт)
+#   CF_PAGES_SITE_URL, CLOUDFLARE_PAGES_PROJECT, CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID — Cloudflare
+#   DATABASE_URL — опционально для Prisma (иначе используется значение ниже)
+
+default:
+  image: node:22-bookworm
+  interruptible: true
+
+variables:
+  DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/ci
+  NEXT_TELEMETRY_DISABLED: "1"
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH
+
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules/
+
+stages:
+  - verify
+  - deploy
+
+.verify_before: &verify_before
+  before_script:
+    - npm ci
+    - npm run prisma:generate
+
+verify:
+  stage: verify
+  before_script: *verify_before
+  script:
+    - npm run lint
+    - npm run typecheck
+    - npm run test --if-present
+    - npm run build
+
+.deploy_before: &deploy_before
+  before_script:
+    - npm ci
+    - npm run prisma:generate
+
+# Статический экспорт как артефакт (привяжите к GitLab Pages в UI или скачайте out/)
+deploy-gitlab-pages-artifact:
+  stage: deploy
+  image: node:22-bookworm
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" && ($DEPLOY_PLATFORM == null || $DEPLOY_PLATFORM == "" || $DEPLOY_PLATFORM == "github-pages")
+  before_script: *deploy_before
+  script:
+    - rm -rf src/app/api src/app/admin "src/app/(public)/portfolio/[slug]"
+    - export GITHUB_ACTIONS=true
+    - export GITHUB_REPOSITORY="${CI_PROJECT_PATH}"
+    - export NEXT_PUBLIC_SITE_URL="${CI_PAGES_URL:-https://${CI_PROJECT_NAMESPACE}.gitlab.io/${CI_PROJECT_NAME}}"
+    - export NEXT_PUBLIC_STATIC_DEMO=true
+    - npm run build
+    - touch out/.nojekyll
+  artifacts:
+    paths:
+      - out/
+    expire_in: 1 week
+
+deploy-cloudflare-pages:
+  stage: deploy
+  image: node:22-bookworm
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" && $DEPLOY_PLATFORM == "cloudflare"
+  before_script: *deploy_before
+  script:
+    - test -n "${CF_PAGES_SITE_URL:-}" || (echo "Set CF_PAGES_SITE_URL" && exit 1)
+    - test -n "${CLOUDFLARE_PAGES_PROJECT:-}" || (echo "Set CLOUDFLARE_PAGES_PROJECT" && exit 1)
+    - test -n "${CLOUDFLARE_API_TOKEN:-}" || (echo "Set CLOUDFLARE_API_TOKEN" && exit 1)
+    - test -n "${CLOUDFLARE_ACCOUNT_ID:-}" || (echo "Set CLOUDFLARE_ACCOUNT_ID" && exit 1)
+    - rm -rf src/app/api src/app/admin "src/app/(public)/portfolio/[slug]"
+    - export GITHUB_ACTIONS=true
+    - export GITHUB_REPOSITORY="${CI_PROJECT_PATH}"
+    - export NEXT_PUBLIC_SITE_URL="$CF_PAGES_SITE_URL"
+    - export NEXT_PUBLIC_STATIC_DEMO=true
+    - npm run build
+    - touch out/.nojekyll
+    - npm install -g wrangler
+    - wrangler pages deploy out --project-name="$CLOUDFLARE_PAGES_PROJECT"
+
+deploy-docker-registry:
+  stage: deploy
+  image: docker:27-cli
+  services:
+    - docker:27-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:main
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" && $DEPLOY_PLATFORM == "server"
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+  script:
+    - docker build -t "$IMAGE_TAG" .
+    - docker push "$IMAGE_TAG"

@@ -1,0 +1,14 @@
+.next
+node_modules
+.env
+.env.local
+dist
+out
+coverage
+prisma/dev.db*
+.cursor
+*.tsbuildinfo
+/reports/
+
+# Локальный архив для ручного деплоя картинок на сервер (~80MB+)
+public-images-for-server.tar.gz

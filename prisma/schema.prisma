@@ -1,0 +1,188 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProductType {
+  COUNTERTOP
+  WINDOW_SILL
+  SINK
+  PROFILE
+}
+
+enum StoneType {
+  QUARTZ
+  ACRYLIC
+  MARBLE
+  GRANITE
+}
+
+model Product {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  summary          String
+  description      String
+  basePrice        Int
+  type             ProductType
+  material         String
+  color            String
+  thickness        String
+  features         String[]
+  image            String
+  gallery          String[]
+  isFeatured       Boolean  @default(false)
+  sortOrder        Int      @default(0)
+  seoTitle         String?
+  seoDescription   String?
+  seoImage         String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model StoneSample {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  stoneType        StoneType
+  manufacturer     String
+  color            String
+  texture          String
+  thicknesses      String[]
+  finish           String
+  description      String
+  image            String
+  isFeatured       Boolean  @default(false)
+  seoTitle         String?
+  seoDescription   String?
+  seoImage         String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Project {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  category         String
+  location         String
+  summary          String
+  description      String
+  beforeImage      String?
+  afterImage       String?
+  gallery          String[]
+  testimonial      String?
+  productRefs      String[]
+  serviceRefs      String[]
+  seoTitle         String?
+  seoDescription   String?
+  seoImage         String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Service {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  shortDescription String
+  description      String
+  priceFrom        Int
+  duration         String
+  image            String
+  seoTitle         String?
+  seoDescription   String?
+  seoImage         String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model BlogCategory {
+  id        String     @id @default(cuid())
+  slug      String     @unique
+  title     String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  posts     BlogPost[]
+}
+
+model BlogPost {
+  id               String       @id @default(cuid())
+  slug             String       @unique
+  title            String
+  excerpt          String
+  content          String
+  image            String
+  videoUrl         String?
+  categoryId       String
+  keywords         String[]
+  publishedAt      DateTime
+  seoTitle         String?
+  seoDescription   String?
+  seoImage         String?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  category         BlogCategory @relation(fields: [categoryId], references: [id])
+}
+
+model TeamMember {
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  bio         String
+  image       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  author      String
+  role        String
+  quote       String
+  rating      Int      @default(5)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Certificate {
+  id          String   @id @default(cuid())
+  title       String
+  fileUrl     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ContactRequest {
+  id          String   @id @default(cuid())
+  name        String
+  phone       String
+  email       String
+  message     String
+  source      String
+  createdAt   DateTime @default(now())
+}
+
+model CompanySettings {
+  id               String   @id @default(cuid())
+  companyName      String
+  legalName        String
+  phone            String
+  email            String
+  address          String
+  metro            String
+  inn              String
+  ogrn             String
+  mapEmbedUrl      String
+  heroTitle        String
+  heroSubtitle     String
+  primaryCta       String
+  seoDefaultTitle  String
+  seoDescription   String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}

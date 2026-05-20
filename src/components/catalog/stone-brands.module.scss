@@ -1,0 +1,563 @@
+.catalogPageTheme {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: transparent;
+}
+
+@media (max-width: 428px) {
+  .catalogPageTheme {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.catalogPageTheme::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(4, 19, 17, 0.44) 0%, rgba(5, 24, 21, 0.38) 100%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.catalogPageTheme > :global(.container) {
+  position: relative;
+  z-index: 1;
+}
+
+.catalogSurface {
+  position: relative;
+  padding: clamp(14px, 2.8vw, 28px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(160deg, rgba(5, 18, 16, 0.86), rgba(8, 24, 20, 0.9));
+  color: #f6f8f7;
+  overflow: hidden;
+}
+
+.catalogSurface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 18% 16%, rgba(214, 170, 95, 0.14), transparent 45%);
+  opacity: 1;
+  pointer-events: none;
+}
+
+.catalogSurface > * {
+  position: relative;
+  z-index: 1;
+}
+
+.catalogSurface :global(.card) {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05));
+  color: #f7f8f8;
+  backdrop-filter: none;
+  animation: none;
+}
+
+.catalogSurface :global(.field),
+.catalogSurface :global(.select) {
+  background: rgba(4, 12, 12, 0.45);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #f6f8f7;
+}
+
+.catalogSurface :global(.field::placeholder) {
+  color: rgba(246, 248, 247, 0.6);
+}
+
+.catalogSurface :global(.button-ghost) {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #f6f8f7;
+}
+
+.catalogSurface :global(.eyebrow) {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2c68e;
+}
+
+.brandIntro {
+  margin-bottom: 20px;
+  padding: 26px;
+}
+
+.brandIntro h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+}
+
+.brandIntro p {
+  margin: 12px 0 0;
+  max-width: 72ch;
+}
+
+.brandFilterRow {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 24px;
+}
+
+.brandFieldLabel {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(246, 248, 247, 0.92);
+}
+
+.brandFilterCard {
+  display: grid;
+  gap: 14px;
+  max-width: none;
+}
+
+.unifiedHead {
+  display: grid;
+  gap: 10px;
+}
+
+.unifiedHead h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+.unifiedHead p {
+  margin: 0;
+  max-width: 74ch;
+  color: rgba(246, 248, 247, 0.76);
+}
+
+.filterGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.brandCombo {
+  position: relative;
+}
+
+.brandComboInput {
+  padding-right: 52px;
+}
+
+.brandComboClear {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 48px;
+  min-height: 48px;
+  width: auto;
+  height: auto;
+  padding: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(246, 248, 247, 0.9);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  line-height: 1;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.brandComboClear:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(226, 198, 142, 0.45);
+  transform: translateY(-50%) scale(1.02);
+}
+
+.brandMenu {
+  margin-top: 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(4, 12, 12, 0.86);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.brandMenuItem {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 0;
+  background: transparent;
+  color: rgba(246, 248, 247, 0.92);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.brandMenuItem:hover {
+  background: rgba(226, 198, 142, 0.12);
+  color: #f6f8f7;
+}
+
+.brandMenuItemActive {
+  background: rgba(226, 198, 142, 0.18);
+}
+
+.brandMenuName {
+  font-weight: 500;
+}
+
+.brandMenuCount {
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(246, 248, 247, 0.82);
+  font-size: 12px;
+}
+
+.brandMenuEmpty {
+  padding: 14px;
+  color: rgba(246, 248, 247, 0.72);
+}
+
+.fieldHint {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: rgba(246, 248, 247, 0.72);
+}
+
+.filterHead {
+  display: grid;
+  gap: 6px;
+}
+
+.filterHead strong {
+  font-size: 1.05rem;
+}
+
+.filterHead span {
+  color: rgba(17, 23, 34, 0.72);
+}
+
+.hintsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hintsArea {
+  min-height: 44px;
+}
+
+.hintsPlaceholder {
+  display: block;
+  height: 38px;
+  width: 100%;
+  opacity: 0;
+}
+
+.hintChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(8, 25, 22, 0.55);
+  color: #f6f8f7;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.hintChip:hover {
+  border-color: rgba(200, 161, 94, 0.46);
+  transform: translateY(-1px);
+}
+
+.emptyHint {
+  color: rgba(246, 248, 247, 0.62);
+  font-size: 0.95rem;
+}
+
+.filterActionRow {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.filterStatusRow {
+  margin-top: 4px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.filterStatus {
+  font-size: 0.9rem;
+  color: rgba(246, 248, 247, 0.7);
+}
+
+.resetButton {
+  transition: opacity 0.15s ease;
+}
+
+.resetButtonHidden {
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.pendingText {
+  font-size: 0.88rem;
+  color: rgba(246, 248, 247, 0.7);
+}
+
+.brandLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.brandLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(26, 33, 48, 0.1);
+  background: rgba(255, 255, 255, 0.75);
+  color: #18202d;
+}
+
+.brandLinkActive {
+  border-color: rgba(200, 161, 94, 0.45);
+  background: rgba(200, 161, 94, 0.18);
+}
+
+.brandCount {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+}
+
+.popularBrands {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+}
+
+.popularTitle {
+  font-weight: 600;
+}
+
+.brandRail {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.stonesHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 14px 0 12px;
+  color: rgba(246, 248, 247, 0.8);
+}
+
+.loadMoreRow {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 8px;
+}
+
+.swatchesGrid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .swatchesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .swatchesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.swatchCard {
+  position: relative;
+  min-height: 170px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 14px 24px rgba(8, 13, 20, 0.12);
+  overflow: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: 170px;
+}
+
+.swatchPhoto {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.swatchInner {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  padding: 18px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+  background: linear-gradient(180deg, rgba(4, 12, 11, 0.22) 0%, rgba(4, 12, 11, 0.52) 100%);
+}
+
+.swatchTitle {
+  justify-self: center;
+  min-width: min(90%, 280px);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(5, 18, 16, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #f6f8f7;
+  text-align: center;
+  font-weight: 500;
+}
+
+.swatchMeta {
+  justify-self: start;
+  align-self: end;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(5, 18, 16, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #f6f8f7;
+}
+
+.swatchAction {
+  position: absolute;
+  inset: 0;
+}
+
+.brandPageHead {
+  margin-bottom: 18px;
+}
+
+.brandPageHead h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3.6vw, 3.4rem);
+}
+
+.brandPageHead p {
+  margin: 10px 0 0;
+}
+
+.benefitsGrid {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.benefitCard {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(7, 19, 17, 0.56);
+  color: rgba(246, 248, 247, 0.84);
+}
+
+.benefitCard strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #f6f8f7;
+}
+
+.catalogFallback {
+  min-height: 1080px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(160deg, rgba(5, 18, 16, 0.84), rgba(8, 24, 20, 0.88));
+  padding: clamp(14px, 2.8vw, 28px);
+  display: grid;
+  gap: 14px;
+}
+
+.fallbackLine {
+  height: 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
+}
+
+.fallbackLineWide {
+  width: min(540px, 100%);
+  height: 40px;
+}
+
+.fallbackLineMedium {
+  width: min(380px, 100%);
+}
+
+.fallbackLineShort {
+  width: min(240px, 100%);
+}
+
+.fallbackGrid {
+  margin-top: 18px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .fallbackGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .fallbackGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fallbackCard {
+  min-height: 170px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05));
+}
+
+@media (min-width: 980px) {
+  .filterGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .brandFilterRow {
+    grid-template-columns: minmax(280px, 1fr);
+    align-items: start;
+  }
+}

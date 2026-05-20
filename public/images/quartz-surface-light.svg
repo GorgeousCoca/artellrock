@@ -1,0 +1,22 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="0" x2="1086" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F1E8"/>
+      <stop offset="1" stop-color="#DED1C0"/>
+    </linearGradient>
+    <linearGradient id="veinGold" x1="488" y1="92" x2="948" y2="762" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D1A168"/>
+      <stop offset="1" stop-color="#8F673B"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" rx="32" fill="url(#bg)"/>
+  <rect x="36" y="36" width="1128" height="828" rx="28" stroke="#FFFFFF" stroke-opacity="0.64"/>
+  <path d="M120 118C256 176 330 254 424 348C516 438 558 548 700 645C776 699 860 758 1078 772" stroke="#E7D4BA" stroke-width="26" stroke-linecap="round"/>
+  <path d="M78 674C180 632 264 620 338 595C463 553 533 466 662 422C776 384 885 385 1064 328" stroke="#F8F5EF" stroke-width="18" stroke-linecap="round"/>
+  <path d="M226 118C278 171 336 236 382 317C428 397 455 487 519 554" stroke="url(#veinGold)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M329 704C411 674 482 640 553 575C602 531 639 475 684 425C760 339 827 301 944 245" stroke="#A0754A" stroke-opacity="0.72" stroke-width="4" stroke-linecap="round"/>
+  <path d="M674 108C646 197 651 282 714 368C778 454 875 497 975 532" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="4" stroke-linecap="round"/>
+  <path d="M868 628C798 648 738 690 673 728C623 758 571 777 514 790" stroke="#C79861" stroke-opacity="0.8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M481 221L586 338" stroke="#FFFFFF" stroke-opacity="0.56" stroke-width="3" stroke-linecap="round"/>
+  <path d="M802 543L870 640" stroke="#FFFFFF" stroke-opacity="0.56" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,40 @@
+{
+  "name": "kvartsevyy-aglomerat",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "a11y:lighthouse": "node scripts/lighthouse-a11y.mjs",
+    "check:stone-images": "tsx scripts/check-stone-images.ts",
+    "rename:ascii-media": "tsx scripts/rename-public-media-ascii.ts"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "jose": "^6.0.11",
+    "lucide-react": "^0.511.0",
+    "next": "^16.0.0",
+    "nodemailer": "^8.0.5",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sharp": "^0.34.5",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "@types/nodemailer": "^8.0.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "eslint": "^9.25.0",
+    "eslint-config-next": "^16.0.0",
+    "sass": "^1.89.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.8.3"
+  }
+}

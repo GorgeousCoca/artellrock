@@ -1,0 +1,51 @@
+# Деплой на Vercel при push в main.
+# Settings → Variables: DEPLOY_PLATFORM = vercel
+# Settings → Secrets:
+#   VERCEL_TOKEN — https://vercel.com/account/tokens
+#   VERCEL_ORG_ID, VERCEL_PROJECT_ID — из .vercel/project.json после `vercel link`
+
+name: Deploy Vercel (production)
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: ${{ vars.DEPLOY_PLATFORM == 'vercel' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: vercel-production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prisma generate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          export DATABASE_URL="${DATABASE_URL:-postgresql://ci:ci@127.0.0.1:5432/ci}"
+          npm run prisma:generate
+
+      - name: Deploy to Vercel
+        id: deploy
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: "--prod"
