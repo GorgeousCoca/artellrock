@@ -1,13 +1,9 @@
-import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 import { StoneBrandsClient } from "@/components/catalog/stone-brands-client";
+import { StoneCatalogBrandRedirect } from "@/components/catalog/stone-catalog-brand-redirect";
 import styles from "@/components/catalog/stone-brands.module.scss";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { brandCatalogHref } from "@/lib/stone/brands";
-
-type PageProps = {
-  searchParams: Promise<{ brand?: string }>;
-};
 
 export const metadata = buildMetadata({
   title: "Каталог камня",
@@ -15,15 +11,12 @@ export const metadata = buildMetadata({
   path: "/catalog-kamnya"
 });
 
-export default async function StoneCatalogPage({ searchParams }: PageProps) {
-  const { brand } = await searchParams;
-
-  if (brand) {
-    redirect(brandCatalogHref(brand));
-  }
-
+export default function StoneCatalogPage() {
   return (
     <section className={`section ${styles.catalogPageTheme}`}>
+      <Suspense fallback={null}>
+        <StoneCatalogBrandRedirect />
+      </Suspense>
       <StoneBrandsClient />
     </section>
   );

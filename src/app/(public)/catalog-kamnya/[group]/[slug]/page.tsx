@@ -1,10 +1,14 @@
 import { permanentRedirect } from "next/navigation";
 
+import { getStoneSamples } from "@/lib/site";
+
 /** Карточки по прямой ссылке отключены — ведём на контакты. */
-export function generateStaticParams() {
-  // Пустой список: при `output: "export"` не создаём сотни однотипных HTML с редиректом.
-  // На `next start` / Docker маршрут обрабатывается по запросу, редирект сохраняется.
-  return [];
+export async function generateStaticParams() {
+  const stones = await getStoneSamples();
+  return stones.map((stone) => ({
+    group: stone.stoneType,
+    slug: stone.slug
+  }));
 }
 
 export default function StoneDetailRedirect() {
