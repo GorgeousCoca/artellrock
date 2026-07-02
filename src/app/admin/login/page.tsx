@@ -9,10 +9,8 @@ export default async function AdminLoginPage() {
   }
 
   return (
-    <section className="section">
-      <div className="container" style={{ maxWidth: 520 }}>
-        <AdminLoginForm />
-      </div>
-    </section>
+    <div className="admin-login-wrap">
+      <AdminLoginForm />
+    </div>
   );
 }

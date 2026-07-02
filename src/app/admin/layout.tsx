@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import "./admin.scss";
+
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
   title: {

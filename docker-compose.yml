@@ -27,6 +27,6 @@ services:
       NODE_ENV: production
       NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://artellrock.ru}
       NEXT_PUBLIC_BASE_PATH: ${NEXT_PUBLIC_BASE_PATH:-}
-    # volumes:
-    #   - ./data/cms-store.json:/app/src/content/cms-store.json
-    #   - ./data/uploads:/app/public/uploads
+    volumes:
+      - ./data/cms-store.json:/app/src/content/cms-store.json
+      - ./data/uploads:/app/public/uploads

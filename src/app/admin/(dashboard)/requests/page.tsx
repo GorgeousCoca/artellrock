@@ -1,93 +1,141 @@
+import { AdminRequestsTable } from "@/components/admin/admin-requests-table";
 import { getContactRequests } from "@/lib/site";
 
-type AdminRequestsPageProps = {
-  searchParams: Promise<{ status?: string }>;
+type SearchParams = {
+  search?: string;
+  status?: string;
+  source?: string;
+  from?: string;
+  to?: string;
+  order?: string;
 };
 
-export default async function AdminRequestsPage({ searchParams }: AdminRequestsPageProps) {
+export default async function AdminRequestsPage({
+  searchParams
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
   const query = await searchParams;
   const requests = await getContactRequests();
-  const selectedStatus = query.status ?? "all";
-  const statusLabel: Record<string, string> = {
-    delivered: "Письмо отправлено",
-    failed_mail: "Ошибка SMTP",
-    pending: "Ожидает отправки"
-  };
-  const statusOptions = [
-    { value: "all", label: "Все заявки" },
-    { value: "delivered", label: "Письмо отправлено" },
-    { value: "failed_mail", label: "Ошибки SMTP" },
-    { value: "pending", label: "Ожидает отправки" }
-  ] as const;
-  const filteredRequests =
-    selectedStatus === "all" ? requests : requests.filter((request) => (request.deliveryStatus ?? "pending") === selectedStatus);
-  const failedSmtpCount = requests.filter((request) => request.deliveryStatus === "failed_mail").length;
+
+  const search = (query.search ?? "").toLowerCase();
+  const status = query.status ?? "all";
+  const source = query.source ?? "all";
+  const from = query.from ?? "";
+  const to = query.to ?? "";
+  const order = query.order ?? "desc";
+
+  const sources = [...new Set(requests.map((r) => r.source).filter(Boolean))];
+
+  const filtered = requests
+    .filter((r) => {
+      if (status !== "all" && (r.deliveryStatus ?? "pending") !== status) return false;
+      if (source !== "all" && r.source !== source) return false;
+      if (from && r.createdAt < from) return false;
+      if (to && r.createdAt > `${to}T23:59:59Z`) return false;
+      if (search) {
+        const hay = `${r.name} ${r.phone} ${r.email} ${r.message}`.toLowerCase();
+        if (!hay.includes(search)) return false;
+      }
+      return true;
+    })
+    .sort((a, b) => {
+      const diff = new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+      return order === "asc" ? diff : -diff;
+    });
+
+  const withFiles = requests.filter((r) => r.attachmentUrl).length;
 
   return (
     <div className="stack">
-      <div className="card stack">
+      <header className="admin-page-head">
         <h1>Заявки</h1>
-        <p className="muted">Все формы сайта сохраняются в единую ленту заявок.</p>
-        <div className="pill-list">
-          <span className="pill">Всего: {requests.length}</span>
-          <span className="pill">Ошибки SMTP: {failedSmtpCount}</span>
-          <span className="pill">За 24ч проверь вручную: {failedSmtpCount > 0 ? "Да" : "Нет"}</span>
+        <p>
+          История обращений с сайта. Вложения (эскизы и фото) сохраняются в{" "}
+          <code>public/uploads/leads/</code>.
+        </p>
+      </header>
+
+      <div className="admin-card admin-metrics" style={{ padding: 0 }}>
+        <div className="admin-metric">
+          <div className="admin-metric__value">{requests.length}</div>
+          <div className="admin-metric__label">Всего заявок</div>
         </div>
-        <form method="get" className="admin-toolbar" style={{ marginBottom: 0 }}>
-          <label className="stack" style={{ gap: 6 }}>
-            <span className="muted">Фильтр статуса</span>
-            <select className="select" name="status" defaultValue={selectedStatus}>
-              {statusOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <button className="button-secondary" type="submit">
-            Применить
-          </button>
-        </form>
+        <div className="admin-metric">
+          <div className="admin-metric__value">{withFiles}</div>
+          <div className="admin-metric__label">С файлами</div>
+        </div>
+        <div className="admin-metric">
+          <div className="admin-metric__value">{filtered.length}</div>
+          <div className="admin-metric__label">По фильтру</div>
+        </div>
       </div>
 
-      {filteredRequests.length ? (
-        filteredRequests.map((request) => (
-          <article key={request.id} className="card stack">
-            <div className="admin-toolbar">
-              <div className="stack" style={{ gap: 4 }}>
-                <strong>{request.name}</strong>
-                <span className="muted">
-                  {request.phone} · {request.email}
-                </span>
-              </div>
-              <div className="pill-list">
-                <span className="pill">{request.source}</span>
-                <span className="pill">{statusLabel[request.deliveryStatus ?? "pending"]}</span>
-              </div>
+      <form method="get" className="admin-card">
+        <div className="admin-filters">
+          <div className="form-group" style={{ flex: "1 1 200px" }}>
+            <label className="form-label">Поиск</label>
+            <input
+              name="search"
+              type="search"
+              className="form-input"
+              defaultValue={query.search}
+              placeholder="Имя, телефон, email..."
+            />
+          </div>
+
+          <div className="form-group" style={{ flex: "0 0 160px" }}>
+            <label className="form-label">Статус</label>
+            <select name="status" className="form-select" defaultValue={status}>
+              <option value="all">Все</option>
+              <option value="delivered">Отправлено</option>
+              <option value="failed_mail">Ошибка SMTP</option>
+              <option value="pending">Ожидает</option>
+            </select>
+          </div>
+
+          {sources.length > 1 ? (
+            <div className="form-group" style={{ flex: "0 0 160px" }}>
+              <label className="form-label">Источник</label>
+              <select name="source" className="form-select" defaultValue={source}>
+                <option value="all">Все</option>
+                {sources.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
             </div>
-            <p>{request.message}</p>
-            <div className="btn-row">
-              <a className="button-secondary" href={`tel:${request.phone.replace(/[^\d+]/g, "")}`}>
-                Позвонить
-              </a>
-              <a className="button-secondary" href={`mailto:${request.email}`}>
-                Написать на email
-              </a>
-            </div>
-            {request.mailError ? <span className="muted">SMTP: {request.mailError}</span> : null}
-            <span className="muted">{new Date(request.createdAt).toLocaleString("ru-RU")}</span>
-          </article>
-        ))
-      ) : (
-        <div className="card stack">
-          <strong>{requests.length ? "Нет заявок под текущий фильтр" : "Заявок пока нет"}</strong>
-          <p>
-            {requests.length
-              ? "Измените фильтр статуса, чтобы посмотреть другие обращения."
-              : "После отправки форм с сайта новые обращения появятся здесь автоматически."}
-          </p>
+          ) : null}
+
+          <div className="form-group" style={{ flex: "0 0 140px" }}>
+            <label className="form-label">От</label>
+            <input name="from" type="date" className="form-input" defaultValue={from} />
+          </div>
+
+          <div className="form-group" style={{ flex: "0 0 140px" }}>
+            <label className="form-label">До</label>
+            <input name="to" type="date" className="form-input" defaultValue={to} />
+          </div>
+
+          <div className="form-group" style={{ flex: "0 0 140px" }}>
+            <label className="form-label">Порядок</label>
+            <select name="order" className="form-select" defaultValue={order}>
+              <option value="desc">Новые первые</option>
+              <option value="asc">Старые первые</option>
+            </select>
+          </div>
+
+          <button className="button" type="submit">
+            Применить
+          </button>
+          <a className="button-secondary" href="/admin/requests">
+            Сбросить
+          </a>
         </div>
-      )}
+      </form>
+
+      <AdminRequestsTable requests={filtered} />
     </div>
   );
 }

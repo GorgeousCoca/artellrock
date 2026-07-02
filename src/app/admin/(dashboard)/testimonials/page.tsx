@@ -1,5 +1,7 @@
-import { AdminCollectionPage } from "@/components/admin/admin-collection-page";
+import { TestimonialsAdmin } from "@/components/admin/testimonials-admin";
+import { getTestimonials } from "@/lib/site";
 
-export default function AdminTestimonialsPage() {
-  return <AdminCollectionPage collection="testimonials" />;
+export default async function AdminTestimonialsPage() {
+  const testimonials = await getTestimonials();
+  return <TestimonialsAdmin testimonials={testimonials} />;
 }

@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
-import { AdminSidebar } from "@/components/admin/admin-sidebar";
+import { AdminMobileRouteGuard } from "@/components/admin/admin-mobile-route-guard";
+import { AdminMobileShell } from "@/components/admin/admin-mobile-shell";
 import { isAdminAuthorized } from "@/lib/admin/auth";
 
 export default async function AdminDashboardLayout({
@@ -13,9 +14,9 @@ export default async function AdminDashboardLayout({
   }
 
   return (
-    <div className="admin-layout">
-      <AdminSidebar />
-      <main className="admin-content">{children}</main>
-    </div>
+    <AdminMobileShell>
+      <AdminMobileRouteGuard />
+      {children}
+    </AdminMobileShell>
   );
 }
