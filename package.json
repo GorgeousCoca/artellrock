@@ -13,7 +13,9 @@
     "typecheck": "tsc --noEmit",
     "a11y:lighthouse": "node scripts/lighthouse-a11y.mjs",
     "check:stone-images": "tsx scripts/check-stone-images.ts",
-    "rename:ascii-media": "tsx scripts/rename-public-media-ascii.ts"
+    "rename:ascii-media": "tsx scripts/rename-public-media-ascii.ts",
+    "screenshots": "node scripts/screenshots.mjs",
+    "verify:phase1-deps": "node scripts/verify-phase1-deps.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -33,6 +35,8 @@
     "@types/react-dom": "^19.2.2",
     "eslint": "^9.25.0",
     "eslint-config-next": "^16.0.0",
+    "lighthouse": "^12.8.2",
+    "puppeteer": "^25.0.4",
     "sass": "^1.89.0",
     "tsx": "^4.20.5",
     "typescript": "^5.8.3"

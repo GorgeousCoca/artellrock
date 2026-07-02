@@ -1,5 +1,6 @@
-import Link from "next/link";
+"use client";
 
+import { useConsultation } from "@/components/forms/consultation-provider";
 import { LazyImage } from "@/components/ui/lazy-image";
 import { formatPrice, hasListedPricePerSqm } from "@/lib/utils";
 import type { StoneSample } from "@/types/content";
@@ -11,12 +12,12 @@ type BrandStonesGridProps = {
 };
 
 const tones = [
-  "linear-gradient(140deg, #f0f0f0, #d4d8dd)",
-  "linear-gradient(140deg, #d3d6d9, #b9bdbf)",
-  "linear-gradient(140deg, #dad4c6, #c2b8a3)",
-  "linear-gradient(140deg, #1d1f24, #050608)",
-  "linear-gradient(140deg, #efe8dc, #d2c6b7)",
-  "linear-gradient(140deg, #cfd4da, #b2bbc4)"
+  "linear-gradient(140deg, #ede9e2, #d8d0c4)",
+  "linear-gradient(140deg, #d6d1ca, #bfb9b0)",
+  "linear-gradient(140deg, #dad4c8, #c4bcaf)",
+  "linear-gradient(140deg, #e8e3db, #d2c9bc)",
+  "linear-gradient(140deg, #cfd4da, #b8bec6)",
+  "linear-gradient(140deg, #dbd8d2, #c8c3bb)"
 ];
 
 function hasStonePhoto(stone: StoneSample) {
@@ -30,45 +31,54 @@ function tone(stone: StoneSample, index: number) {
   return tones[index % tones.length];
 }
 
-function toneWithPhotoUnderlay(stone: StoneSample, index: number) {
-  if (hasStonePhoto(stone)) {
-    return "linear-gradient(140deg, rgba(5, 14, 13, 0.35), rgba(3, 9, 8, 0.55))";
-  }
-  return tone(stone, index);
+function SwatchAction({ stoneId, title }: { stoneId: string; title: string }) {
+  const { openConsultation } = useConsultation();
+
+  return (
+    <button
+      type="button"
+      className={styles.swatchAction}
+      onClick={() => openConsultation(`brand-swatch:${stoneId}`)}
+      aria-label={`Запросить консультацию по декору ${title}`}
+    />
+  );
 }
 
 export function BrandStonesGrid({ stones }: BrandStonesGridProps) {
   return (
     <div className={styles.swatchesGrid}>
-      {stones.map((stone, index) => (
-        <article
-          key={stone.id}
-          className={styles.swatchCard}
-          style={{ background: toneWithPhotoUnderlay(stone, index) }}
-        >
-          {hasStonePhoto(stone) ? (
-            <div className={styles.swatchPhoto} aria-hidden>
-              <LazyImage
-                src={stone.image}
-                alt=""
-                fill
-                sizes="(max-width: 520px) 100vw, (max-width: 900px) 50vw, 33vw"
-                quality={75}
-                priority={index < 6}
-              />
+      {stones.map((stone, index) => {
+        const hasPhoto = hasStonePhoto(stone);
+        return (
+          <article
+            key={stone.id}
+            className={styles.swatchCard}
+            style={{ background: hasPhoto ? "transparent" : tone(stone, index) }}
+          >
+            {hasPhoto ? (
+              <div className={styles.swatchPhoto} aria-hidden>
+                <LazyImage
+                  src={stone.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 520px) 100vw, (max-width: 900px) 50vw, 33vw"
+                  quality={75}
+                  priority={index < 6}
+                />
+              </div>
+            ) : null}
+            <div className={hasPhoto ? styles.swatchInner : styles.swatchInnerFlat}>
+              <span className={styles.swatchTitle}>{stone.title}</span>
+              <span className={styles.swatchMeta}>
+                {hasListedPricePerSqm(stone.priceFrom)
+                  ? `от ${formatPrice(stone.priceFrom)} ₽/м²`
+                  : "от — ₽/м²"}
+              </span>
+              <SwatchAction stoneId={stone.id} title={stone.title} />
             </div>
-          ) : null}
-          <div className={styles.swatchInner}>
-            <span className={styles.swatchTitle}>{stone.title}</span>
-            <span className={styles.swatchMeta}>
-              {hasListedPricePerSqm(stone.priceFrom)
-                ? `от ${formatPrice(stone.priceFrom)} ₽/м²`
-                : "от — ₽/м²"}
-            </span>
-            <Link className={styles.swatchAction} href="/calculator" aria-label="Перейти к калькулятору расчёта" />
-          </div>
-        </article>
-      ))}
+          </article>
+        );
+      })}
     </div>
   );
 }

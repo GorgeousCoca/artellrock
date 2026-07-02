@@ -9,58 +9,116 @@ type AppErrorFallbackProps = {
   eyebrow?: string;
 };
 
-/**
- * Standalone fallback (no async Server Components) for error boundaries and global-error.
- */
 export function AppErrorFallback({ title, description, reset, eyebrow = "Сбой" }: AppErrorFallbackProps) {
   return (
     <div
-      className="app-error-fallback"
       style={{
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "var(--section-pad-y) var(--space-5)",
-        background:
-          "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(211, 170, 103, 0.2), transparent), linear-gradient(180deg, #0a1018 0%, #121b28 100%)"
+        padding: "clamp(40px, 8vw, 80px) 24px",
+        background: "#F2F0EB"
       }}
     >
-      <div className="container" style={{ maxWidth: 520, width: "100%" }}>
+      <div style={{ maxWidth: 520, width: "100%" }}>
         <div
-          className="card stack"
           style={{
+            background: "#FFFFFF",
+            borderRadius: "18px",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
+            padding: "clamp(28px, 5vw, 48px)",
             textAlign: "center",
-            padding: "clamp(28px, 5vw, 40px)",
-            border: "1px solid rgba(255, 255, 255, 0.08)",
-            boxShadow: "0 32px 80px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06)",
-            background: "linear-gradient(165deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%)"
+            border: "1px solid rgba(26,26,26,0.08)"
           }}
         >
-          <span className="eyebrow" style={{ color: "rgba(255, 200, 160, 0.95)" }}>
+          <span
+            style={{
+              display: "inline-block",
+              padding: "4px 12px",
+              borderRadius: "999px",
+              background: "rgba(92,82,71,0.08)",
+              color: "#5C5247",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              marginBottom: "16px"
+            }}
+          >
             {eyebrow}
           </span>
           <h1
             style={{
-              margin: "var(--space-3) 0 var(--space-4)",
-              fontSize: "clamp(1.35rem, 4vw, 1.75rem)",
-              lineHeight: "var(--leading-heading)",
-              letterSpacing: "-0.02em"
+              margin: "0 0 12px",
+              fontSize: "clamp(1.4rem, 4vw, 1.9rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
+              lineHeight: 1.15,
+              color: "#1A1A1A"
             }}
           >
             {title}
           </h1>
-          <p style={{ color: "var(--foreground-soft)", margin: "0 0 var(--space-6)", lineHeight: "var(--leading-body)" }}>
+          <p
+            style={{
+              color: "#6B7280",
+              margin: "0 0 28px",
+              lineHeight: 1.65,
+              fontSize: "1rem"
+            }}
+          >
             {description}
           </p>
-          <div className="btn-row" style={{ justifyContent: "center", flexWrap: "wrap", gap: "var(--space-3)" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+              justifyContent: "center",
+              flexWrap: "wrap"
+            }}
+          >
             {reset ? (
-              <button type="button" className="button" onClick={() => reset()}>
+              <button
+                type="button"
+                onClick={() => reset()}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
+                  padding: "12px 24px",
+                  borderRadius: "12px",
+                  border: "none",
+                  background: "#5C5247",
+                  color: "#fff",
+                  fontWeight: 600,
+                  fontSize: "0.9375rem",
+                  cursor: "pointer",
+                  fontFamily: "inherit"
+                }}
+              >
                 Попробовать снова
               </button>
             ) : null}
-            <Link className={reset ? "button-secondary" : "button"} href="/">
+            <Link
+              href="/"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+                padding: "12px 24px",
+                borderRadius: "12px",
+                border: "1px solid rgba(92,82,71,0.2)",
+                background: "transparent",
+                color: "#5C5247",
+                fontWeight: 600,
+                fontSize: "0.9375rem",
+                textDecoration: "none"
+              }}
+            >
               На главную
             </Link>
           </div>

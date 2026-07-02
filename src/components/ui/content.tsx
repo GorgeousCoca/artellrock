@@ -32,12 +32,14 @@ export function PageHero({
   visualImageSrc,
   visualImageAlt,
   visualBadgeText,
+  showVisual = true,
   heroImageSizes,
-  heroImagePriority
+  heroImagePriority,
+  bareCard = false
 }: {
   eyebrow?: string;
   title: string;
-  description: string;
+  description: React.ReactNode;
   actions?: React.ReactNode;
   titleClassName?: string;
   descriptionClassName?: string;
@@ -45,38 +47,50 @@ export function PageHero({
   visualImageSrc?: string;
   visualImageAlt?: string;
   visualBadgeText?: string;
+  /** Скрыть правый блок с изображением (страницы брендов и т.п.). */
+  showVisual?: boolean;
   /** Responsive width hints for LCP/preload (default suits 2-col hero). */
   heroImageSizes?: string;
   /** Default true — hero media is typically LCP. */
   heroImagePriority?: boolean;
+  /** Без белой card-подложки — контент на фоне страницы. */
+  bareCard?: boolean;
 }) {
-  const resolvedTitleClassName = `section-title ${titleClassName ?? ""}`.trim();
-  const resolvedDescriptionClassName = descriptionClassName ?? "";
+  const resolvedTitleClassName = `page-hero__title ${titleClassName ?? ""}`.trim();
+  const resolvedDescriptionClassName = `page-hero__lead ${descriptionClassName ?? ""}`.trim();
+  const gridClassName = showVisual ? "page-hero__grid" : "page-hero__grid page-hero__grid--solo";
+  const cardClassName = bareCard ? "page-hero__card page-hero__card--bare" : "card card--flat page-hero__card";
 
   return (
     <section className="section page-hero">
       <div className="container">
-        <div className="card page-hero__card">
-          <div className="page-hero__grid">
+        <div className={cardClassName}>
+          <div className={gridClassName}>
             <div className="stack">
-              {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
+              {eyebrow ? <span className="page-hero__eyebrow">{eyebrow}</span> : null}
               <h1 className={resolvedTitleClassName}>{title}</h1>
               <p className={resolvedDescriptionClassName}>{description}</p>
-              {actions ? <div className={actionsClassName ?? "btn-row"}>{actions}</div> : null}
+              {actions ? (
+                <div className={actionsClassName ?? "page-hero__actions btn-row"}>{actions}</div>
+              ) : null}
             </div>
-            <div className="page-hero__visual">
-              <Image
-                src={visualImageSrc ?? "/images/quartz-hero-editorial.svg"}
-                alt={visualImageAlt ?? "Премиальная композиция из кварцевого агломерата"}
-                width={1600}
-                height={1000}
-                sizes={
-                  heroImageSizes ?? "(max-width: 900px) 100vw, min(52vw, 720px)"
-                }
-                priority={heroImagePriority !== false}
-              />
-              <div className="page-hero__badge">{visualBadgeText ?? "Quartz. Detail. Installation."}</div>
-            </div>
+            {showVisual ? (
+              <div className="page-hero__visual">
+                <Image
+                  src={visualImageSrc ?? "/images/quartz-hero-editorial.svg"}
+                  alt={visualImageAlt ?? "Премиальная композиция из кварцевого агломерата"}
+                  width={1600}
+                  height={1000}
+                  sizes={
+                    heroImageSizes ?? "(max-width: 900px) 100vw, min(52vw, 720px)"
+                  }
+                  priority={heroImagePriority !== false}
+                />
+                <div className="page-hero__badge">
+                  {visualBadgeText ?? "Quartz. Detail. Installation."}
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

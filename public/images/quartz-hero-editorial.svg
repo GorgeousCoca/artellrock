@@ -1,47 +1,74 @@
 <svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="180" y1="40" x2="1390" y2="920" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#111821"/>
-      <stop offset="0.55" stop-color="#171F2B"/>
-      <stop offset="1" stop-color="#0B1119"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EDE9E2"/>
+      <stop offset="1" stop-color="#E5DED5"/>
     </linearGradient>
-    <linearGradient id="gold" x1="1000" y1="180" x2="1360" y2="860" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E7C186"/>
-      <stop offset="1" stop-color="#8A6333"/>
+    <linearGradient id="slab" x1="900" y1="150" x2="1500" y2="850" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5F2EE"/>
+      <stop offset="0.6" stop-color="#EDE8E0"/>
+      <stop offset="1" stop-color="#D8D0C4"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1220 250) rotate(122.681) scale(602.502 849.017)">
-      <stop stop-color="#D7A85E" stop-opacity="0.28"/>
-      <stop offset="1" stop-color="#D7A85E" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="blur" x="846" y="112" width="602" height="598" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feGaussianBlur stdDeviation="44"/>
-    </filter>
+    <linearGradient id="vein1" x1="950" y1="200" x2="1450" y2="780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C8BFB2" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#C8BFB2" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="shadow" x1="800" y1="400" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A1A1A" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#1A1A1A" stop-opacity="0"/>
+    </linearGradient>
   </defs>
-  <rect width="1600" height="1000" rx="40" fill="url(#bg)"/>
-  <rect x="72" y="72" width="1456" height="856" rx="32" stroke="rgba(255,255,255,0.12)" stroke-opacity="0.18"/>
-  <g filter="url(#blur)">
-    <ellipse cx="1147" cy="411" rx="213" ry="209" fill="url(#glow)"/>
-  </g>
-  <path d="M954 167H1462V831H954V167Z" fill="#0D131D"/>
-  <path d="M986 199H1428V799H986V199Z" fill="#131A24"/>
-  <path d="M1018 229H1396V767H1018V229Z" fill="#101720"/>
-  <path d="M1032 241H1382V755H1032V241Z" fill="#161E28"/>
-  <path d="M1045 250C1116 273 1186 291 1256 302C1284 306 1317 323 1352 353V755H1045V250Z" fill="#0E141C"/>
-  <path d="M1056 260C1114 286 1187 295 1238 311C1291 327 1334 354 1360 394V755H1056V260Z" fill="url(#gold)" fill-opacity="0.14"/>
-  <path d="M1094 220L1128 755" stroke="#F1D9B2" stroke-opacity="0.36" stroke-width="2"/>
-  <path d="M1188 214L1246 755" stroke="#D49A5A" stroke-opacity="0.32" stroke-width="3"/>
-  <path d="M1288 208L1316 755" stroke="#F7E6C8" stroke-opacity="0.34" stroke-width="2"/>
-  <path d="M1038 354C1143 336 1225 312 1360 270" stroke="#E6BF88" stroke-opacity="0.24" stroke-width="3"/>
-  <path d="M1042 448C1165 428 1268 438 1382 420" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="2"/>
-  <path d="M1048 606C1173 595 1267 622 1384 590" stroke="#F4E5D1" stroke-opacity="0.2" stroke-width="2"/>
-  <rect x="236" y="652" width="488" height="76" rx="18" fill="#1C2531"/>
-  <rect x="268" y="592" width="420" height="72" rx="18" fill="#202A37"/>
-  <rect x="298" y="539" width="364" height="56" rx="18" fill="#2C3847"/>
-  <rect x="420" y="526" width="370" height="28" rx="14" fill="#E5D6C2"/>
-  <rect x="398" y="510" width="414" height="26" rx="13" fill="#F3E7D7"/>
-  <path d="M396 515C478 492 554 486 633 489C700 492 761 499 812 523" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="3"/>
-  <circle cx="532" cy="587" r="17" fill="#111821"/>
-  <circle cx="604" cy="587" r="17" fill="#111821"/>
-  <path d="M160 798C306 734 432 696 632 700" stroke="#D2A267" stroke-opacity="0.18" stroke-width="2"/>
-  <path d="M156 845C336 820 462 794 713 804" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="2"/>
+
+  <!-- Cream background -->
+  <rect width="1600" height="1000" rx="32" fill="url(#bg)"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="400" y1="0" x2="400" y2="1000" stroke="#1A1A1A" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="800" y1="0" x2="800" y2="1000" stroke="#1A1A1A" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="1200" y1="0" x2="1200" y2="1000" stroke="#1A1A1A" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="0" y1="333" x2="1600" y2="333" stroke="#1A1A1A" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="0" y1="667" x2="1600" y2="667" stroke="#1A1A1A" stroke-opacity="0.04" stroke-width="1"/>
+
+  <!-- Main quartz slab -->
+  <rect x="880" y="120" width="620" height="760" rx="20" fill="url(#slab)"/>
+  <rect x="880" y="120" width="620" height="760" rx="20" fill="url(#shadow)"/>
+
+  <!-- Stone veins -->
+  <path d="M920 180C980 240 1060 280 1120 340C1180 400 1200 460 1280 500C1340 530 1400 540 1460 580" stroke="url(#vein1)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M940 320C1010 360 1080 400 1150 450C1220 500 1260 560 1330 610C1380 645 1430 660 1480 700" stroke="#C4BAB0" stroke-opacity="0.45" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <path d="M900 500C970 520 1040 545 1110 580C1180 615 1240 660 1320 690C1380 713 1440 720 1490 750" stroke="#BEB4AA" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round" fill="none"/>
+  <path d="M1000 160C1050 220 1090 290 1130 360C1160 420 1200 480 1240 550C1270 605 1310 660 1350 720C1390 775 1430 820 1480 860" stroke="#D4CCC4" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Slab border/shadow -->
+  <rect x="880" y="120" width="620" height="760" rx="20" stroke="#1A1A1A" stroke-opacity="0.06" stroke-width="1" fill="none"/>
+
+  <!-- Counter/tabletop shape -->
+  <rect x="120" y="580" width="680" height="48" rx="8" fill="#5C5247" fill-opacity="0.12"/>
+  <rect x="140" y="540" width="640" height="48" rx="8" fill="#5C5247" fill-opacity="0.09"/>
+  <rect x="100" y="628" width="720" height="220" rx="0" fill="#5C5247" fill-opacity="0.05"/>
+
+  <!-- Accent rectangles (material swatches) -->
+  <rect x="120" y="200" width="180" height="120" rx="12" fill="#F0EBE3"/>
+  <rect x="120" y="200" width="180" height="120" rx="12" stroke="#1A1A1A" stroke-opacity="0.08" stroke-width="1" fill="none"/>
+
+  <rect x="316" y="200" width="180" height="120" rx="12" fill="#E8E0D4"/>
+  <rect x="316" y="200" width="180" height="120" rx="12" stroke="#1A1A1A" stroke-opacity="0.08" stroke-width="1" fill="none"/>
+
+  <rect x="512" y="200" width="180" height="120" rx="12" fill="#DDD5C8"/>
+  <rect x="512" y="200" width="180" height="120" rx="12" stroke="#1A1A1A" stroke-opacity="0.08" stroke-width="1" fill="none"/>
+
+  <!-- Label pills -->
+  <rect x="144" y="232" width="72" height="20" rx="10" fill="#5C5247" fill-opacity="0.12"/>
+  <rect x="340" y="232" width="60" height="20" rx="10" fill="#5C5247" fill-opacity="0.12"/>
+  <rect x="536" y="232" width="68" height="20" rx="10" fill="#5C5247" fill-opacity="0.12"/>
+
+  <!-- Small detail lines -->
+  <line x1="144" y1="268" x2="280" y2="268" stroke="#1A1A1A" stroke-opacity="0.1" stroke-width="1"/>
+  <line x1="144" y1="282" x2="248" y2="282" stroke="#1A1A1A" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="340" y1="268" x2="476" y2="268" stroke="#1A1A1A" stroke-opacity="0.1" stroke-width="1"/>
+  <line x1="536" y1="268" x2="672" y2="268" stroke="#1A1A1A" stroke-opacity="0.1" stroke-width="1"/>
+
+  <!-- Accent dot -->
+  <circle cx="200" cy="440" r="48" fill="#5C5247" fill-opacity="0.07"/>
+  <circle cx="200" cy="440" r="32" fill="#5C5247" fill-opacity="0.08"/>
 </svg>

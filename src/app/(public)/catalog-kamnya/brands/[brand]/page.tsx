@@ -1,12 +1,13 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { BrandPageHero } from "@/components/catalog/brand-page-hero";
 import { BrandStonesGrid } from "@/components/catalog/brand-stones-grid";
+import { HomeFaqSection } from "@/components/faq/home-faq-section";
 import styles from "@/components/catalog/stone-brands.module.scss";
-import { PageHero } from "@/components/ui/content";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { brandPageDescriptionSummary, getBrandPageCopy } from "@/lib/stone/brand-page-copy";
 import { getStoneBrands, manufacturerToSlug } from "@/lib/stone/brands";
-import { getStoneSamples } from "@/lib/site";
+import { getFaqItems, getStoneSamples } from "@/lib/site";
 
 type PageProps = {
   params: Promise<{ brand: string }>;
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   return buildMetadata({
     title: `Кварцевый агломерат ${activeBrand.name}`,
-    description: `${activeBrand.description} Каталог декоров, цветов и ориентировочных цен.`,
+    description: `${brandPageDescriptionSummary(activeBrand.slug, activeBrand.name)} Каталог декоров и цен.`,
     path: `/catalog-kamnya/brands/${activeBrand.slug}`,
     image: heroImage
   });
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function BrandCatalogPage({ params }: PageProps) {
   const { brand } = await params;
-  const stones = await getStoneSamples();
+  const [stones, faqItems] = await Promise.all([getStoneSamples(), getFaqItems()]);
   const brands = getStoneBrands(stones);
   const activeBrand = brands.find((item) => item.slug === brand);
 
@@ -50,36 +51,22 @@ export default async function BrandCatalogPage({ params }: PageProps) {
   }
 
   const brandStones = stones.filter((stone) => manufacturerToSlug(stone.manufacturer) === brand);
+  const brandCopy = getBrandPageCopy(activeBrand.slug, activeBrand.name);
 
   return (
     <>
-      <PageHero
-        eyebrow="Каталог бренда"
-        title={`Кварцевый агломерат ${activeBrand.name}`}
-        description={activeBrand.description}
-        actions={
-          <>
-            <Link className="button-secondary" href="/catalog-kamnya">
-              К каталогу камня
-            </Link>
-            <Link className="button" href="/contacts">
-              Получить расчет
-            </Link>
-          </>
-        }
-      />
-      <section className="section">
+      <BrandPageHero slug={activeBrand.slug} copy={brandCopy} />
+      <section className={`section ${styles.brandPageCatalog}`}>
         <div className="container">
-          <div className={styles.brandPageHead}>
-            <h1>{activeBrand.name}</h1>
-            <p>
-              В каталоге {activeBrand.count} позиций. Нажмите на декор, чтобы перейти к калькулятору расчёта
-              стоимости.
-            </p>
-          </div>
+          <p className={`section-copy ${styles.brandCatalogIntro}`}>
+            В каталоге {activeBrand.count} позиций. Нажмите на декор, чтобы запросить консультацию
+            и расчёт стоимости.
+          </p>
           <BrandStonesGrid stones={brandStones} />
         </div>
       </section>
+
+      <HomeFaqSection items={faqItems} standalone />
     </>
   );
 }

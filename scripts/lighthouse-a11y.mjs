@@ -29,7 +29,6 @@ const PATHS = [
   "/portfolio",
   "/contacts",
   "/about",
-  "/calculator",
   "/privacy",
   "/thank-you"
 ];

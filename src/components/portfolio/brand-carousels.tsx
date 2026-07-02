@@ -4,6 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
+import { ConsultationButton } from "@/components/forms/consultation-button";
+import { PlatformLinks } from "@/components/ui/platform-links";
+import { useHorizontalSwipe } from "@/hooks/use-horizontal-swipe";
+import { brandCatalogHref } from "@/lib/stone/brands";
+
 import styles from "./brand-carousels.module.scss";
 
 type BrandGroup = {
@@ -81,6 +86,82 @@ const brandGroups: BrandGroup[] = [
   }
 ];
 
+type BrandShowcaseMediaProps = {
+  brand: string;
+  total: number;
+  active: number;
+  item: { src: string; alt: string };
+  priority?: boolean;
+  onShift: (direction: -1 | 1) => void;
+  onHoverStart: () => void;
+  onHoverEnd: () => void;
+};
+
+function BrandShowcaseMedia({
+  brand,
+  total,
+  active,
+  item,
+  priority,
+  onShift,
+  onHoverStart,
+  onHoverEnd
+}: BrandShowcaseMediaProps) {
+  const swipe = useHorizontalSwipe(
+    () => onShift(1),
+    () => onShift(-1)
+  );
+
+  return (
+    <div
+      className={styles.showcaseMedia}
+      role="group"
+      aria-roledescription="carousel"
+      aria-label={`Фотографии проектов ${brand}`}
+      onMouseEnter={onHoverStart}
+      onMouseLeave={onHoverEnd}
+      onTouchStart={swipe.onTouchStart}
+      onTouchEnd={swipe.onTouchEnd}
+      onTouchCancel={swipe.onTouchCancel}
+    >
+      <div className={styles.imageFrame}>
+        <Image
+          src={item.src}
+          alt={item.alt}
+          fill
+          sizes="(max-width: 900px) 100vw, 50vw"
+          quality={90}
+          className={styles.image}
+          priority={priority}
+          draggable={false}
+        />
+      </div>
+      <span className={styles.counter} aria-hidden>
+        {active + 1} / {total}
+      </span>
+      <button
+        type="button"
+        className={`${styles.navButton} ${styles.navPrev}`}
+        onClick={() => onShift(-1)}
+        aria-label={`Предыдущая фотография бренда ${brand}`}
+      >
+        ‹
+      </button>
+      <button
+        type="button"
+        className={`${styles.navButton} ${styles.navNext}`}
+        onClick={() => onShift(1)}
+        aria-label={`Следующая фотография бренда ${brand}`}
+      >
+        ›
+      </button>
+      <span className="visually-hidden" aria-live="polite">
+        Фото {active + 1} из {total}
+      </span>
+    </div>
+  );
+}
+
 export function BrandCarousels() {
   const [indices, setIndices] = useState<Record<string, number>>(
     () => Object.fromEntries(brandGroups.map((group) => [group.brand, 0])) as Record<string, number>
@@ -126,51 +207,17 @@ export function BrandCarousels() {
   }, [activeCarousel, shift]);
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} aria-label="Проекты по брендам">
       <div className={styles.head}>
+        <span className={styles.eyebrow}>Фото с площадок</span>
         <h2>Реальные проекты с наших площадок</h2>
         <div className={styles.headMeta}>
           <p>Фото выполненных работ из нашей группы в VK от реальных клиентов</p>
-          <div className={styles.socialLinks}>
-            <Link
-              href="https://vk.com/club230045850?ysclid=mo5ny4mikt343003951"
-              target="_blank"
-              rel="noreferrer"
-              className={`${styles.socialLink} ${styles.socialLinkVk}`}
-              aria-label="Перейти в группу VK"
-            >
-              <span className={styles.socialIcon} aria-hidden="true">
-                <svg viewBox="0 0 101 100" aria-hidden="true" focusable="false">
-                  <path
-                    d="M53.7085 72.042C30.9168 72.042 17.9169 56.417 17.3752 30.417H28.7919C29.1669 49.5003 37.5834 57.5836 44.25 59.2503V30.417H55.0004V46.8752C61.5837 46.1669 68.4995 38.667 70.8329 30.417H81.5832C79.7915 40.5837 72.2915 48.0836 66.9582 51.1669C72.2915 53.6669 80.8336 60.2086 84.0836 72.042H72.2499C69.7082 64.1253 63.3754 58.0003 55.0004 57.1669V72.042H53.7085Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-              <span>VK</span>
-            </Link>
-            <Link
-              href="https://www.avito.ru/user/493c13ce7e29d787844ca8d238a644d5/profile?src=sharing"
-              target="_blank"
-              rel="noreferrer"
-              className={`${styles.socialLink} ${styles.socialLinkAvito}`}
-              aria-label="Перейти в профиль Avito"
-            >
-              <span className={styles.socialIcon} aria-hidden="true">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <circle cx="7" cy="14.5" r="3.4" fill="#46A6FF" />
-                  <circle cx="14.5" cy="8" r="3" fill="#66CD40" />
-                  <circle cx="16.5" cy="16" r="2.3" fill="#FFD633" />
-                  <circle cx="10.2" cy="8.8" r="1.8" fill="#FF5A7A" />
-                </svg>
-              </span>
-              <span>Avito</span>
-            </Link>
-          </div>
+          <PlatformLinks />
         </div>
       </div>
-      <div className={styles.grid}>
-        {brandGroups.map((group) => {
+      <div className={styles.brandList}>
+        {brandGroups.map((group, index) => {
           if (group.images.length === 0) {
             // Без снимков item === undefined → у Image пустой src и ошибки в консоли при расширении данных.
             return null;
@@ -181,62 +228,45 @@ export function BrandCarousels() {
           if (!item) {
             return null;
           }
+          const reversed = index % 2 === 1;
+
           return (
-            <article key={group.brand} className={`${styles.card} ${styles.cardShowcase}`}>
-              <div className={styles.cardHead}>
+            <article
+              key={group.brand}
+              className={`${styles.brandRow} ${reversed ? styles.brandRowReverse : ""}`}
+            >
+              <BrandShowcaseMedia
+                brand={group.brand}
+                total={group.images.length}
+                active={active}
+                item={item}
+                priority={group.brand === brandGroups[0].brand && active === 0}
+                onShift={(direction) => shift(group.brand, group.images.length, direction)}
+                onHoverStart={() =>
+                  setActiveCarousel({ brand: group.brand, total: group.images.length })
+                }
+                onHoverEnd={() => setActiveCarousel(null)}
+              />
+
+              <div className={styles.brandContent}>
                 <div className={styles.titleWrap}>
                   <strong>{group.brand}</strong>
                   <p>{group.caption}</p>
                 </div>
-                <span className={styles.counter}>
-                  {active + 1} / {group.images.length}
-                </span>
-              </div>
-
-              <div className={styles.showcaseBody}>
-                <div
-                  className={styles.showcaseMedia}
-                  onMouseEnter={() => setActiveCarousel({ brand: group.brand, total: group.images.length })}
-                  onMouseLeave={() => setActiveCarousel(null)}
-                >
-                  <button
-                    type="button"
-                    className={`${styles.navButton} ${styles.navPrev}`}
-                    onClick={() => shift(group.brand, group.images.length, -1)}
-                    aria-label={`Предыдущая фотография бренда ${group.brand}`}
-                  >
-                    ‹
-                  </button>
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    fill
-                    sizes="(max-width: 900px) 100vw, 50vw"
-                    quality={90}
-                    className={styles.image}
-                    priority={group.brand === brandGroups[0].brand && active === 0}
-                  />
-                  <button
-                    type="button"
-                    className={`${styles.navButton} ${styles.navNext}`}
-                    onClick={() => shift(group.brand, group.images.length, 1)}
-                    aria-label={`Следующая фотография бренда ${group.brand}`}
-                  >
-                    ›
-                  </button>
-                </div>
-
                 <div className={styles.showcaseInfo}>
                   <div className={styles.showcaseMaterial}>
                     <p>Материал: {group.brand}</p>
-                    <Link className={styles.catalogLink} href={`/catalog-kamnya?brand=${group.catalogBrandParam}`}>
+                    <Link className={styles.catalogLink} href={brandCatalogHref(group.catalogBrandParam)}>
                       Перейти в каталог камней
                     </Link>
                   </div>
                   <p className={styles.showcasePrice}>Цена от {formatRub(group.priceFrom)} руб./м²</p>
-                  <Link className={`button ${styles.showcaseButton}`} href="/calculator">
-                    Рассчитать стоимость
-                  </Link>
+                  <ConsultationButton
+                    source={`portfolio:${group.catalogBrandParam}`}
+                    className={`button ${styles.showcaseButton}`}
+                  >
+                    Получить консультацию
+                  </ConsultationButton>
                 </div>
               </div>
             </article>

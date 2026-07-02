@@ -1,30 +1,13 @@
-import dynamic from "next/dynamic";
+import { redirect } from "next/navigation";
 
+import { StoneBrandsClient } from "@/components/catalog/stone-brands-client";
 import styles from "@/components/catalog/stone-brands.module.scss";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { getStoneBrands } from "@/lib/stone/brands";
-import { getStoneSamples } from "@/lib/site";
+import { brandCatalogHref } from "@/lib/stone/brands";
 
-const StoneBrandsClient = dynamic(
-  () => import("@/components/catalog/stone-brands-client").then((m) => m.StoneBrandsClient),
-  {
-    loading: () => (
-      <div className={styles.catalogFallback} aria-hidden="true">
-        <div className={`${styles.fallbackLine} ${styles.fallbackLineShort}`} />
-        <div className={`${styles.fallbackLine} ${styles.fallbackLineWide}`} />
-        <div className={`${styles.fallbackLine} ${styles.fallbackLineMedium}`} />
-        <div className={styles.fallbackGrid}>
-          <div className={styles.fallbackCard} />
-          <div className={styles.fallbackCard} />
-          <div className={styles.fallbackCard} />
-          <div className={styles.fallbackCard} />
-          <div className={styles.fallbackCard} />
-          <div className={styles.fallbackCard} />
-        </div>
-      </div>
-    )
-  }
-);
+type PageProps = {
+  searchParams: Promise<{ brand?: string }>;
+};
 
 export const metadata = buildMetadata({
   title: "Каталог камня",
@@ -32,15 +15,16 @@ export const metadata = buildMetadata({
   path: "/catalog-kamnya"
 });
 
-export default async function StoneCatalogPage() {
-  const stones = await getStoneSamples();
-  const brands = getStoneBrands(stones);
+export default async function StoneCatalogPage({ searchParams }: PageProps) {
+  const { brand } = await searchParams;
+
+  if (brand) {
+    redirect(brandCatalogHref(brand));
+  }
 
   return (
     <section className={`section ${styles.catalogPageTheme}`}>
-      <div className="container">
-        <StoneBrandsClient stones={stones} brands={brands} />
-      </div>
+      <StoneBrandsClient />
     </section>
   );
 }

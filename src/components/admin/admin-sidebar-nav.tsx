@@ -10,9 +10,10 @@ type Item = {
 
 type AdminSidebarNavProps = {
   items: Item[];
+  onNavigate?: () => void;
 };
 
-export function AdminSidebarNav({ items }: AdminSidebarNavProps) {
+export function AdminSidebarNav({ items, onNavigate }: AdminSidebarNavProps) {
   // В edge-кейсах usePathname теоретически может вернуть null до гидрации; ?? "" избегает .startsWith на undefined.
   const pathname = usePathname() ?? "";
 
@@ -21,7 +22,12 @@ export function AdminSidebarNav({ items }: AdminSidebarNavProps) {
       {items.map((item) => {
         const isActive = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(`${item.href}/`));
         return (
-          <Link key={item.href} href={item.href} className={isActive ? "admin-nav__link admin-nav__link--active" : "admin-nav__link"}>
+          <Link
+            key={item.href}
+            href={item.href}
+            className={isActive ? "admin-nav__link admin-nav__link--active" : "admin-nav__link"}
+            onClick={onNavigate}
+          >
             {item.label}
           </Link>
         );

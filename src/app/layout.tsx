@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 
 import "@/app/globals.scss";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -17,6 +17,15 @@ const inter = Inter({
   preload: true
 });
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-display",
+  preload: true
+});
+
 export const metadata: Metadata = {
   metadataBase: getMetadataBaseUrl(),
   ...buildMetadata({
@@ -31,7 +40,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const settings = await getSettings();
 
   return (
-    <html lang="ru" className={inter.variable}>
+    <html lang="ru" className={`${inter.variable} ${cormorant.variable}`} data-scroll-behavior="smooth">
       <body className={inter.className}>
         <JsonLd data={organizationJsonLd(settings)} />
         {children}

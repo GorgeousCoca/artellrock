@@ -1,0 +1,159 @@
+.chart {
+  padding: 24px;
+  overflow: visible;
+}
+
+.title {
+  margin: 0 0 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.plot {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 152px;
+  padding: 0 2px 32px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(
+    to top,
+    transparent 0%,
+    transparent 24%,
+    color-mix(in srgb, var(--border) 35%, transparent) 24%,
+    color-mix(in srgb, var(--border) 35%, transparent) 25%,
+    transparent 25%,
+    transparent 49%,
+    color-mix(in srgb, var(--border) 35%, transparent) 49%,
+    color-mix(in srgb, var(--border) 35%, transparent) 50%,
+    transparent 50%,
+    transparent 74%,
+    color-mix(in srgb, var(--border) 35%, transparent) 74%,
+    color-mix(in srgb, var(--border) 35%, transparent) 75%,
+    transparent 75%
+  );
+}
+
+.barCol {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.barTrack {
+  flex: 1;
+  width: 100%;
+  max-width: 22px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.bar {
+  width: 100%;
+  min-height: 0;
+  border-radius: 4px 4px 0 0;
+  background: var(--beige);
+  border: 1px solid var(--accent-border);
+  transition: height 0.2s ease;
+}
+
+.barToday {
+  background: var(--coffee);
+  border-color: var(--coffee);
+}
+
+.label {
+  margin-top: 8px;
+  font-size: 0.6875rem;
+  line-height: 1;
+  color: var(--foreground-soft);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.labelHidden {
+  visibility: hidden;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.metric {
+  padding: 18px 16px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  background: var(--surface-alt);
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.metricValue {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+.metricLabel {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8125rem;
+  color: var(--foreground-soft);
+}
+
+@media (max-width: 640px) {
+  .chart {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 0.9375rem;
+    margin-bottom: 16px;
+  }
+
+  .plot {
+    gap: 2px;
+    height: 120px;
+    padding-bottom: 28px;
+  }
+
+  .label {
+    font-size: 0.625rem;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr;
+    margin-top: 16px;
+  }
+
+  .metric {
+    padding: 12px 14px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .metricValue {
+    font-size: 1.5rem;
+  }
+}

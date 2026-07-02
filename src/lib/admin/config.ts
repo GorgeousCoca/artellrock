@@ -60,29 +60,6 @@ export const adminCollections = {
       { name: "productRefs", label: "Связанные товары через запятую", type: "textarea" }
     ] satisfies AdminField[]
   },
-  blogCategories: {
-    title: "Категории блога",
-    description: "Категории для SEO-статей",
-    fields: [
-      { name: "slug", label: "Slug", type: "text" },
-      { name: "title", label: "Название", type: "text" }
-    ] satisfies AdminField[]
-  },
-  blogPosts: {
-    title: "Статьи",
-    description: "Публикации блога",
-    fields: [
-      { name: "slug", label: "Slug", type: "text" },
-      { name: "title", label: "Название", type: "text" },
-      { name: "excerpt", label: "Анонс", type: "textarea" },
-      { name: "content", label: "Текст", type: "textarea" },
-      { name: "image", label: "Изображение", type: "text" },
-      { name: "videoUrl", label: "Видео URL", type: "text" },
-      { name: "categoryId", label: "ID категории", type: "text" },
-      { name: "keywords", label: "Ключевые слова через запятую", type: "textarea" },
-      { name: "publishedAt", label: "Дата публикации ISO", type: "text" }
-    ] satisfies AdminField[]
-  },
   teamMembers: {
     title: "Команда",
     description: "Сотрудники и роли",
@@ -91,6 +68,15 @@ export const adminCollections = {
       { name: "role", label: "Роль", type: "text" },
       { name: "bio", label: "Биография", type: "textarea" },
       { name: "image", label: "Изображение", type: "text" }
+    ] satisfies AdminField[]
+  },
+  faqItems: {
+    title: "FAQ",
+    description: "Вопросы и ответы на странице /faq",
+    fields: [
+      { name: "question", label: "Вопрос", type: "text" },
+      { name: "answer", label: "Ответ", type: "textarea" },
+      { name: "sortOrder", label: "Порядок", type: "number" }
     ] satisfies AdminField[]
   },
   testimonials: {

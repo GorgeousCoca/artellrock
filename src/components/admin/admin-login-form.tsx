@@ -9,7 +9,7 @@ export function AdminLoginForm() {
 
   return (
     <form
-      className="card stack"
+      className="admin-login-card stack"
       action={async (formData) => {
         try {
           // Любая сетевая ошибка у fetch — отклонённый Promise; перехватываем, чтобы не засорять консоль и показать сообщение.

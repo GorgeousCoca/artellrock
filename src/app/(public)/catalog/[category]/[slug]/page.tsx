@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+import { ConsultationButton } from "@/components/forms/consultation-button";
 import { ContactForm } from "@/components/forms/contact-form";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PageHero } from "@/components/ui/content";
@@ -61,9 +62,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
         actions={
           <>
             <span className="pill">от {formatPrice(product.basePrice)} руб.</span>
-            <Link className="button" href="/calculator">
-              Рассчитать стоимость
-            </Link>
+            <ConsultationButton source={`product:${product.slug}`}>
+              Получить консультацию
+            </ConsultationButton>
           </>
         }
       />
@@ -83,6 +84,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 width={1400}
                 height={980}
                 style={{ height: 360 }}
+                priority
               />
               <div className="media-card__content">
                 <div className="pill-list">

@@ -40,7 +40,7 @@ export function CatalogFilters({ fields }: CatalogFiltersProps) {
           <label key={field.name} className="stack">
             <span>{field.label}</span>
             <select
-              className="select"
+              className="form-select"
               value={searchParams.get(field.name) ?? ""}
               onChange={(event) => updateField(field.name, event.target.value)}
             >

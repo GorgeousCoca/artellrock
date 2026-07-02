@@ -54,11 +54,6 @@ jobs:
             exit 1
           fi
 
-      - name: Prisma generate
-        env:
-          DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/ci
-        run: npm run prisma:generate
-
       - name: Remove server-only routes for static export
         run: |
           rm -rf src/app/api
@@ -71,7 +66,6 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           NEXT_PUBLIC_SITE_URL: ${{ secrets.CF_PAGES_SITE_URL }}
           NEXT_PUBLIC_STATIC_DEMO: "true"
-          DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/ci
         run: npm run build
 
       - name: Add .nojekyll

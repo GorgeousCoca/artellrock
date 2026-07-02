@@ -32,10 +32,18 @@ export const getStoneSamples = cache(async () => {
   return [...storeFiltered, ...quartzBrandStones];
 });
 export const getProjects = cache(async () => listCollection("projects"));
-export const getBlogPosts = cache(async () => listCollection("blogPosts"));
-export const getBlogCategories = cache(async () => listCollection("blogCategories"));
 export const getTestimonials = cache(async () => listCollection("testimonials"));
+export const getApprovedTestimonials = cache(async () => {
+  const all = await listCollection("testimonials");
+  return all.filter((t) => t.status === "approved").sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+});
 export const getTeamMembers = cache(async () => listCollection("teamMembers"));
+export const getFaqItems = cache(async () => {
+  const items = await listCollection("faqItems");
+  return [...items].sort((a, b) => a.sortOrder - b.sortOrder);
+});
 export const getCertificates = cache(async () => listCollection("certificates"));
 export const getContactRequests = cache(async () => listCollection("contactRequests"));
 export const getSettings = cache(async () => getCompanySettings());
@@ -46,7 +54,6 @@ export const getStoneBySlug = cache(async (slug: string) => {
   return stones.find((item) => item.slug === slug) ?? null;
 });
 export const getProjectBySlug = cache(async (slug: string) => getBySlug("projects", slug));
-export const getBlogPostBySlug = cache(async (slug: string) => getBySlug("blogPosts", slug));
 
 /** Только избранные товары для главной — без тяжёлого merge каталога камня (`getStoneSamples`). */
 export const getHomeFeaturedProducts = cache(async () => {

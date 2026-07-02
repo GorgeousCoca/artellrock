@@ -1,4 +1,9 @@
 import type { NextConfig } from "next";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+/** Явный корень — иначе Turbopack берёт родительскую папку из-за лишнего package-lock.json. */
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const isGithubActions = process.env.GITHUB_ACTIONS === "true";
 const useStandalone = process.env.NEXT_STANDALONE === "true";
@@ -8,6 +13,9 @@ const isUserPagesRepo =
 const basePath = isGithubActions && repositoryName && !isUserPagesRepo ? `/${repositoryName}` : "";
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: projectRoot
+  },
   /** Static export for GitHub Pages; standalone image for Docker / VPS with admin + API. */
   output: isGithubActions ? "export" : useStandalone ? "standalone" : undefined,
   trailingSlash: isGithubActions,
@@ -18,7 +26,16 @@ const nextConfig: NextConfig = {
       process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false
   },
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion"]
+    optimizePackageImports: ["lucide-react"]
+  },
+  async redirects() {
+    return [
+      {
+        source: "/calculator",
+        destination: "/contacts",
+        permanent: true
+      }
+    ];
   },
   images: {
     remotePatterns: [],
@@ -78,7 +95,7 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; img-src 'self' data: blob: https:; media-src 'self' blob: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https:; frame-src 'self' https://www.google.com https://www.google.ru; font-src 'self' data:; base-uri 'self'; form-action 'self'"
+              "default-src 'self'; img-src 'self' data: blob: https:; media-src 'self' blob: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://mc.yandex.ru; connect-src 'self' https: wss://mc.yandex.ru; frame-src 'self' https://www.google.com https://www.google.ru https://mc.yandex.ru; font-src 'self' data:; base-uri 'self'; form-action 'self'"
           }
         ]
       }

@@ -3,8 +3,6 @@ import path from "path";
 
 import defaultStore from "@/content/default-store.json";
 import type {
-  BlogCategory,
-  BlogPost,
   CmsStore,
   CompanySettings,
   ContactRequest,
@@ -38,9 +36,8 @@ type CollectionKey =
   | "products"
   | "stoneSamples"
   | "projects"
-  | "blogCategories"
-  | "blogPosts"
   | "teamMembers"
+  | "faqItems"
   | "testimonials"
   | "certificates"
   | "contactRequests";
@@ -49,9 +46,8 @@ type CollectionMap = {
   products: Product;
   stoneSamples: StoneSample;
   projects: Project;
-  blogCategories: BlogCategory;
-  blogPosts: BlogPost;
   teamMembers: CmsStore["teamMembers"][number];
+  faqItems: CmsStore["faqItems"][number];
   testimonials: CmsStore["testimonials"][number];
   certificates: CmsStore["certificates"][number];
   contactRequests: ContactRequest;
@@ -62,7 +58,7 @@ export async function listCollection<K extends CollectionKey>(key: K): Promise<C
   return store[key] as CollectionMap[K][];
 }
 
-export async function getBySlug<K extends "products" | "stoneSamples" | "projects" | "blogPosts">(
+export async function getBySlug<K extends "products" | "stoneSamples" | "projects">(
   key: K,
   slug: string
 ) {
@@ -92,6 +88,20 @@ export async function createContactRequest(input: Omit<ContactRequest, "id" | "c
   store.contactRequests.unshift(request);
   await writeStore(store);
   return request;
+}
+
+export async function patchContactRequest(
+  id: string,
+  patch: Partial<Pick<ContactRequest, "attachmentUrl" | "attachmentName" | "attachmentSize" | "deliveryStatus" | "mailError">>
+) {
+  const store = await readStore();
+  const index = store.contactRequests.findIndex((r) => r.id === id);
+  if (index < 0) {
+    return null;
+  }
+  store.contactRequests[index] = { ...store.contactRequests[index], ...patch };
+  await writeStore(store);
+  return store.contactRequests[index];
 }
 
 export async function createItem<K extends CollectionKey>(

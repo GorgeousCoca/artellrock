@@ -1,5 +1,6 @@
-import type { BlogPost, CompanySettings, Product, Project } from "@/types/content";
+import type { CompanySettings, FaqItem, Product, Project } from "@/types/content";
 
+import { faqAnswerPlainText } from "@/components/faq/render-faq-answer";
 import { absoluteUrl } from "@/lib/utils";
 
 const SCHEMA_CONTEXT = "https://schema.org" as const;
@@ -21,37 +22,6 @@ export function organizationJsonLd(settings: CompanySettings) {
   };
 }
 
-export function articleJsonLd(post: BlogPost, pageUrl: string) {
-  const desc = post.metaDescription ?? post.excerpt;
-  const image = post.ogImage ?? post.image;
-  const images = image ? [absoluteUrl(image)] : [absoluteUrl("/images/og-default.svg")];
-
-  return {
-    "@context": SCHEMA_CONTEXT,
-    "@type": "Article",
-    "@id": pageUrl,
-    headline: post.title,
-    description: desc,
-    datePublished: post.publishedAt,
-    image: images,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": pageUrl
-    },
-    author: {
-      "@type": "Organization",
-      name: "ArtellRock"
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "ArtellRock",
-      logo: {
-        "@type": "ImageObject",
-        url: absoluteUrl("/images/og-default.svg")
-      }
-    }
-  };
-}
 
 export function productJsonLd(product: Product, pageUrl: string) {
   const image = product.ogImage ?? product.image;
@@ -75,6 +45,22 @@ export function productJsonLd(product: Product, pageUrl: string) {
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition"
     }
+  };
+}
+
+export function faqPageJsonLd(items: FaqItem[], pageUrl: string) {
+  return {
+    "@context": SCHEMA_CONTEXT,
+    "@type": "FAQPage",
+    "@id": pageUrl,
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faqAnswerPlainText(item.answer)
+      }
+    }))
   };
 }
 

@@ -2,13 +2,19 @@
 
 import { useRouter } from "next/navigation";
 
-export function AdminLogoutButton() {
+type AdminLogoutButtonProps = {
+  onNavigate?: () => void;
+};
+
+export function AdminLogoutButton({ onNavigate }: AdminLogoutButtonProps) {
   const router = useRouter();
 
   return (
     <button
       type="button"
+      className="admin-nav__logout"
       onClick={async () => {
+        onNavigate?.();
         try {
           // Сеть может быть недоступна; без перехвата — необработанный Promise у onClick.
           await fetch("/api/auth/logout", { method: "POST" });

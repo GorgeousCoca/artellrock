@@ -1,29 +1,29 @@
 import type { MetadataRoute } from "next";
 
 import { getStoneBrands } from "@/lib/stone/brands";
-import { getBlogPosts, getProducts, getProjects, getStoneSamples } from "@/lib/site";
+import { getProducts, getProjects, getStoneSamples } from "@/lib/site";
 import { absoluteUrl } from "@/lib/utils";
 
 export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [products, stones, projects, posts] = await Promise.all([
+  const [products, stones, projects] = await Promise.all([
     getProducts(),
     getStoneSamples(),
-    getProjects(),
-    getBlogPosts()
+    getProjects()
   ]);
   const brands = getStoneBrands(stones);
 
   const staticRoutes = [
     "/",
-    "/catalog",
+    "/catalog/countertops",
+    "/catalog/window-sills",
+    "/catalog/sinks",
     "/catalog-kamnya",
     "/portfolio",
-    "/calculator",
+    "/faq",
     "/about",
     "/contacts",
-    "/blog",
     "/privacy"
   ];
 
@@ -48,10 +48,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.7
     })),
-    ...posts.map((post) => ({
-      url: absoluteUrl(`/blog/${post.slug}`),
-      changeFrequency: "monthly" as const,
-      priority: 0.7
-    }))
+
   ];
 }

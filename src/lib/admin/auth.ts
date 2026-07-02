@@ -7,9 +7,17 @@ const SESSION_ISSUER = "kvartsevyy-aglomerat";
 const SESSION_AUDIENCE = "admin";
 const SESSION_TTL_SECONDS = 60 * 60 * 8;
 
+function getAdminEmail() {
+  return normalizeEmail(process.env.ADMIN_EMAIL ?? process.env.ADMIN_LOGIN);
+}
+
+function getAdminPassword() {
+  return (process.env.ADMIN_PASSWORD ?? "").trim();
+}
+
 function getSessionSecret() {
   const configuredSecret = process.env.ADMIN_SESSION_SECRET?.trim();
-  const fallbackSecret = `${process.env.ADMIN_EMAIL ?? ""}:${process.env.ADMIN_PASSWORD ?? ""}`.trim();
+  const fallbackSecret = `${getAdminEmail()}:${getAdminPassword()}`.trim();
   const baseSecret =
     configuredSecret || (process.env.NODE_ENV === "development" ? fallbackSecret : "");
 
@@ -92,7 +100,7 @@ export async function clearAdminSession() {
 
 export async function validateAdminCredentials(email: string, password: string) {
   return (
-    safeEqual(normalizeEmail(process.env.ADMIN_EMAIL), normalizeEmail(email)) &&
-    safeEqual(process.env.ADMIN_PASSWORD, password.trim())
+    safeEqual(getAdminEmail(), normalizeEmail(email)) &&
+    safeEqual(getAdminPassword(), password.trim())
   );
 }

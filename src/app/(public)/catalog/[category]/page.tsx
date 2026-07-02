@@ -1,13 +1,17 @@
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { ConsultationButton } from "@/components/forms/consultation-button";
+import { CountertopsLanding } from "@/components/catalog/countertops-landing";
+import { OtherProductsLanding } from "@/components/catalog/other-products-landing";
+import { WindowSillsLanding } from "@/components/catalog/window-sills-landing";
 import { MediaCard, PageHero } from "@/components/ui/content";
 import { productTypeLabels } from "@/lib/filters/catalog";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { getProducts, getProductsByType } from "@/lib/site";
-import type { ProductType } from "@/types/content";
+import type { Product, ProductType } from "@/types/content";
 
 const ProcessTimeline = dynamic(
   () => import("@/components/avantgarde/process-timeline").then((m) => m.ProcessTimeline),
@@ -44,9 +48,6 @@ type CategoryLandingContent = {
   showcaseTitle: string;
   showcaseText: string;
   showcaseExamples: { title: string; details: string[]; price?: string; image?: string }[];
-  trustTitle: string;
-  trustCards: { title: string; text: string }[];
-  whyCards: { title: string; text: string }[];
   processTitle: string;
   processSteps: { step: string; text: string }[];
   animatedWorkflowSteps?: string[];
@@ -64,7 +65,7 @@ const landingByCategory: Partial<Record<ProductType, CategoryLandingContent>> = 
     eyebrow: undefined,
     heroTitle: "Столешницы из искусственного камня в Санкт-Петербурге",
     heroDescription:
-      "Изготавливаем столешницы на кухню и в ванную под ваш проект: от подбора материала и замера до монтажа под ключ. Работаем с кварцевым агломератом и акриловым камнем, учитываем геометрию помещения, технику, фартук и все примыкания.",
+      "Изготавливаем столешницы на кухню и в ванную под ваш проект: от подбора материала и замера до монтажа под ключ. Работаем с кварцевым агломератом, учитываем геометрию помещения, технику, фартук и все примыкания.",
     heroPromo: "Изготовление столешниц на заказ",
     heroPriceFrom: "от 7 670 ₽/м² за материал",
     showHeroBadges: false,
@@ -89,7 +90,7 @@ const landingByCategory: Partial<Record<ProductType, CategoryLandingContent>> = 
     pricingTitle: "Как узнать стоимость столешницы из камня",
     pricingText: [
       "Вы можете оставить заявку и получить консультацию специалиста, чтобы быстро сориентироваться по бюджету и срокам.",
-      "Если нужен более точный ориентир, удобнее всего использовать калькулятор и затем подтвердить расчет после замера."
+      "Если нужен более точный ориентир, оставьте заявку — после бесплатного замера зафиксируем смету."
     ],
     colorsTitle: "Цвет столешницы - отражение вашего вкуса и стиля жизни",
     colorsText: [
@@ -116,35 +117,6 @@ const landingByCategory: Partial<Record<ProductType, CategoryLandingContent>> = 
         title: "Столешница П-образная с подоконником",
         details: ["Avant Quartz 7020 Амбуаз"],
         image: "/images/portfolio-brands/Nobell_Quartz-03.jpg"
-      }
-    ],
-    trustTitle: "Почему клиенты выбирают нас",
-    trustCards: [
-      {
-        title: "Гарантия качества",
-        text: "Используем проверенные материалы и даем гарантию на изделие и монтажные работы."
-      },
-      {
-        title: "Без срывов сроков",
-        text: "Фиксируем этапы и придерживаемся согласованного графика от замера до установки."
-      },
-      {
-        title: "Полный цикл под ключ",
-        text: "Берем на себя замер, проектирование, изготовление, доставку и аккуратный монтаж."
-      }
-    ],
-    whyCards: [
-      {
-        title: "Практичность на каждый день",
-        text: "Кварцевая поверхность устойчива к влаге, пятнам и бытовой нагрузке."
-      },
-      {
-        title: "Эстетика без компромиссов",
-        text: "Доступны однотонные и мраморные декоры для современного интерьера."
-      },
-      {
-        title: "Индивидуальная геометрия",
-        text: "Реализуем прямые, П-образные, угловые решения и острова любой сложности."
       }
     ],
     processTitle: "Как проходит заказ столешницы из искусственного камня",
@@ -182,6 +154,45 @@ const landingByCategory: Partial<Record<ProductType, CategoryLandingContent>> = 
     finalText:
       "Отправьте размеры и фото помещения. Подготовим ориентир по стоимости и срокам, а после замера дадим точное коммерческое предложение."
   },
+  sinks: {
+    metaTitle: "Изделия из кварцевого агломерата на заказ в Санкт-Петербурге",
+    metaDescription:
+      "Изготавливаем мойки, острова, стеновые панели, ступени и любые изделия из кварцевого агломерата по индивидуальным размерам. Замер, производство и монтаж под ключ.",
+    eyebrow: undefined,
+    heroTitle: "Изделия из искусственного камня любой сложности",
+    heroDescription:
+      "Изготавливаем мойки, кухонные острова, барные стойки, стеновые панели, ступени и другие изделия из кварцевого агломерата. Любые размеры, любая конфигурация — собственное производство в Санкт-Петербурге.",
+    heroPromo: "Изготовление по индивидуальным чертежам",
+    heroPriceFrom: undefined,
+    showHeroBadges: false,
+    heroImageSrc: "/images/portfolio-brands/Avant_Quartz-07.jpg",
+    heroImageAlt: "Кухонный остров из кварцевого агломерата",
+    heroBadgeText: "Собственное производство",
+    introTitle: "Любое изделие из кварца под ваш проект",
+    introText: [
+      "Кварцевый агломерат — универсальный материал для любого пространства. Мы изготавливаем мойки, острова, раковины, стеновые панели, ступени и столы по индивидуальным размерам.",
+      "Собственное производство позволяет реализовать нестандартные конфигурации без посредников."
+    ],
+    featureTitle: "Возможности производства",
+    featureIntro: "Широкий спектр изделий — один надёжный исполнитель.",
+    sellingPoints: [],
+    quickLinks: [],
+    pricingTitle: "Как рассчитать стоимость изделия",
+    pricingText: ["Пришлите размеры или эскиз — быстро дадим ориентир по бюджету."],
+    colorsTitle: "Более 200 декоров кварцевого агломерата",
+    colorsText: ["Подбираем цвет и фактуру под стиль и функцию пространства."],
+    popularColors: [],
+    showPopularColors: false,
+    showcaseTitle: "Примеры изделий",
+    showcaseText: "Реализованные форматы из нашего производства.",
+    showcaseExamples: [],
+    processTitle: "Как проходит заказ",
+    processSteps: [],
+    animatedWorkflowSteps: [],
+    showFinalSection: false,
+    finalTitle: "Есть нестандартный проект?",
+    finalText: "Опишите задачу — обсудим и рассчитаем."
+  },
   "window-sills": {
     metaTitle: "Подоконники из искусственного камня на заказ",
     metaDescription:
@@ -214,7 +225,7 @@ const landingByCategory: Partial<Record<ProductType, CategoryLandingContent>> = 
     pricingTitle: "Как купить подоконники из искусственного камня недорого",
     pricingText: [
       "Оставьте заявку и получите консультацию менеджера по формату изделия, материалу и ориентиру по бюджету.",
-      "Для точного расчета используйте калькулятор, после замера мы подтверждаем стоимость и сроки по вашему проекту."
+      "После бесплатного замера подтверждаем стоимость и сроки по вашему проекту."
     ],
     colorsTitle: "Цвет подоконника - часть общего образа интерьера",
     colorsText: [
@@ -230,12 +241,12 @@ const landingByCategory: Partial<Record<ProductType, CategoryLandingContent>> = 
       {
         title: "Серый подоконник из искусственного камня",
         details: ["VicoStone BQ-9470 Azul Aran"],
-        image: "/images/podokonnik-01.jpg"
+        image: "/images/podokonnik-01.webp"
       },
       {
         title: "Эркерный бесшовный подоконник",
         details: ["Primax S-5040 Pure White"],
-        image: "/images/podokonnik-02.jpg"
+        image: "/images/podokonnik-02.webp"
       },
       {
         title: "Черный подоконник",
@@ -251,31 +262,6 @@ const landingByCategory: Partial<Record<ProductType, CategoryLandingContent>> = 
         title: "Столешница с текстурой мрамора",
         details: ["Avarus R-541"],
         image: "/images/portfolio-brands/Avarus-01.jpg"
-      }
-    ],
-    trustTitle: "Почему клиенты выбирают нас",
-    trustCards: [
-      {
-        title: "Гарантируем качество",
-        text: "Тщательно контролируем производство и монтаж, чтобы подоконник служил долго и выглядел аккуратно."
-      },
-      {
-        title: "Соблюдаем сроки",
-        text: "Планируем каждый этап заранее и держим связь с клиентом по статусу заказа."
-      },
-      {
-        title: "Индивидуальный подход",
-        text: "Подбираем материал и конструкцию под конкретный проем, интерьер и сценарий использования."
-      }
-    ],
-    whyCards: [
-      {
-        title: "Долговечность",
-        text: "Кварц устойчив к влаге, перепадам температуры и механическим воздействиям."
-      },
-      {
-        title: "Цена",
-        text: "Если вы найдете предложение дешевле, мы готовы сделать скидку на свое усмотрение."
       }
     ],
     processTitle: "Как проходит заказ подоконников из искусственного камня",
@@ -315,6 +301,7 @@ const landingByCategory: Partial<Record<ProductType, CategoryLandingContent>> = 
   }
 };
 
+
 export async function generateMetadata({ params }: PageProps) {
   const { category } = await params;
   const label = productTypeLabels[category];
@@ -351,6 +338,7 @@ export default async function CatalogCategoryPage({ params }: PageProps) {
   return (
     <>
       <PageHero
+        bareCard
         eyebrow={landing ? landing.eyebrow : "Категория изделий"}
         title={landing?.heroTitle ?? `${label} из искусственного камня`}
         titleClassName="catalog-category-hero-title"
@@ -364,9 +352,9 @@ export default async function CatalogCategoryPage({ params }: PageProps) {
         actions={
           <>
             {landing?.showHeroBadges !== false && landing?.heroPriceFrom ? <span className="pill">{landing.heroPriceFrom}</span> : null}
-            <Link className="button" href="/calculator">
-              Рассчитать стоимость
-            </Link>
+            <ConsultationButton source={`catalog-category:${category}`}>
+              Получить консультацию
+            </ConsultationButton>
             <Link className="button-secondary" href="/catalog-kamnya">
               Смотреть каталог камня
             </Link>
@@ -374,177 +362,122 @@ export default async function CatalogCategoryPage({ params }: PageProps) {
         }
       />
 
-      {landing ? (
+      {category === "countertops" ? (
+        <CountertopsLanding />
+      ) : category === "window-sills" ? (
+        <WindowSillsLanding />
+      ) : category === "sinks" ? (
+        <OtherProductsLanding />
+      ) : (
         <>
-          <section className="section">
-            <div className="container grid grid-2">
-              <article className="card card--glass stack">
-                <h2>{landing.introTitle}</h2>
-                <div className="stack">
-                  {landing.introText.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-                <h3>{landing.featureTitle}</h3>
-                <p>{landing.featureIntro}</p>
-                <div className="stack product-list">
-                  {landing.sellingPoints.map((point) => (
-                    <span key={point}>{point}</span>
-                  ))}
-                </div>
-                {landing.quickLinks?.length ? (
+          {landing ? (
+            <section className="section">
+              <div className="container grid grid-2">
+                <article className="card card--glass stack">
+                  <h2>{landing.introTitle}</h2>
+                  <div className="stack">
+                    {landing.introText.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                  <h3>{landing.featureTitle}</h3>
+                  <p>{landing.featureIntro}</p>
+                  <div className="stack product-list">
+                    {landing.sellingPoints.map((point) => (
+                      <span key={point}>{point}</span>
+                    ))}
+                  </div>
+                </article>
+                <article className="card card--glass stack">
+                  <h2>{landing.pricingTitle}</h2>
+                  <div className="stack">
+                    {landing.pricingText.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
                   <div className="btn-row">
-                    {landing.quickLinks.map((item) => (
-                      <Link key={item.label} className="button-ghost" href={item.href}>
-                        {item.label}
-                      </Link>
+                    <Link className="button" href="/contacts">
+                      Узнать стоимость изделий
+                    </Link>
+                    <ConsultationButton source={`catalog-category-pricing:${category}`} className="button-secondary">
+                      Получить консультацию
+                    </ConsultationButton>
+                  </div>
+                  <h3>{landing.colorsTitle}</h3>
+                  <div className="stack">
+                    {landing.colorsText.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
                     ))}
                   </div>
-                ) : null}
-              </article>
-              <article className="card card--glass stack">
-                <h2>{landing.pricingTitle}</h2>
-                <div className="stack">
-                  {landing.pricingText.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-                <div className="btn-row">
-                  <Link className="button" href="/contacts">
-                    Узнать стоимость изделий
-                  </Link>
-                  <Link className="button-secondary" href="/calculator">
-                    Рассчитать самостоятельно
-                  </Link>
-                </div>
-                <h3>{landing.colorsTitle}</h3>
-                <div className="stack">
-                  {landing.colorsText.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-                {landing.showPopularColors !== false && landing.popularColors.length ? (
-                  <div className="pill-list">
-                    {landing.popularColors.map((item) => (
-                      <span key={item} className="pill">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                ) : null}
-              </article>
-            </div>
-          </section>
-
-          <section className="section">
-            <div className="container grid grid-3">
-              <article className="card card--glass stack" style={{ gridColumn: "1 / -1" }}>
-                <h2>{landing.showcaseTitle}</h2>
-                <p>{landing.showcaseText}</p>
-              </article>
-              {landing.showcaseExamples.map((item) => (
-                <article key={item.title} className="card card--glass media-card stack">
-                  {item.image ? (
-                    <Image
-                      className="media-image"
-                      src={item.image}
-                      alt={item.title}
-                      width={800}
-                      height={500}
-                      sizes="(max-width: 900px) 100vw, 33vw"
-                      style={{ width: "100%", height: "240px", objectFit: "cover" }}
-                    />
-                  ) : null}
-                  <div className="media-card__content stack">
-                    <h3>{item.title}</h3>
-                    <div className="stack product-list">
-                      {item.details.map((detail) => (
-                        <span key={detail}>{detail}</span>
-                      ))}
-                    </div>
-                    {item.price ? <span className="pill">{item.price}</span> : null}
-                  </div>
                 </article>
-              ))}
-            </div>
-          </section>
+              </div>
+            </section>
+          ) : null}
 
-          <section className="section">
-            <div className="container grid grid-3">
-              <article className="card card--glass stack" style={{ gridColumn: "1 / -1" }}>
-                <h2>{landing.trustTitle}</h2>
-              </article>
-              {landing.trustCards.map((item) => (
-                <article key={item.title} className="card card--glass stack">
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </article>
-              ))}
-              {landing.whyCards.map((item) => (
-                <article key={item.title} className="card card--glass stack">
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-        </>
-      ) : null}
-
-      <section className="section">
-        <div className="container grid grid-3">
-          {products.map((product) => (
-            <MediaCard
-              key={product.id}
-              href={`/catalog/${category}/${product.slug}`}
-              title={product.title}
-              description={product.summary}
-              price={product.basePrice}
-              meta={`${product.material} · ${product.thickness}`}
-              imageUrl={product.image}
-              className="card--glass"
-            />
-          ))}
-        </div>
-      </section>
-
-      {landing?.animatedWorkflowSteps?.length ? (
-        <ProcessTimeline steps={landing.animatedWorkflowSteps} />
-      ) : landing ? (
-        <section className="section">
-          <div className="container">
-            <article className="card card--glass stack">
-              <h2>{landing.processTitle}</h2>
-              <div className="stack">
-                {landing.processSteps.map((step) => (
-                  <p key={step.step}>
-                    <strong>{step.step}</strong> - {step.text}
-                  </p>
+          <section className="section section-alt">
+            <div className="container">
+              <div className="stack" style={{ marginBottom: 32 }}>
+                <h2 className="section-title">Каталог изделий</h2>
+                <p className="section-copy">
+                  Выберите готовое решение или оставьте заявку на индивидуальный проект.
+                </p>
+              </div>
+              <div className="grid grid-3">
+                {products.map((product) => (
+                  <MediaCard
+                    key={product.id}
+                    href={`/catalog/${category}/${product.slug}`}
+                    title={product.title}
+                    description={product.summary}
+                    price={product.basePrice}
+                    meta={`${product.material} · ${product.thickness}`}
+                    imageUrl={product.image}
+                    className="card--glass"
+                  />
                 ))}
               </div>
-            </article>
-          </div>
-        </section>
-      ) : null}
+            </div>
+          </section>
 
-      {landing && landing.showFinalSection !== false ? (
-        <section className="section">
-          <div className="container">
-            <article className="card card--glass stack">
-              <h2>{landing.finalTitle}</h2>
-              <p>{landing.finalText}</p>
-              <div className="btn-row">
-                <Link className="button" href="/contacts">
-                  Оставить заявку
-                </Link>
-                <Link className="button-ghost" href="/calculator">
-                  Перейти в калькулятор
-                </Link>
+          {landing?.animatedWorkflowSteps?.length ? (
+            <ProcessTimeline steps={landing.animatedWorkflowSteps} />
+          ) : landing ? (
+            <section className="section">
+              <div className="container">
+                <article className="card card--glass stack">
+                  <h2>{landing.processTitle}</h2>
+                  <div className="stack">
+                    {landing.processSteps.map((step) => (
+                      <p key={step.step}>
+                        <strong>{step.step}</strong> - {step.text}
+                      </p>
+                    ))}
+                  </div>
+                </article>
               </div>
-            </article>
-          </div>
-        </section>
-      ) : null}
+            </section>
+          ) : null}
+
+          {landing && landing.showFinalSection !== false ? (
+            <section className="section">
+              <div className="container">
+                <article className="card card--glass stack">
+                  <h2>{landing.finalTitle}</h2>
+                  <p>{landing.finalText}</p>
+                  <div className="btn-row">
+                    <Link className="button" href="/contacts">
+                      Оставить заявку
+                    </Link>
+                    <ConsultationButton source={`catalog-category-final:${category}`} className="button-ghost">
+                      Получить консультацию
+                    </ConsultationButton>
+                  </div>
+                </article>
+              </div>
+            </section>
+          ) : null}
+        </>
+      )}
     </>
   );
 }

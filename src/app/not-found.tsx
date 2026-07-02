@@ -24,7 +24,7 @@ export default async function NotFound() {
               <Link className="button" href="/">
                 На главную
               </Link>
-              <Link className="button-secondary" href="/catalog">
+              <Link className="button-secondary" href="/catalog/countertops">
                 В каталог
               </Link>
             </div>

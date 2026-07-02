@@ -6,6 +6,7 @@
 # Персистентность (раскомментируйте и создайте каталоги):
 #   mkdir -p ./data/uploads
 #   cp src/content/cms-store.json ./data/cms-store.json   # если нужен текущий снимок
+# Рекомендуется в проде: том на `cms-store.json` и `public/uploads`, иначе данные потеряются при пересоздании контейнера.
 # volumes:
 #   - ./data/cms-store.json:/app/src/content/cms-store.json
 #   - ./data/uploads:/app/public/uploads

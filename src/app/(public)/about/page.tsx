@@ -6,9 +6,11 @@ import { toTelHref } from "@/lib/company-phones";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { getTeamMembers } from "@/lib/site";
 
+import { AVITO_LISTING_URL, VK_COMMUNITY_URL } from "@/lib/social-links";
+
 const socialLinks = {
-  vk: "https://vk.com/club230045850?ysclid=mo5ny4mikt343003951",
-  avito: "https://www.avito.ru/"
+  vk: VK_COMMUNITY_URL,
+  avito: AVITO_LISTING_URL
 };
 
 const teamPhonesByName: Record<string, string> = {
@@ -34,7 +36,7 @@ export default async function AboutPage() {
         titleClassName="catalog-category-hero-title"
         descriptionClassName="page-hero__lead page-hero__lead--large"
         visualBadgeText="Наша команда"
-        visualImageSrc="/images/team-colleagues.png"
+        visualImageSrc="/images/portfolio-brands/Avant_Quartz-01.jpg"
         visualImageAlt="Команда ArtellRock — два специалиста в мастерской"
         description="За ArtellRock стоит не отдел продаж и не субподрядная сеть, а двое высококвалифицированных специалиста: вы общаетесь с теми же людьми, кто ведёт проект и работает на производстве. Это компактная мастерская, где ответственность не размывается по отделам."
       />

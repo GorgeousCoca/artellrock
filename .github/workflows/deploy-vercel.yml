@@ -34,13 +34,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Prisma generate
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: |
-          export DATABASE_URL="${DATABASE_URL:-postgresql://ci:ci@127.0.0.1:5432/ci}"
-          npm run prisma:generate
-
       - name: Deploy to Vercel
         id: deploy
         uses: amondnet/vercel-action@v25

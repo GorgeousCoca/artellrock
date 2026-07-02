@@ -6,11 +6,14 @@ import { usePathname } from "next/navigation";
 const labelMap: Record<string, string> = {
   catalog: "Каталог",
   "catalog-kamnya": "Каталог камня",
+  countertops: "Столешницы",
+  "window-sills": "Подоконники",
+  brands: "Бренды",
   portfolio: "Портфолио",
-  calculator: "Калькулятор",
   about: "О компании",
   contacts: "Контакты",
-  blog: "Блог",
+  faq: "Вопросы и ответы",
+  "thank-you": "Спасибо за обращение",
   privacy: "Политика конфиденциальности",
   admin: "Админка",
   login: "Вход"
@@ -39,7 +42,7 @@ export function Breadcrumbs() {
 
           return (
             <span key={href}>
-              / {isLast ? <span>{prettify(part)}</span> : <Link href={href}>{prettify(part)}</Link>}
+              {" / "}{isLast ? <span>{prettify(part)}</span> : <Link href={href}>{prettify(part)}</Link>}
             </span>
           );
         })}

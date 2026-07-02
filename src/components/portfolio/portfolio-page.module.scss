@@ -1,0 +1,94 @@
+// Editorial section styles — aligned with category landing pages
+.editorialH2 {
+  margin: 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  line-height: 1.1;
+}
+
+.introContent {
+  display: grid;
+  gap: 18px;
+  max-width: 72ch;
+
+  p {
+    margin: 0;
+    color: var(--foreground-soft);
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    line-height: 1.7;
+  }
+}
+
+.statsGrid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (min-width: 780px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.statCard {
+  padding: 22px 18px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  display: grid;
+  gap: 4px;
+
+  strong {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 500;
+    color: var(--foreground);
+    line-height: 1;
+  }
+
+  span {
+    font-size: 0.88rem;
+    color: var(--foreground-soft);
+    line-height: 1.45;
+  }
+}
+
+.ctaBand {
+  padding: clamp(32px, 4vw, 56px) 0;
+  display: grid;
+  gap: 28px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 40px;
+  }
+}
+
+.ctaBandContent {
+  display: grid;
+  gap: 10px;
+
+  p {
+    margin: 0;
+    color: var(--foreground-soft);
+    max-width: 56ch;
+    line-height: 1.65;
+  }
+}
+
+.ctaBandTitle {
+  margin: 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  line-height: 1.15;
+}

@@ -28,7 +28,10 @@ export function AdminSettingsForm({ initialSettings }: { initialSettings: Compan
           heroSubtitle: String(formData.get("heroSubtitle") ?? ""),
           primaryCta: String(formData.get("primaryCta") ?? ""),
           seoDefaultTitle: String(formData.get("seoDefaultTitle") ?? ""),
-          seoDescription: String(formData.get("seoDescription") ?? "")
+          seoDescription: String(formData.get("seoDescription") ?? ""),
+          statsClients: String(formData.get("statsClients") ?? ""),
+          statsBrands: String(formData.get("statsBrands") ?? ""),
+          statsYears: String(formData.get("statsYears") ?? "")
         };
 
         try {
@@ -65,6 +68,11 @@ export function AdminSettingsForm({ initialSettings }: { initialSettings: Compan
       <input className="field" defaultValue={initialSettings.primaryCta} name="primaryCta" placeholder="CTA" />
       <input className="field" defaultValue={initialSettings.seoDefaultTitle} name="seoDefaultTitle" placeholder="SEO title" />
       <textarea className="textarea" defaultValue={initialSettings.seoDescription} name="seoDescription" placeholder="SEO description" />
+      <div className="form-grid" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
+        <input className="field" defaultValue={initialSettings.statsClients ?? "100+"} name="statsClients" placeholder="Клиентов (напр. 100+)" />
+        <input className="field" defaultValue={initialSettings.statsBrands ?? "13"} name="statsBrands" placeholder="Брендов (напр. 13)" />
+        <input className="field" defaultValue={initialSettings.statsYears ?? "5"} name="statsYears" placeholder="Лет на рынке (напр. 5)" />
+      </div>
       <div className="btn-row">
         <button className="button" type="submit">
           Сохранить

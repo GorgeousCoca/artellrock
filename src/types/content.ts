@@ -56,25 +56,6 @@ export type Project = SeoFields & {
   productRefs: string[];
 };
 
-export type BlogCategory = {
-  id: string;
-  slug: string;
-  title: string;
-};
-
-export type BlogPost = SeoFields & {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  image: string;
-  videoUrl?: string;
-  categoryId: string;
-  keywords: string[];
-  publishedAt: string;
-};
-
 export type TeamMember = {
   id: string;
   name: string;
@@ -83,12 +64,26 @@ export type TeamMember = {
   image: string;
 };
 
+export type FaqItem = {
+  id: string;
+  question: string;
+  answer: string;
+  sortOrder: number;
+};
+
+export type TestimonialStatus = "pending" | "approved" | "rejected";
+export type TestimonialSource = "site" | "vk" | "avito" | "manual";
+
 export type Testimonial = {
   id: string;
   author: string;
   role: string;
   quote: string;
   rating: number;
+  status: TestimonialStatus;
+  source: TestimonialSource;
+  sourceUrl?: string;
+  createdAt: string;
 };
 
 export type Certificate = {
@@ -106,8 +101,13 @@ export type ContactRequest = {
   source: string;
   deliveryStatus?: "pending" | "delivered" | "failed_mail";
   mailError?: string;
+  attachmentUrl?: string;
+  attachmentName?: string;
+  attachmentSize?: number;
   createdAt: string;
 };
+
+export type VisitStats = Record<string, number>;
 
 export type CompanySettings = SeoFields & {
   id: string;
@@ -126,15 +126,17 @@ export type CompanySettings = SeoFields & {
   primaryCta: string;
   seoDefaultTitle: string;
   seoDescription: string;
+  statsClients?: string;
+  statsBrands?: string;
+  statsYears?: string;
 };
 
 export type CmsStore = {
   products: Product[];
   stoneSamples: StoneSample[];
   projects: Project[];
-  blogCategories: BlogCategory[];
-  blogPosts: BlogPost[];
   teamMembers: TeamMember[];
+  faqItems: FaqItem[];
   testimonials: Testimonial[];
   certificates: Certificate[];
   contactRequests: ContactRequest[];
