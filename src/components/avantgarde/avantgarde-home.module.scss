@@ -151,6 +151,10 @@
   @media (max-width: 639px) {
     white-space: normal;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 
 .heroSub {
@@ -331,56 +335,7 @@
 
 .heroPoster {
   object-fit: cover;
-  object-position: center 42%;
-  z-index: 0;
-}
-
-.heroPosterHidden {
-  object-fit: cover;
-  object-position: center 42%;
-  z-index: 0;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.heroVideo {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 42%;
-  opacity: 0;
-  transition: opacity 0.85s ease-out;
-}
-
-@media (max-width: 1023px) {
-  .heroPoster,
-  .heroPosterHidden,
-  .heroVideo {
-    object-position: center 45%;
-  }
-}
-
-.heroVideoVisible {
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .heroTitleLine {
-    animation: none;
-  }
-
-  .heroVideo {
-    display: none;
-  }
-
-  .heroPosterHidden {
-    opacity: 1;
-    pointer-events: auto;
-  }
+  object-position: center 28%;
 }
 
 // ─── Section head ─────────────────────────────────────────────────────────────

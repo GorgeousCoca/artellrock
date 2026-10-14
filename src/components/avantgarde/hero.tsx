@@ -1,10 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useConsultation } from "@/components/forms/consultation-provider";
-import { publicAssetPath } from "@/lib/utils";
 import styles from "./avantgarde-home.module.scss";
 
 type HeroProps = {
@@ -22,40 +21,6 @@ const heroBenefits = [
 
 export function Hero({ title, subtitle }: HeroProps) {
   const { openConsultation } = useConsultation();
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const videoSrc = useMemo(() => publicAssetPath("/images/vidio-proizvodstva.mp4"), []);
-
-  const [loadVideo] = useState(true);
-  const [videoRevealed, setVideoRevealed] = useState(false);
-
-  useEffect(() => {
-    if (!loadVideo) return;
-    const video = videoRef.current;
-    if (!video) return;
-
-    let revealed = false;
-    const reveal = () => {
-      if (revealed) return;
-      revealed = true;
-      void video.play().catch(() => {});
-      requestAnimationFrame(() => setVideoRevealed(true));
-    };
-
-    let fallback: number | undefined;
-    const onLoadedData = () => {
-      if (fallback) window.clearTimeout(fallback);
-      reveal();
-    };
-
-    video.load();
-    video.addEventListener("loadeddata", onLoadedData, { once: true });
-    fallback = window.setTimeout(reveal, 2800);
-
-    return () => {
-      if (fallback) window.clearTimeout(fallback);
-      video.removeEventListener("loadeddata", onLoadedData);
-    };
-  }, [loadVideo]);
 
   return (
     <section className={`home-flow-section ${styles.heroSection}`}>
@@ -86,17 +51,16 @@ export function Hero({ title, subtitle }: HeroProps) {
             </div>
           </div>
 
-          <aside className={styles.heroVisual} aria-label="Видео производства" suppressHydrationWarning>
-            <video
-              ref={videoRef}
-              className={`${styles.heroVideo} ${videoRevealed ? styles.heroVideoVisible : ""}`.trim()}
-              loop
-              muted
-              playsInline
-              preload="metadata"
-            >
-              {loadVideo ? <source src={videoSrc} type="video/mp4" /> : null}
-            </video>
+          <aside className={styles.heroVisual} aria-label="Производство ArtellRock">
+            <Image
+              className={styles.heroPoster}
+              src="/images/hero-proizvodstvo.png"
+              alt="Обработка кварцевого агломерата на собственном производстве ArtellRock"
+              fill
+              sizes="(max-width: 1023px) 100vw, 55vw"
+              quality={75}
+              priority
+            />
           </aside>
         </div>
       </div>
