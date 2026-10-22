@@ -1,80 +1,68 @@
-import dynamic from "next/dynamic";
-import Link from "next/link";
-
-import { ContactsTeam } from "@/components/contacts/contacts-team";
-import styles from "@/components/contacts/contacts-page.module.scss";
-import { PlatformLinks } from "@/components/ui/platform-links";
-import { getCompanyPhones, toTelHref } from "@/lib/company-phones";
+import { PageHead } from "@/components/site/page-head";
+import { LeadForm } from "@/components/site/lead-form";
+import { JsonLd } from "@/components/seo/json-ld";
+import {
+  ADDRESS,
+  PHONE,
+  PHONE_HREF,
+  PHONE_SECONDARY,
+  PHONE_SECONDARY_HREF,
+  VK_URL,
+  leadForm,
+  pages
+} from "@/content/artellrock";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { getSettings, getTeamMembers } from "@/lib/site";
+import { breadcrumbJsonLd, type BreadcrumbItem } from "@/lib/seo/schema";
+
+const crumbs: BreadcrumbItem[] = [
+  { name: "Главная", path: "/" },
+  { name: pages.contacts.title, path: "/contacts" }
+];
 
 export const metadata = buildMetadata({
-  title: "Контакты",
-  description: "Контакты, схема проезда, форма обратной связи и реквизиты компании.",
+  title: "Контакты ArtellRock — Санкт-Петербург и область",
+  description: pages.contacts.description,
   path: "/contacts"
 });
 
-const ContactForm = dynamic(() => import("@/components/forms/contact-form").then((m) => m.ContactForm), {
-  loading: () => (
-    <div className={styles.formSkeleton} role="status" aria-label="Загрузка формы" />
-  )
-});
-
-export default async function ContactsPage() {
-  const [settings, team] = await Promise.all([getSettings(), getTeamMembers()]);
-  const phones = getCompanyPhones(settings);
-
+export default function ContactsPage() {
   return (
-    <section className={`section ${styles.page}`}>
-      <div className="container">
-        <header className={styles.pageHeader}>
-          <span className="eyebrow">Контакты</span>
-          <h1 className={styles.pageTitle}>Свяжитесь с нами</h1>
-        </header>
+    <>
+      <JsonLd data={breadcrumbJsonLd(crumbs)} />
+      <PageHead title={pages.contacts.title} lead={pages.contacts.lead} crumbs={crumbs} />
+      <div className="page contacts-grid">
+        <section className="contacts-card" aria-label={pages.contacts.title}>
+          <dl>
+            <dt>Телефон</dt>
+            <dd>
+              <a href={PHONE_HREF}>{PHONE}</a>
+            </dd>
+            <dt>Телефон</dt>
+            <dd>
+              <a href={PHONE_SECONDARY_HREF}>{PHONE_SECONDARY}</a>
+            </dd>
+            <dt>ВКонтакте</dt>
+            <dd>
+              <a href={VK_URL} target="_blank" rel="noreferrer noopener">
+                {VK_URL.replace("https://", "")}
+              </a>
+            </dd>
+            <dt>Регион</dt>
+            <dd>{pages.contacts.region}</dd>
+            <dt>Мастерская</dt>
+            <dd>{ADDRESS}</dd>
+          </dl>
+          <p style={{ marginTop: 24 }}>{pages.contacts.visit}</p>
+        </section>
 
-        <div className={styles.layout}>
-            <div className={styles.side}>
-              <div>
-                <h2 className={styles.blockTitle}>Контактная информация</h2>
-                <div className="info-list">
-                  {phones.map((phone) => (
-                    <div key={phone} className="info-list__item">
-                      <a href={toTelHref(phone)}>{phone}</a>
-                    </div>
-                  ))}
-                  <div className="info-list__item">
-                    <a href={`mailto:${settings.email}`}>{settings.email}</a>
-                  </div>
-                  <div className="info-list__item">{settings.address}</div>
-                  {settings.metro?.trim() ? (
-                    <div className="info-list__item">{settings.metro}</div>
-                  ) : null}
-                </div>
-
-                <div className={styles.socialBlock}>
-                  <p className={styles.socialLabel}>Мы в соцсетях</p>
-                  <PlatformLinks layout="grid" emphasis="prominent" />
-                </div>
-              </div>
-
-              <ContactsTeam members={team} />
-
-              {settings.mapEmbedUrl ? (
-                <div className={styles.mapWrap}>
-                  <iframe src={settings.mapEmbedUrl} loading="lazy" title="Карта офиса" />
-                </div>
-              ) : null}
-
-              <p className={styles.faqLink}>
-                На <Link href="/">главной</Link> внизу — ответы на частые вопросы о замере, сроках и
-                материалах.{" "}
-                <Link href="/privacy#cookies">Файлы cookie</Link>.
-              </p>
-            </div>
-
-            <ContactForm source="contacts" bareSurface />
-        </div>
+        <section id="zayavka" className="contacts-card" aria-labelledby="contacts-form-title">
+          <h2 id="contacts-form-title" className="t-display-md">
+            {leadForm.title}
+          </h2>
+          <p style={{ margin: "8px 0 24px" }}>{leadForm.lead}</p>
+          <LeadForm source="contacts" idPrefix="contacts" />
+        </section>
       </div>
-    </section>
+    </>
   );
 }

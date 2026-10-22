@@ -1,0 +1,24 @@
+{
+	email admin@artellrock.ru
+}
+
+www.artellrock.ru {
+	redir https://artellrock.ru{uri} permanent
+}
+
+# Caddy — единственная точка входа: порт web наружу не публикуется (см. docker-compose.yml).
+# Без `trusted_proxies` Caddy перезаписывает X-Forwarded-For адресом клиента, на котором держится лимит заявок
+# (src/lib/security/request.ts). Не добавляйте trusted_proxies для публичных адресов.
+artellrock.ru {
+	encode gzip zstd
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+	}
+	reverse_proxy web:3000
+}
+
+http://201.24.62.19 {
+	reverse_proxy web:3000
+}

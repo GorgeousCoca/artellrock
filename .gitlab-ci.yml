@@ -1,7 +1,9 @@
 # GitLab CI — Node 22 (см. .nvmrc / package.json engines).
+# Сайт работает на Next.js + Payload CMS (нужен Node-сервер и Postgres), статический экспорт
+# (GitLab/GitHub/Cloudflare Pages) больше не поддерживается — деплой только через Docker-образ.
+#
 # Переменные CI/CD (Settings → CI/CD → Variables):
-#   DEPLOY_PLATFORM — github-pages | cloudflare | server (только main; пусто = GitLab Pages артефакт)
-#   CF_PAGES_SITE_URL, CLOUDFLARE_PAGES_PROJECT, CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID — Cloudflare
+#   DEPLOY_PLATFORM — server (только main) — собрать и запушить Docker-образ в registry
 
 default:
   image: node:22-bookworm
@@ -9,6 +11,9 @@ default:
 
 variables:
   NEXT_TELEMETRY_DISABLED: "1"
+  # Заглушки для сборки: страницы dynamic, подключение к БД при `next build` не выполняется.
+  PAYLOAD_SECRET: "ci-build-placeholder-secret-0123456789abcdef"
+  DATABASE_URI: "postgres://ci:ci@localhost:5432/ci"
 
 workflow:
   rules:
@@ -38,51 +43,6 @@ verify:
     - npm run typecheck
     - npm run test --if-present
     - npm run build
-
-.deploy_before: &deploy_before
-  before_script:
-    - npm ci
-
-# Статический экспорт как артефакт (привяжите к GitLab Pages в UI или скачайте out/)
-deploy-gitlab-pages-artifact:
-  stage: deploy
-  image: node:22-bookworm
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main" && ($DEPLOY_PLATFORM == null || $DEPLOY_PLATFORM == "" || $DEPLOY_PLATFORM == "github-pages")
-  before_script: *deploy_before
-  script:
-    - rm -rf src/app/api src/app/admin "src/app/(public)/portfolio/[slug]"
-    - export GITHUB_ACTIONS=true
-    - export GITHUB_REPOSITORY="${CI_PROJECT_PATH}"
-    - export NEXT_PUBLIC_SITE_URL="${CI_PAGES_URL:-https://${CI_PROJECT_NAMESPACE}.gitlab.io/${CI_PROJECT_NAME}}"
-    - export NEXT_PUBLIC_STATIC_DEMO=true
-    - npm run build
-    - touch out/.nojekyll
-  artifacts:
-    paths:
-      - out/
-    expire_in: 1 week
-
-deploy-cloudflare-pages:
-  stage: deploy
-  image: node:22-bookworm
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main" && $DEPLOY_PLATFORM == "cloudflare"
-  before_script: *deploy_before
-  script:
-    - test -n "${CF_PAGES_SITE_URL:-}" || (echo "Set CF_PAGES_SITE_URL" && exit 1)
-    - test -n "${CLOUDFLARE_PAGES_PROJECT:-}" || (echo "Set CLOUDFLARE_PAGES_PROJECT" && exit 1)
-    - test -n "${CLOUDFLARE_API_TOKEN:-}" || (echo "Set CLOUDFLARE_API_TOKEN" && exit 1)
-    - test -n "${CLOUDFLARE_ACCOUNT_ID:-}" || (echo "Set CLOUDFLARE_ACCOUNT_ID" && exit 1)
-    - rm -rf src/app/api src/app/admin "src/app/(public)/portfolio/[slug]"
-    - export GITHUB_ACTIONS=true
-    - export GITHUB_REPOSITORY="${CI_PROJECT_PATH}"
-    - export NEXT_PUBLIC_SITE_URL="$CF_PAGES_SITE_URL"
-    - export NEXT_PUBLIC_STATIC_DEMO=true
-    - npm run build
-    - touch out/.nojekyll
-    - npm install -g wrangler
-    - wrangler pages deploy out --project-name="$CLOUDFLARE_PAGES_PROJECT"
 
 deploy-docker-registry:
   stage: deploy

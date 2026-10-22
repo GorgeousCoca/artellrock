@@ -1,55 +1,57 @@
 # Kvartsevyy Aglomerat
 
-Корпоративный сайт на `Next.js` для демонстрации каталога изделий из искусственного камня.
+Корпоративный сайт ArtellRock на `Next.js` + `Payload CMS` (Postgres): каталог изделий из кварцевого агломерата, портфолио, заявки.
+
+## Архитектура
+
+- Публичный сайт — `src/app/(public)`, SCSS, тексты и контакты — `src/content/artellrock.ts`, данные CMS — модуль `src/lib/cms/store.ts`
+  (портфолио, заявки и отзывы: Payload Local API + кэш `unstable_cache` с тегами `cms:*`; материалы и справочники калькулятора: `src/lib/calculator/server.ts`;
+  витрина `/catalog-kvarca`: единый модуль `src/lib/catalog/quartz-catalog.ts`; правка в админке сбрасывает кэш хуками `src/payload/hooks`).
+- Админка Payload — `/admin`, REST — `/api/<collection>` (`src/app/(payload)`).
+- Конфиг и схема: `src/payload.config.ts`, `src/payload/collections`.
+- Схема БД меняется **только миграциями** (`src/migrations`), в production они применяются при старте сервера.
+- Изображения каталога лежат в `public/` и в записях хранятся как URL; новые файлы можно загрузить в разделе «Медиа» (`public/uploads`) и вставить URL в поле.
+- Статика посещений — `src/content/analytics.json` (виджет на дашборде админки).
 
 ## Локальный запуск
 
 ```bash
 npm install
+cp .env.example .env            # задайте PAYLOAD_SECRET, при желании SMTP_*
+docker compose up -d postgres   # Postgres на 127.0.0.1:5432
+npm run payload:migrate         # применить схему
+npm run admin:create           # создать администратора (ADMIN_CREATE_EMAIL / ADMIN_CREATE_PASSWORD)
 npm run dev
 ```
 
-Открыть: `http://localhost:3000`
+Сайт: `http://localhost:3000`, админка: `http://localhost:3000/admin`.
+Первого администратора создайте на `/admin` (Payload входит по **email**) либо командой `npm run admin:create`.
+
+### Команды Payload
+
+| Команда | Назначение |
+| --- | --- |
+| `npm run payload:migrate:create -- <name>` | сгенерировать миграцию после правки коллекций |
+| `npm run payload:migrate` | применить миграции к БД из `DATABASE_URI` |
+| `npm run payload:types` | обновить `src/payload-types.ts` |
+| `npm run payload:importmap` | обновить import map админки (после добавления кастомных компонентов) |
+| `npm run admin:create           # создать администратора (ADMIN_CREATE_EMAIL / ADMIN_CREATE_PASSWORD)
 
 ## Отправка заявок на почту
 
-Для отправки заявок по email заполните SMTP-переменные в `.env`:
+Заполните SMTP-переменные в `.env`: `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, `MAIL_TO`.
+Если SMTP не настроен, заявка всё равно сохраняется в коллекции «Заявки» (`contact-requests`), письмо не отправляется.
 
-- `SMTP_HOST`
-- `SMTP_PORT`
-- `SMTP_SECURE`
-- `SMTP_USER`
-- `SMTP_PASSWORD`
-- `MAIL_TO`
+## Продакшн (Docker)
 
-Если SMTP не настроен, заявка сохраняется в локальном хранилище CMS, но письмо не отправляется.
+1. Скопируйте `.env.example` в `.env` и задайте: `PAYLOAD_SECRET`, `POSTGRES_PASSWORD`, `NEXT_PUBLIC_SITE_URL`, SMTP.
+2. `docker compose up -d --build` — поднимутся Postgres и сайт; схема применится автоматически.
+3. Администратор: `docker compose --profile tools run --rm -e ADMIN_CREATE_EMAIL=... -e ADMIN_CREATE_PASSWORD=... tools npm run admin:create`.
 
-## Продакшн с админкой (Docker)
+Данные: Postgres — `./data/postgres`, загрузки — `./data/uploads`. Эти каталоги нужно бэкапить.
+Healthcheck: `GET /api/health` (liveness), `GET /api/health?deep=1` (проверка БД).
 
-GitHub Pages отдаёт только статику, поэтому **редактирование через `/admin` и API** нужно поднимать отдельно — полноценный `Next.js` на своём сервере или в контейнере.
+## Ограничения
 
-1. Скопируйте `.env.example` в `.env` и задайте обязательные переменные:
-   - `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET` (в продакшене секрет обязателен, см. `src/lib/admin/auth.ts`)
-   - при необходимости SMTP и `NEXT_PUBLIC_SITE_URL` (публичный URL сайта)
-2. Сборка образа: `docker build -t kvartsevyy-site .`
-3. Запуск: `docker compose up -d --build` (или `docker run --env-file .env -p 3000:3000 kvartsevyy-site`)
-
-Данные CMS хранятся в `src/content/cms-store.json`, загрузки — в `public/uploads`. Чтобы они переживали пересоздание контейнера, раскомментируйте тома в `docker-compose.yml` и подготовьте файлы на хосте (см. комментарии в compose-файле).
-
-Сборка с `NEXT_STANDALONE=true` задаётся в `Dockerfile`; локально по умолчанию по-прежнему обычный `next build` / `next start` без standalone.
-
-## Деплой на GitHub Pages
-
-1. Запушить проект в GitHub (ветка `main`).
-2. В репозитории открыть `Settings -> Pages`.
-3. В поле **Source** выбрать **GitHub Actions**.
-4. После пуша в `main` выполнится workflow `.github/workflows/deploy-pages.yml`.
-5. Сайт будет доступен по адресу:
-   - `https://<owner>.github.io/<repo>/` для обычного репозитория
-   - `https://<owner>.github.io/` если репозиторий называется `<owner>.github.io`
-
-## Ограничения Pages-версии
-
-- GitHub Pages публикует только статический сайт.
-- Админка и API-роуты в Pages-сборке отключаются автоматически.
-- Формы в Pages работают в демо-режиме (без отправки в CRM/БД).
+- Статический экспорт (GitHub Pages / Cloudflare Pages) больше не поддерживается: Payload требует Node-сервер и Postgres.
+- Публичные страницы рендерятся на запросе (`force-dynamic`), так как БД недоступна во время `next build`.

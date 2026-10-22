@@ -1,0 +1,87 @@
+// Форма отзыва и блок со ссылками на ВК и Авито. Токены берём из globals.scss.
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 640px) minmax(0, 420px);
+  gap: var(--s-xxl);
+  align-items: start;
+  justify-content: space-between;
+}
+
+.aside {
+  display: grid;
+  gap: var(--s-lg);
+  padding: var(--s-xl);
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+
+  p {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 64px;
+  height: 64px;
+  padding: 0 var(--s-md);
+  background: var(--parchment);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    border-color: var(--ink);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+}
+
+.icon {
+  display: block;
+  width: auto;
+  height: 36px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .link:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: minmax(0, 640px);
+    gap: var(--s-xl);
+  }
+}
+
+@media (max-width: 570px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .aside {
+    padding: var(--s-lg);
+  }
+}

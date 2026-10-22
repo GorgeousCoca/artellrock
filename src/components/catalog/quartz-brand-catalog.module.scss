@@ -1,0 +1,115 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-md);
+  margin-bottom: var(--s-lg);
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-xxs);
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--s-sm) var(--s-md);
+  padding: var(--s-md);
+  background: var(--parchment);
+  border-radius: var(--r-lg);
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-xxs);
+  flex: 1 1 160px;
+  max-width: 240px;
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  select {
+    width: 100%;
+    height: 44px;
+    padding: 8px 12px;
+    border: 1px solid var(--field-border);
+    border-radius: var(--r-sm);
+    background: var(--canvas);
+    color: var(--ink);
+  }
+}
+
+.reset {
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.count {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.sku {
+  margin: 0;
+}
+
+.price {
+  margin: 0;
+  font-weight: 600;
+
+  :global(.card__body) & {
+    color: var(--ink);
+  }
+}
+
+.tags,
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-xxs);
+  margin: 0;
+}
+
+.tags li,
+.chips li {
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--brass) 70%, var(--canvas));
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.grid > :global(.card) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 460px;
+}
+
+.empty {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 570px) {
+  .filter {
+    flex-basis: 100%;
+    max-width: none;
+  }
+}

@@ -1,43 +1,10 @@
-export function formatPrice(value: number) {
-  return new Intl.NumberFormat("ru-RU").format(value);
-}
-
-/** Показываем цену в каталоге только если задана явная положительная ₽/м² (0 и отсутствие — «по запросу»). */
-export function hasListedPricePerSqm(value: number | null | undefined): value is number {
-  return typeof value === "number" && value > 0;
-}
-
-export function slugToTitle(value: string) {
-  return value
-    .split("-")
-    .filter(Boolean)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
-}
-
 /** Базовый path для GitHub Pages / кастомного хостинга (совпадает с `next.config` `basePath`). */
-export function getConfiguredBasePath(): string {
+function getConfiguredBasePath(): string {
   const [repositoryOwner = "", repositoryName = ""] = (process.env.GITHUB_REPOSITORY ?? "").split("/");
   const isUserPagesRepo =
     repositoryOwner && repositoryName && repositoryName.toLowerCase() === `${repositoryOwner.toLowerCase()}.github.io`;
   const inferredBasePath = repositoryName && !isUserPagesRepo ? `/${repositoryName}` : "";
   return process.env.NEXT_PUBLIC_BASE_PATH ?? inferredBasePath;
-}
-
-/**
- * Путь к файлу из `public/` для `<img>`, `<video>`, `poster` и т.п., если задан `basePath` (GitHub Pages).
- * Без basePath возвращает путь с ведущим `/`.
- */
-export function publicAssetPath(path: string): string {
-  const bp = getConfiguredBasePath().replace(/\/$/, "");
-  const normalized = path.startsWith("/") ? path : `/${path}`;
-  if (!bp) {
-    return normalized;
-  }
-  if (normalized === bp || normalized.startsWith(`${bp}/`)) {
-    return normalized;
-  }
-  return `${bp}${normalized}`;
 }
 
 /** Origin для абсолютных URL (OG, sitemap, JSON-LD). В production задайте NEXT_PUBLIC_SITE_URL при сборке образа. */
@@ -76,14 +43,15 @@ export function absoluteUrl(path = "/") {
   return new URL(withBasePath, base).toString();
 }
 
-export function uid(prefix: string) {
-  return `${prefix}_${Math.random().toString(36).slice(2, 10)}`;
-}
-
+/** Обрезает сниппет по границе слова, чтобы описание не обрывалось на полуслове. */
 export function excerptText(text: string, maxLength = 160) {
-  if (text.length <= maxLength) {
-    return text;
+  const normalized = text.replace(/\s+/g, " ").trim();
+  if (normalized.length <= maxLength) {
+    return normalized;
   }
 
-  return `${text.slice(0, maxLength - 1).trim()}...`;
+  const slice = normalized.slice(0, maxLength - 1);
+  const cut = slice.lastIndexOf(" ");
+  const base = (cut > 40 ? slice.slice(0, cut) : slice).trim();
+  return `${base}…`;
 }

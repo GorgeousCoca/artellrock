@@ -1,0 +1,58 @@
+// Форма отзыва. Поля `.field`, `.consent` и кнопки — глобальные, здесь только то, чего в них нет.
+
+.form {
+  display: grid;
+  gap: var(--s-md);
+  max-width: 640px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: var(--s-md);
+}
+
+.area,
+.select {
+  width: 100%;
+  border: 1px solid var(--field-border);
+  background: var(--canvas);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.4;
+  letter-spacing: -0.374px;
+}
+
+.area {
+  min-height: 140px;
+  padding: 14px 18px;
+  border-radius: var(--r-lg);
+  resize: vertical;
+}
+
+.select {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: var(--r-pill);
+}
+
+.done {
+  max-width: 640px;
+  padding: var(--s-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  background: var(--parchment);
+}
+
+.status {
+  min-height: 1.4em;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+@media (max-width: 570px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

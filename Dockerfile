@@ -1,4 +1,5 @@
-# Production image: full Next.js (admin, API, file-based CMS). Not for GitHub Pages static export.
+# Production image: Next.js + Payload CMS (/admin, API). Требует Postgres (DATABASE_URI) — см. docker-compose.yml.
+# Статический экспорт (GitHub Pages) не поддерживается.
 # Build: docker build -t kvartsevyy-site .
 # Run:  docker run --env-file .env -p 3000:3000 kvartsevyy-site
 #
@@ -12,6 +13,14 @@ COPY package.json package-lock.json ./
 RUN npm i -g npm@11.16.0
 RUN npm ci
 
+# Инструменты обслуживания: payload CLI, создание администратора (docker compose run --rm tools npm run admin:create)
+FROM node:22-alpine AS tools
+WORKDIR /app
+RUN apk add --no-cache libc6-compat
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+ENV NEXT_TELEMETRY_DISABLED=1
+
 FROM node:22-alpine AS builder
 WORKDIR /app
 RUN apk add --no-cache libc6-compat
@@ -19,6 +28,9 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NEXT_STANDALONE=true
+# Payload не подключается к БД при сборке (страницы dynamic), но конфигу нужны значения.
+ENV PAYLOAD_SECRET=build-time-placeholder-not-used-at-runtime
+ENV DATABASE_URI=postgres://build:build@localhost:5432/build
 # Канонический URL (без слэша в конце). Переопределите: --build-arg NEXT_PUBLIC_SITE_URL=https://ваш-домен
 ARG NEXT_PUBLIC_SITE_URL=https://artellrock.ru
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
@@ -38,6 +50,7 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/src/content ./src/content
+RUN mkdir -p /app/public/uploads && chown -R nextjs:nodejs /app/public/uploads
 
 USER nextjs
 EXPOSE 3000

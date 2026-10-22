@@ -1,91 +1,124 @@
-import type { CompanySettings, FaqItem, Product, Project } from "@/types/content";
-
-import { faqAnswerPlainText } from "@/components/faq/render-faq-answer";
+import { COMPANY_NAME, PHONE, PHONE_SECONDARY, VK_URL, faq, steps } from "@/content/artellrock";
+import type { BrandPriceSpan } from "@/lib/catalog/quartz-match";
 import { absoluteUrl } from "@/lib/utils";
+import { brandHeading, brandMetaDescription } from "@/lib/seo/snippets";
 
 const SCHEMA_CONTEXT = "https://schema.org" as const;
 
-export function organizationJsonLd(settings: CompanySettings) {
+export function organizationJsonLd() {
   return {
     "@context": SCHEMA_CONTEXT,
     "@type": "LocalBusiness",
     "@id": absoluteUrl("/#organization"),
-    name: settings.companyName,
-    legalName: settings.legalName,
+    name: COMPANY_NAME,
     url: absoluteUrl("/"),
-    telephone: settings.phone,
-    email: settings.email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: settings.address
-    }
+    image: absoluteUrl("/images/hero-proizvodstvo.png"),
+    telephone: PHONE,
+    contactPoint: [PHONE, PHONE_SECONDARY].map((telephone) => ({
+      "@type": "ContactPoint",
+      telephone,
+      contactType: "sales",
+      areaServed: "RU",
+      availableLanguage: "Russian"
+    })),
+    sameAs: [VK_URL],
+    areaServed: [
+      { "@type": "City", name: "Санкт-Петербург" },
+      { "@type": "AdministrativeArea", name: "Ленинградская область" }
+    ],
+    description: "Изделия из кварцевого агломерата на заказ. Собственная мастерская."
   };
 }
 
-
-export function productJsonLd(product: Product, pageUrl: string) {
-  const image = product.ogImage ?? product.image;
-  const imageUrl = absoluteUrl(image);
-
+export function websiteJsonLd() {
   return {
     "@context": SCHEMA_CONTEXT,
-    "@type": "Product",
-    "@id": pageUrl,
-    name: product.title,
-    description: product.metaDescription ?? product.summary,
-    image: [imageUrl],
-    sku: product.slug,
-    url: pageUrl,
-    category: product.type,
-    offers: {
-      "@type": "Offer",
-      url: pageUrl,
-      priceCurrency: "RUB",
-      price: product.basePrice,
-      availability: "https://schema.org/InStock",
-      itemCondition: "https://schema.org/NewCondition"
-    }
+    "@type": "WebSite",
+    "@id": absoluteUrl("/#website"),
+    name: COMPANY_NAME,
+    url: absoluteUrl("/"),
+    inLanguage: "ru-RU",
+    publisher: { "@id": absoluteUrl("/#organization") }
   };
 }
 
-export function faqPageJsonLd(items: FaqItem[], pageUrl: string) {
+export type BreadcrumbItem = { name: string; path: string };
+
+export function breadcrumbJsonLd(items: BreadcrumbItem[]) {
   return {
     "@context": SCHEMA_CONTEXT,
-    "@type": "FAQPage",
-    "@id": pageUrl,
-    mainEntity: items.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faqAnswerPlainText(item.answer)
-      }
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.path)
     }))
   };
 }
 
-export function creativeWorkProjectJsonLd(project: Project, pageUrl: string) {
-  const images: string[] = [];
-  const push = (src?: string) => {
-    if (src) images.push(absoluteUrl(src));
+export function faqPageJsonLd(
+  items: ReadonlyArray<{ question: string; answer: string }> = faq.items,
+  path = "/#voprosy"
+) {
+  return {
+    "@context": SCHEMA_CONTEXT,
+    "@type": "FAQPage",
+    "@id": absoluteUrl(path),
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer }
+    }))
   };
-  push(project.ogImage);
-  push(project.afterImage);
-  push(project.beforeImage);
-  project.gallery.forEach((g) => push(g));
-  const unique = [...new Set(images)];
+}
+
+/** Шаги заказа. Разметка повторяет видимый блок «Как проходит заказ». */
+export function howToJsonLd(path: string) {
+  return {
+    "@context": SCHEMA_CONTEXT,
+    "@type": "HowTo",
+    "@id": absoluteUrl(`${path}#kak-prohodit-zakaz`),
+    name: steps.title,
+    description: "Заказ изделия из кварцевого агломерата в мастерской ArtellRock: от заявки до гарантии.",
+    step: steps.items.map((item, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: item.title,
+      text: item.text
+    }))
+  };
+}
+
+/** Диапазон ₽/м² бренда. Без цены разметку не отдаём: на странице тогда нет числа. */
+export function brandProductJsonLd(input: {
+  name: string;
+  path: string;
+  image?: string;
+  span: BrandPriceSpan | null;
+  offerCount: number;
+}) {
+  if (!input.span || input.offerCount < 1) return null;
 
   return {
     "@context": SCHEMA_CONTEXT,
-    "@type": "CreativeWork",
-    "@id": pageUrl,
-    name: project.title,
-    description: project.metaDescription ?? project.summary,
-    url: pageUrl,
-    image: unique.length ? unique : [absoluteUrl("/images/og-default.svg")],
-    locationCreated: {
-      "@type": "Place",
-      name: project.location
+    "@type": "Product",
+    "@id": absoluteUrl(`${input.path}#product`),
+    name: brandHeading(input.name),
+    ...(input.image ? { image: absoluteUrl(input.image) } : {}),
+    description: brandMetaDescription(input.name, input.span),
+    brand: { "@type": "Brand", name: input.name },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "RUB",
+      lowPrice: input.span.min,
+      highPrice: input.span.max,
+      offerCount: input.offerCount,
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        priceCurrency: "RUB",
+        unitText: "м²"
+      }
     }
   };
 }

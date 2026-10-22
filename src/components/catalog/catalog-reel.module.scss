@@ -1,0 +1,105 @@
+.reel {
+  margin-bottom: var(--s-xxl);
+}
+
+.viewport {
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+}
+
+.group {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 2px 12px 2px 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 180px;
+  color: inherit;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-focus);
+    outline-offset: 2px;
+  }
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--parchment);
+  box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.1);
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.brand,
+.name {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brand {
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.name {
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: -0.224px;
+}
+
+@media (max-width: 570px) {
+  .card {
+    width: 168px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .track {
+    animation: reel 150s linear infinite;
+  }
+
+  .viewport:hover .track,
+  .viewport:focus-within .track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport {
+    overflow-x: auto;
+  }
+
+  .clone {
+    display: none;
+  }
+}
+
+@keyframes reel {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}

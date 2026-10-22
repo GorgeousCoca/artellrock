@@ -1,0 +1,219 @@
+[
+  {
+    "id": "388",
+    "brand": "Quantra Quartz",
+    "sku": "2048",
+    "name": "Snow White",
+    "formats": ["J+"],
+    "thicknessesMm": [20],
+    "finish": "polished",
+    "shades": ["белый"],
+    "textures": ["монотонный"],
+    "inferred": ["textures"],
+    "confidence": "partial",
+    "sources": [
+      "https://quantra.in/product/snow-white-slab/",
+      "https://quantraquartz.ru/slabs/snow-white-slab/"
+    ],
+    "notes": "Артикул 2048 совпадает. На quantra.in: Purest White, Fine Grain, No Veins, Solid, коллекция Celestial; размера плиты на странице нет. На карточке quantraquartz.ru: 3300×1650×20, полированный, цвет белый, коллекция Renaissance. Расхождение названия коллекции. Общая матрица размеров бренда не подставлялась."
+  },
+  {
+    "id": "404",
+    "brand": "Quantra Quartz",
+    "sku": "9010",
+    "name": "Calacatta Luca",
+    "formats": ["J+"],
+    "thicknessesMm": [20],
+    "finish": "polished",
+    "shades": ["белый", "серый"],
+    "textures": ["крупные жилы"],
+    "inferred": ["shades", "textures"],
+    "confidence": "partial",
+    "sources": [
+      "https://quantra.in/product/calacatta-lucca/",
+      "https://quantraquartz.ru/slabs/calacatta-lucca/"
+    ],
+    "notes": "В базе Luca, на сайте производителя и дистрибьютора Lucca, артикул 9010. Описание: cool white, grey veining, Long Vein, коллекция Calacatta. Карточка дистрибьютора: 3300×1650×20, полированный, цвет белый. 30 мм и Regular не указаны для этого декора."
+  },
+  {
+    "id": "407",
+    "brand": "Quantra Quartz",
+    "sku": "9444",
+    "name": "Calacatta Borghini",
+    "formats": ["J+"],
+    "thicknessesMm": [20],
+    "finish": "polished",
+    "shades": ["белый", "серый"],
+    "textures": ["крупные жилы", "мелкие жилы"],
+    "inferred": ["shades", "textures"],
+    "confidence": "confirmed",
+    "sources": [
+      "https://quantra.in/product/calacatta-borghini-slab/",
+      "https://quantra.in/quantra-quartz-calacatta-series/",
+      "https://quantraquartz.ru/slabs/calacatta-borghini-slab/"
+    ],
+    "notes": "Коллекция Calacatta на обоих сайтах. Карточка дистрибьютора: 3300×1650×20, полированный, белый; массивные жилы и тонкие росчерки. На quantra.in: bright white, grey veining, Long Vein. Статья серии от января 2022 писала про 20 и 30 мм, Jumbo и Regular, но в текущей карточке декора только 20 мм и 3300×1650, поэтому 30 мм и Regular 3050×1400 не записаны."
+  },
+  {
+    "id": "408",
+    "brand": "Quantra Quartz",
+    "sku": "9510",
+    "name": "Cygnus Divine",
+    "formats": ["J+"],
+    "thicknessesMm": [20],
+    "finish": "polished",
+    "shades": ["бежевый"],
+    "textures": ["крупные жилы"],
+    "inferred": ["textures"],
+    "confidence": "confirmed",
+    "sources": [
+      "https://quantra.in/product/cygnus-divine/",
+      "https://quantraquartz.ru/slabs/cygnus-divine-glencoe/"
+    ],
+    "notes": "Артикул 9510, коллекция Le Magnifique, кварцит. На quantra.in цвета нет, текстура Long Vein, Medium Grain. Карточка дистрибьютора (slug cygnus-divine-glencoe): 3300×1650×20, полированный, цвет бежевый. Отдельный артикул 9510 SH Super Honed в эту запись не входил."
+  },
+  {
+    "id": "410",
+    "brand": "Quantra Quartz",
+    "sku": "9960",
+    "name": "Pantheon",
+    "formats": [],
+    "thicknessesMm": [20],
+    "finish": "polished",
+    "shades": ["белый"],
+    "textures": ["крупные жилы"],
+    "inferred": ["textures"],
+    "confidence": "confirmed",
+    "sources": [
+      "https://quantra.in/product/pantheon-slab/",
+      "https://quantraquartz.ru/slabs/pantheon-slab/"
+    ],
+    "notes": "Коллекция Le Magnifique, мрамор, Long Vein. Карточка дистрибьютора: 3470×2010×20, полированный, цвет белый. 3470×2010 не попадает в N/N+/J/J+ при допуске ±20 мм (это Super Jumbo)."
+  },
+  {
+    "id": "411",
+    "brand": "Quantra Quartz",
+    "sku": "9962",
+    "name": "La Dolce Vita",
+    "formats": [],
+    "thicknessesMm": [20],
+    "finish": "polished",
+    "shades": ["белый"],
+    "textures": ["крупные жилы"],
+    "inferred": ["textures"],
+    "confidence": "confirmed",
+    "sources": [
+      "https://quantra.in/product/la-dolce-vita-slab/",
+      "https://quantraquartz.ru/slabs/la-dolce-vita-slab/"
+    ],
+    "notes": "Коллекция Le Magnifique, мрамор, Long Vein. На странице производителя нет фразы про цвет. Карточка дистрибьютора: 3470×2010×20, полированный, цвет белый, холодный. Формат в код не переведён."
+  },
+  {
+    "id": "412",
+    "brand": "Quantra Quartz",
+    "sku": "9965",
+    "name": "Golden Gate",
+    "formats": ["J+"],
+    "thicknessesMm": [20],
+    "finish": "polished",
+    "shades": ["бежевый"],
+    "textures": ["крупные жилы"],
+    "inferred": ["textures"],
+    "confidence": "confirmed",
+    "sources": [
+      "https://quantra.in/product/golden-gate-slab/",
+      "https://quantraquartz.ru/slabs/golden-gate/"
+    ],
+    "notes": "Коллекция Le Magnifique, кварцит, Long Vein. Цвета на quantra.in нет. Карточка дистрибьютора: 3300×1650×20, полированный, цвет бежевый, оттенок карточки «тёмный», теплота тёплая."
+  },
+  {
+    "id": "413",
+    "brand": "Quantra Quartz",
+    "sku": "9972",
+    "name": "San Marco",
+    "formats": [],
+    "thicknessesMm": [20],
+    "finish": "polished",
+    "shades": ["серый"],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://quantra.in/product/san-marco-slab/",
+      "https://quantraquartz.ru/slabs/san-marco-slab/"
+    ],
+    "notes": "Артикул 9972. Карточка дистрибьютора: 3470×2010×20, полированный, цвет серый, коллекция Le Magnifique, рисунок кварцит. Формат в код не переведён. Тип фактуры на страницах не назван словами из списка, поэтому textures пустой."
+  },
+  {
+    "id": "414",
+    "brand": "Quantra Quartz",
+    "sku": "9976",
+    "name": "Pirouette",
+    "formats": [],
+    "thicknessesMm": [20],
+    "finish": "polished",
+    "shades": ["белый", "серый", "зеленоватый"],
+    "textures": ["крупные жилы", "мелкие жилы"],
+    "inferred": ["shades", "textures"],
+    "confidence": "partial",
+    "sources": [
+      "https://quantra.in/product/pirouette-slab/",
+      "https://quantraquartz.ru/slabs/pirouette-slab/"
+    ],
+    "notes": "На quantra.in коллекция Le Magnifique: белый фон, subtle hints of green, strokes of gold and grey, Long Vein. На quantraquartz.ru коллекция указана как Calacatta, размер 3470×2010×20, полированный, снежно-белый фон, росчерки и контрастные жилы. Расхождение коллекции. Золото в список оттенков не входит. Формат в код не переведён."
+  },
+  {
+    "id": "415",
+    "brand": "Quantra Quartz",
+    "sku": "9986",
+    "name": "Fontainebleau",
+    "formats": [],
+    "thicknessesMm": [20],
+    "finish": "polished",
+    "shades": ["голубой", "серый"],
+    "textures": ["крупные жилы"],
+    "inferred": ["shades", "textures"],
+    "confidence": "confirmed",
+    "sources": [
+      "https://quantra.in/product/fontainebleau-slab/",
+      "https://quantraquartz.ru/slabs/fontainebleau-slab/"
+    ],
+    "notes": "Коллекция Le Magnifique, кварцит. На quantra.in: French Blue base, streaks of grey and gold, Long Vein. Карточка дистрибьютора: 3470×2010×20, полированный, цвет голубой. Золото в список оттенков не входит. Формат в код не переведён."
+  },
+  {
+    "id": "416",
+    "brand": "Quantra Quartz",
+    "sku": "9987",
+    "name": "Champs-Elysees",
+    "formats": [],
+    "thicknessesMm": [20],
+    "finish": "polished",
+    "shades": ["зеленоватый"],
+    "textures": ["крупные жилы"],
+    "inferred": ["shades", "textures"],
+    "confidence": "confirmed",
+    "sources": [
+      "https://quantra.in/product/champs-elysees-slab/",
+      "https://quantraquartz.ru/slabs/champs-elysees-slab/"
+    ],
+    "notes": "На сайте имя Champs-Élysées, артикул 9987, коллекция Le Magnifique, кварцит, Long Vein. Карточка дистрибьютора: 3470×2010×20, полированный, цвет «зеленый» (записан как зеленоватый). Формат в код не переведён."
+  },
+  {
+    "id": "417",
+    "brand": "Quantra Quartz",
+    "sku": "9996",
+    "name": "Leonardo",
+    "formats": [],
+    "thicknessesMm": [20],
+    "finish": "polished",
+    "shades": ["белый", "серый"],
+    "textures": ["крупные жилы"],
+    "inferred": ["shades", "textures"],
+    "confidence": "partial",
+    "sources": [
+      "https://quantra.in/product/leonardo-slab/",
+      "https://quantraquartz.ru/slabs/leonardo-slab/"
+    ],
+    "notes": "На quantra.in коллекция Le Magnifique: white design, tones of grey and gold, Long Vein. На quantraquartz.ru коллекция указана как Calacatta, размер 3470×2010×20, полированный, оттенок карточки «светлый», отдельного поля цвета нет. Расхождение коллекции. Золото в список оттенков не входит. Формат в код не переведён."
+  }
+]

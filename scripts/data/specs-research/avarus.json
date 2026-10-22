@@ -1,0 +1,322 @@
+[
+  {
+    "id": "125",
+    "brand": "Avarus",
+    "sku": "R510",
+    "name": "Chernoe More",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r510-rm510-chernoe-more/"
+    ],
+    "notes": "Карточка производителя: артикул R510 / RM510, цвет чёрный, слэб 3200×1600×20 мм, отделка «Глянцевая», коллекция Marble. Для R510 полировка взята как polished. Фактура словом из списка не названа."
+  },
+  {
+    "id": "126",
+    "brand": "Avarus",
+    "sku": "R511",
+    "name": "Lyod Baykala",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r511-rm511-led-bajkala/"
+    ],
+    "notes": "Карточка: R511 / RM511, цвет белый, 3200×1600×20 мм, «Глянцевая», Marble. Фактура не названа."
+  },
+  {
+    "id": "128",
+    "brand": "Avarus",
+    "sku": "R520",
+    "name": "Astrakhanskie Peski",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r520-rm520-astrahanskie-peski/"
+    ],
+    "notes": "Карточка: R520 / RM520, цвет белый, 3200×1600×20 мм, «Глянцевая», Marble. Фактура не названа."
+  },
+  {
+    "id": "130",
+    "brand": "Avarus",
+    "sku": "R531",
+    "name": "Donskaya Step",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "коричневый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r531-donskaya-step/"
+    ],
+    "notes": "Карточка: R531, цвет коричневый, 3200×1600×20 мм, «Глянцевая», Marble. Фактура не названа."
+  },
+  {
+    "id": "131",
+    "brand": "Avarus",
+    "sku": "R538",
+    "name": "Gory Kavkaza",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "коричневый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r538-gory-kavkaza/"
+    ],
+    "notes": "Карточка: R538, цвет коричневый, 3200×1600×20 мм, «Глянцевая», Marble. Фактура не названа."
+  },
+  {
+    "id": "132",
+    "brand": "Avarus",
+    "sku": "R541",
+    "name": "Snega Sibiri",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r541-snega-sibiri/"
+    ],
+    "notes": "Карточка: R541, цвет белый, 3200×1600×20 мм, «Глянцевая», Marble. Фактура не названа."
+  },
+  {
+    "id": "135",
+    "brand": "Avarus",
+    "sku": "R558",
+    "name": "Prostory Povolzhya",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "бежевый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r558-prostory-povolzhya/"
+    ],
+    "notes": "Карточка: R558, цвет бежевый, 3200×1600×20 мм, «Глянцевая», Marble. Фактура не названа."
+  },
+  {
+    "id": "136",
+    "brand": "Avarus",
+    "sku": "R575",
+    "name": "Krasnaya Polyana",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r575-krasnaya-polyana/"
+    ],
+    "notes": "Карточка: R575, цвет белый, 3200×1600×20 мм, «Глянцевая», Marble. Фактура не названа."
+  },
+  {
+    "id": "137",
+    "brand": "Avarus",
+    "sku": "R590",
+    "name": "Severnoe Siyanie",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r590-severnoe-siyanie/"
+    ],
+    "notes": "Карточка: R590, цвет чёрный, 3200×1600×20 мм, «Глянцевая», Marble. Фактура не названа."
+  },
+  {
+    "id": "138",
+    "brand": "Avarus",
+    "sku": "R677",
+    "name": "Moskovskaya Noch",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r677-moskovskaya-noch/"
+    ],
+    "notes": "Карточка: R677, цвет чёрный, 3200×1600×20 мм, «Глянцевая», Marble. Фактура не названа."
+  },
+  {
+    "id": "143",
+    "brand": "Avarus",
+    "sku": "RM510",
+    "name": "Chernoe More Mat",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": null,
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r510-rm510-chernoe-more/"
+    ],
+    "notes": "Тот же URL, что у R510: артикул на карточке «R510 / RM510», размер 3200×1600×20 мм, цвет чёрный, но отделка указана только «Глянцевая». Отдельного слова «матовая» для RM нет, finish пустой."
+  },
+  {
+    "id": "144",
+    "brand": "Avarus",
+    "sku": "RM511",
+    "name": "Lyod Baykala Mat",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r511-rm511-led-bajkala/"
+    ],
+    "notes": "Карточка объединяет R511 / RM511: 3200×1600×20 мм, цвет белый, отделка только «Глянцевая». Для матового артикула finish не записан."
+  },
+  {
+    "id": "145",
+    "brand": "Avarus",
+    "sku": "RM520",
+    "name": "Astrakhanskie Peski Mat",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r520-rm520-astrahanskie-peski/"
+    ],
+    "notes": "Карточка объединяет R520 / RM520: 3200×1600×20 мм, цвет белый, отделка только «Глянцевая». Для матового артикула finish не записан."
+  },
+  {
+    "id": "147",
+    "brand": "Avarus",
+    "sku": "RM560",
+    "name": "Zolotye Vorota Mat",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "бежевый"
+    ],
+    "textures": [],
+    "inferred": [
+      "shades"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://avarus-stone.ru/product/avarus-r560-zolotye-vorota/"
+    ],
+    "notes": "Найдена карточка только R560 «Золотые ворота»: цвет бежевый, 3200×1600×20 мм, «Глянцевая». Артикул RM560 на ней не указан, поэтому формат, толщина и полировка не перенесены. Оттенок выведен по той же карточке декора."
+  }
+]

@@ -1,0 +1,1076 @@
+[
+  {
+    "id": "62",
+    "brand": "Avant Quartz",
+    "sku": "1000",
+    "name": "Dizhon",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      12,
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "вкрапления"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/1000-dijon/"
+    ],
+    "notes": "Сайт производителя: Dijon 1000, Granite, Polished, 3200×1600×12/15/20/30 мм. Оттенок по фото и фильтру #FFFFFF; фактура — мелкая равномерная зернистость на фото плиты (вкрапления)."
+  },
+  {
+    "id": "63",
+    "brand": "Avant Quartz",
+    "sku": "1012",
+    "name": "Amen",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      12,
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [
+      "shades"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/1012-amiens/"
+    ],
+    "notes": "Сайт производителя: Amiens 1012, Granite, Polished, 3200×1600×12/15/20/30 мм. Оттенок по фильтру #FFFFFF. Фактура на карточке не названа, фото в этой выборке не разобрано."
+  },
+  {
+    "id": "67",
+    "brand": "Avant Quartz",
+    "sku": "5700",
+    "name": "Kalakatta Ameli Print",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "бежевый"
+    ],
+    "textures": [],
+    "inferred": [
+      "shades"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/taj-amelie/"
+    ],
+    "notes": "Артикул 5700 на сайте — Taj Amelie, Digital Print, Polished, только 3200×1600×20 мм. Локальное имя «Kalakatta» на карточке не используется. Оттенок по фильтру #F4E6CB."
+  },
+  {
+    "id": "68",
+    "brand": "Avant Quartz",
+    "sku": "5750",
+    "name": "Kalakatta Sheri Print",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/calacatta-chery/"
+    ],
+    "notes": "Calacatta Chery 5750, Digital Print, Polished, 3200×1600×20 и ×30 мм. Фильтр #FFFFFF. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "69",
+    "brand": "Avant Quartz",
+    "sku": "5751",
+    "name": "Kalakatta Besson Print",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/calacatta-besson/"
+    ],
+    "notes": "Calacatta Besson 5751, Digital Print, Polished, 3200×1600×20 и ×30 мм. Фильтр #FFFFFF. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "70",
+    "brand": "Avant Quartz",
+    "sku": "5752",
+    "name": "Kalakatta Krespen Print",
+    "formats": [
+      "N",
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/5752-kalakatta-krespen"
+    ],
+    "notes": "На avant-quartz.com артикула нет. Interstone: Калакатта Креспен, Print, глянцевая; 3050×1440×20 (N, допуск ±20 к 3040×1440) под заказ; 3200×1600×20 склад и ×30 под заказ. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "71",
+    "brand": "Avant Quartz",
+    "sku": "5753",
+    "name": "Kalakatta Averon Print",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/calacatta-aveyron/"
+    ],
+    "notes": "Calacatta Aveyron 5753, Digital Print, Polished, 3200×1600×20 и ×30 мм. Фильтр #FFFFFF. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "72",
+    "brand": "Avant Quartz",
+    "sku": "5754",
+    "name": "Kalakatta Vive Print",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/calacatta-viviez/"
+    ],
+    "notes": "Calacatta Viviez 5754, Digital Print, Polished, 3200×1600×20 и ×30 мм. Фильтр #FFFFFF. У Interstone для этого артикула ещё есть 3050×1440 — на карточке производителя этого размера нет, в formats не включён. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "73",
+    "brand": "Avant Quartz",
+    "sku": "5800",
+    "name": "Travertin Supp Print",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [],
+    "textures": [],
+    "inferred": [],
+    "confidence": "none",
+    "sources": [],
+    "notes": "Артикул 5800 на avant-quartz.com и в извлечённых карточках Interstone не найден. Близкий, но другой код — 5850Н Travertine Lacaze (матовый, 3200×1600×20/30); его характеристики сюда не переносились."
+  },
+  {
+    "id": "76",
+    "brand": "Avant Quartz",
+    "sku": "7040",
+    "name": "Kalakatta Bomenil",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/kalakatta-bomenil"
+    ],
+    "notes": "Interstone: 7040 Калакатта Бомениль, Elite, глянцевая; 3200×1600×20 и ×30 под заказ, 3000×1400×15 и ×20 под заказ. Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "80",
+    "brand": "Avant Quartz",
+    "sku": "7090",
+    "name": "Kalakatta Rona Alpy",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/kalakatta-rona-alpy"
+    ],
+    "notes": "Interstone: 7090 Калакатта Рона-Альпы, Elite, глянцевая; 3200×1600×20 склад, ×30 под заказ; 3000×1400×20 склад и ×15 под заказ. Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "83",
+    "brand": "Avant Quartz",
+    "sku": "7400",
+    "name": "Kalakatta Dofine",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/7400-calacatta-dauphine/"
+    ],
+    "notes": "Calacatta Dauphine 7400, Elite, Polished, 3200×1600×20 и ×30 мм. Фильтр #FFFFFF. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "84",
+    "brand": "Avant Quartz",
+    "sku": "7470",
+    "name": "Kalakatta Bern",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/7470-calacatta-bearn/"
+    ],
+    "notes": "Calacatta Bearn 7470 (Béarn → Bern), Elite, Polished, 3200×1600×20 и ×30 мм. Фильтр #FFFFFF. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "85",
+    "brand": "Avant Quartz",
+    "sku": "7500",
+    "name": "Kalakatta Arras",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/7500-calacatta-arras/"
+    ],
+    "notes": "Calacatta Arras 7500, Elite, Polished, 3200×1600×20 и ×30 мм. Фильтр #FFFFFF. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "86",
+    "brand": "Avant Quartz",
+    "sku": "7550",
+    "name": "Kalakatta Kanny Gold Mat",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/7550h-calacatta-cannes-gold/"
+    ],
+    "notes": "Сопоставлен матовый артикул 7550H (на сайте отдельно есть глянцевый 7550). Matt, Elite, 3200×1600×15/20/30 мм. На фото плиты белый фон и крупные ветвящиеся жилы, часть из них золотистые. Слово на карточке: Matt."
+  },
+  {
+    "id": "87",
+    "brand": "Avant Quartz",
+    "sku": "7560",
+    "name": "Kalakatta Albi Mat",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/7560-kalakatta-albi"
+    ],
+    "notes": "Interstone: 7560 Калакатта Альби, Elite, матовая; 3200×1600×20 склад, ×30 под заказ; 3000×1400×15 и ×20 под заказ. Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "88",
+    "brand": "Avant Quartz",
+    "sku": "7570",
+    "name": "Kalakatta Talans",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/7570-kalakatta-talans",
+      "https://avant-quartz.com/products/7570-calacatta-monaco/"
+    ],
+    "notes": "Interstone называет 7570 «Калакатта Таланс» и указывает сразу две поверхности — глянцевая и матовая, поэтому finish пустой. Размеры: 3200×1600×20 склад, ×30 под заказ; 3000×1400×15 и ×20 под заказ. Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. На avant-quartz.com тот же номер — Calacatta Monaco, только Polished. Из-за разночтения имени полировка не перенесена. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "89",
+    "brand": "Avant Quartz",
+    "sku": "7630",
+    "name": "Kalakatta Vensen",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/kalakatta-vensen"
+    ],
+    "notes": "Interstone: 7630 Калакатта Венсен, Elite. В извлечённом тексте есть 3200×1600×20 и ×30, а также 3000×1400×20 и ×15; тип поверхности в тексте страницы не попал, finish пустой. Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "90",
+    "brand": "Avant Quartz",
+    "sku": "7670",
+    "name": "Kalakatta Kassel",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/wp-content/uploads/neorganizovani/catalogue-avant-quartz-ro.pdf",
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/kalakatta-kassel"
+    ],
+    "notes": "PDF-каталог производителя: 7670 Calacatta Cassel, поверхность lucioasă (глянцевая), размер каталога 3200×1600×20 мм. Interstone дополнительно: ×30 под заказ, 3000×1400×20 склад и ×15 под заказ. Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "91",
+    "brand": "Avant Quartz",
+    "sku": "7700",
+    "name": "Kalakatta Marsel",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/wp-content/uploads/neorganizovani/catalogue-avant-quartz-ro.pdf"
+    ],
+    "notes": "PDF-каталог производителя: 7700 Calacatta Marseille, lucioasă, размер каталога 3200×1600×20 мм. В актуальном английском списке avant-quartz.com декора нет. Другие толщины в этом PDF не указаны. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "92",
+    "brand": "Avant Quartz",
+    "sku": "7810",
+    "name": "Kalakatta Modan",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/7810-kalakatta-modan"
+    ],
+    "notes": "Interstone: 7810 Калакатта Модан, Elite, глянцевая; 3200×1600×20 склад, ×30 под заказ; 3000×1400×15 и ×20 под заказ. Тот же декор есть в каталоге Avant 2026 (Elite). Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "93",
+    "brand": "Avant Quartz",
+    "sku": "7888",
+    "name": "Kalakatta Dinan",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/kalakatta-dinan"
+    ],
+    "notes": "Interstone: 7888 Калакатта Динан, Elite, глянцевая; 3200×1600×20 и складская ×30; 3000×1400×20 и ×15. Декор есть в каталоге Avant 2026. Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. Оттенок и фактура выведены по названию Calacatta на карточке (белый фон, крупные жилы), не из таблицы характеристик."
+  },
+  {
+    "id": "94",
+    "brand": "Avant Quartz",
+    "sku": "7970",
+    "name": "Kalakatta Trua",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "светлосерый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/calacatta-troyes/"
+    ],
+    "notes": "Calacatta Troyes 7970, Elite, Polished, 3200×1600×20 и ×30 мм. Цветовой фильтр #ACACB0 (светло-серый), поэтому оттенок не белый, несмотря на имя Calacatta. Фактура — по типу Calacatta."
+  },
+  {
+    "id": "95",
+    "brand": "Avant Quartz",
+    "sku": "7980",
+    "name": "Nitstsa Blank",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/7980-nicca-blank"
+    ],
+    "notes": "Interstone: 7980 Ницца Бланк, Elite, глянцевая; 3200×1600×20 склад, ×30 под заказ; 3000×1400×15 и ×20 под заказ. Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. Blanc в названии и коллекция Calacatta — оттенок и жилы выведены."
+  },
+  {
+    "id": "96",
+    "brand": "Avant Quartz",
+    "sku": "7985",
+    "name": "Nitstsa Noir Mat",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/7985-nicca-noir"
+    ],
+    "notes": "Interstone: 7985 Ницца Ноир, Elite, матовая; 3200×1600×20 склад, ×30 под заказ; 3000×1400×15 и ×20 под заказ. В каталоге Avant 2026 декор помечен (М). Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. Noir → чёрный; жилы — по коллекции Calacatta, фото не разбиралось."
+  },
+  {
+    "id": "97",
+    "brand": "Avant Quartz",
+    "sku": "8011",
+    "name": "Nant Matovyy",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [
+      "светлосерый",
+      "бежевый"
+    ],
+    "textures": [
+      "разводы"
+    ],
+    "inferred": [
+      "shades",
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/nantes/"
+    ],
+    "notes": "8011H Nantes, Oxide, Matt, 3200×1600×20 и ×30 мм. Фильтр #F4E6CB. На фото плиты облачная светлая поверхность без крупных жил: светло-серый с тёплым бежевым, фактура разводы. Слово на карточке: Matt."
+  },
+  {
+    "id": "98",
+    "brand": "Avant Quartz",
+    "sku": "8033",
+    "name": "Karkasson Matovyy",
+    "formats": [
+      "N",
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/8033-karkasson-m"
+    ],
+    "notes": "Interstone: 8033 Каркассон, Oxide, матовая; 3050×1440×20 склад (N) и ×30 под заказ; 3200×1600×20 склад и ×30 под заказ. Оттенок и фактура на странице не названы."
+  },
+  {
+    "id": "99",
+    "brand": "Avant Quartz",
+    "sku": "8044",
+    "name": "Evri Matovyy",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/8044-evri"
+    ],
+    "notes": "Interstone: 8044 Эври, Oxide, матовая; 3200×1600×20 и ×30 под заказ; 3000×1400×15 и ×20 под заказ. Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. Оттенок и фактура не названы."
+  },
+  {
+    "id": "100",
+    "brand": "Avant Quartz",
+    "sku": "8046",
+    "name": "Eson Matovyy",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [],
+    "textures": [],
+    "inferred": [],
+    "confidence": "none",
+    "sources": [],
+    "notes": "Артикул 8046 / Essonne на сайте производителя и в извлечённых карточках Interstone не найден."
+  },
+  {
+    "id": "101",
+    "brand": "Avant Quartz",
+    "sku": "8059",
+    "name": "Laval Matovyy",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [],
+    "textures": [],
+    "inferred": [],
+    "confidence": "none",
+    "sources": [],
+    "notes": "Артикул 8059 / Laval на сайте производителя и в извлечённых карточках Interstone не найден."
+  },
+  {
+    "id": "102",
+    "brand": "Avant Quartz",
+    "sku": "8100",
+    "name": "Mulen Matovyy",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [
+      "светлосерый"
+    ],
+    "textures": [],
+    "inferred": [
+      "shades"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/8100-mulen/"
+    ],
+    "notes": "Mulen 8100, Oxide, Matt, 3200×1600×20 и ×30 мм. Оттенок по фильтру #ACACB0. Фактура на карточке не названа."
+  },
+  {
+    "id": "103",
+    "brand": "Avant Quartz",
+    "sku": "8580",
+    "name": "Tarn Matovyy",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "бежевый"
+    ],
+    "textures": [],
+    "inferred": [
+      "shades"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://avant-quartz.com/products/tarn/",
+      "https://topovi.com.ua/storage/media/instructions/Avant%20Quartz/%D0%A1atalogue-Avant-Quartz_2026-ua.pdf"
+    ],
+    "notes": "На avant-quartz.com 8580 Tarn — Polished (не Matt), Oxide, 3200×1600×20 и ×30 мм; каталог 2026 тоже пишет глянцевую поверхность. Локальное имя содержит «Matovyy», поэтому confidence не confirmed. Оттенок по фильтру #F4E6CB."
+  },
+  {
+    "id": "104",
+    "brand": "Avant Quartz",
+    "sku": "8800",
+    "name": "Kassis Matovyy",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [
+      "светлосерый"
+    ],
+    "textures": [],
+    "inferred": [
+      "shades"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/8800h-cassis/"
+    ],
+    "notes": "Сопоставлен 8800H Cassis, Oxide, Matt, 3200×1600×15/20/30 мм. Оттенок по фильтру #ACACB0. Фактура не названа."
+  },
+  {
+    "id": "105",
+    "brand": "Avant Quartz",
+    "sku": "8810",
+    "name": "Renn Templ Matovyy",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/8810-renntempl-m"
+    ],
+    "notes": "Interstone: 8810 Ренн Тэмпл, Oxide, матовая; 3200×1600×20 склад, ×30 под заказ; 3000×1400×20 и ×15 под заказ. Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. Оттенок и фактура не названы."
+  },
+  {
+    "id": "106",
+    "brand": "Avant Quartz",
+    "sku": "8811",
+    "name": "Reze Matovyy",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "matte",
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [],
+    "inferred": [
+      "shades"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/reze/"
+    ],
+    "notes": "8811H Reze, Oxide, Matt, на карточке только 3200×1600×20 мм. Оттенок по фильтру #000000. Фактура не названа."
+  },
+  {
+    "id": "112",
+    "brand": "Avant Quartz",
+    "sku": "9133",
+    "name": "Avinon Gris",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20
+    ],
+    "finish": "polished",
+    "shades": [
+      "серый"
+    ],
+    "textures": [],
+    "inferred": [
+      "shades"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/9133-avinon-gris"
+    ],
+    "notes": "Interstone: 9133 Авиньон Грис, Marble, глянцевая, в извлечённом фрагменте явно есть 3200×1600×20 мм. Остальные толщины в фрагменте не попали и не записаны. «Gris» → серый. Фактура не названа."
+  },
+  {
+    "id": "113",
+    "brand": "Avant Quartz",
+    "sku": "9172",
+    "name": "Blave",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "светлосерый"
+    ],
+    "textures": [],
+    "inferred": [
+      "shades"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://avant-quartz.com/products/blave/"
+    ],
+    "notes": "Blave 9172, Marble, Polished, 3200×1600×20 и ×30 мм. Оттенок по фильтру #ACACB0. Фактура не названа."
+  },
+  {
+    "id": "114",
+    "brand": "Avant Quartz",
+    "sku": "9173",
+    "name": "Vilen",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [],
+    "textures": [],
+    "inferred": [],
+    "confidence": "none",
+    "sources": [],
+    "notes": "Отдельная карточка с размерами и полировкой для 9173 / Вилен в извлечённых страницах производителя и Interstone не подтверждена."
+  },
+  {
+    "id": "115",
+    "brand": "Avant Quartz",
+    "sku": "9212",
+    "name": "Sen Trope",
+    "formats": [
+      "J"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://interstone.su/stones/kvarcevyy-kamen/avant-quartz/colors/9212-sen-trope"
+    ],
+    "notes": "Interstone: 9212 Сен-Тропе, Marble, глянцевая; 3200×1600×20 и ×30 под заказ; 3000×1400×20 склад и ×15 под заказ. Также указан 3000×1400 мм — вне допуска кодов N/N+/J/J+, в formats не включён. Оттенок и фактура не названы."
+  },
+  {
+    "id": "116",
+    "brand": "Avant Quartz",
+    "sku": "9510",
+    "name": "Vanilla Ansi",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [],
+    "textures": [],
+    "inferred": [],
+    "confidence": "none",
+    "sources": [],
+    "notes": "Артикул 9510 / Ванилла Анси на сайте производителя и в извлечённых карточках Interstone не найден."
+  },
+  {
+    "id": "117",
+    "brand": "Avant Quartz",
+    "sku": "9603",
+    "name": "Sen Malo",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [],
+    "textures": [],
+    "inferred": [],
+    "confidence": "none",
+    "sources": [],
+    "notes": "Артикул 9603 / Сен-Мало на сайте производителя и в извлечённых карточках Interstone не найден."
+  }
+]

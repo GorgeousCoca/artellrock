@@ -1,30 +1,47 @@
 import type { MetadataRoute } from "next";
 
-import { getStoneBrands } from "@/lib/stone/brands";
-import { getProducts, getProjects, getStoneSamples } from "@/lib/site";
+import { directions } from "@/content/artellrock";
+import { edgesPage, materialPage, orderPage } from "@/content/guides";
+import { sinksPage } from "@/content/products-extra";
+import { paymentPage, promotionsPage } from "@/content/terms";
+import { certificatesPage, hasCertificates, reviewsPage } from "@/content/trust";
+import { listApprovedTestimonials } from "@/lib/cms/store";
+import { catalogBrandSlugs, catalogStoneRoutes } from "@/lib/catalog/quartz-catalog";
 import { absoluteUrl } from "@/lib/utils";
 
-export const dynamic = "force-static";
+/** Карта зависит от базы (есть ли одобренные отзывы), поэтому строится на запросе, а не при сборке. */
+export const dynamic = "force-dynamic";
+
+async function hasApprovedReviews() {
+  try {
+    return (await listApprovedTestimonials()).length > 0;
+  } catch {
+    return false;
+  }
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [products, stones, projects] = await Promise.all([
-    getProducts(),
-    getStoneSamples(),
-    getProjects()
-  ]);
-  const brands = getStoneBrands(stones);
-
+  const showReviews = await hasApprovedReviews();
   const staticRoutes = [
     "/",
-    "/catalog/countertops",
-    "/catalog/window-sills",
-    "/catalog/sinks",
-    "/catalog-kamnya",
+    "/izdeliya",
+    "/stoimost",
+    "/catalog-kvarca",
+    "/kalkulyator",
+    "/tseny",
+    materialPage.path,
+    edgesPage.path,
+    orderPage.path,
+    paymentPage.path,
+    promotionsPage.path,
+    sinksPage.path,
+    ...(showReviews ? [reviewsPage.path] : []),
+    ...(hasCertificates ? [certificatesPage.path] : []),
     "/portfolio",
-    "/faq",
     "/about",
     "/contacts",
-    "/privacy"
+    "/politika",
+    "/soglasie"
   ];
 
   return [
@@ -33,21 +50,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: route === "/" ? 1 : 0.8
     })),
-    ...products.map((product) => ({
-      url: absoluteUrl(`/catalog/${product.type}/${product.slug}`),
+    ...directions.map((direction) => ({
+      url: absoluteUrl(`/izdeliya/${direction.slug}`),
       changeFrequency: "weekly" as const,
       priority: 0.8
     })),
-    ...brands.map((brand) => ({
-      url: absoluteUrl(`/catalog-kamnya/brands/${brand.slug}`),
-      changeFrequency: "weekly" as const,
-      priority: 0.8
-    })),
-    ...projects.map((project) => ({
-      url: absoluteUrl(`/portfolio/${project.slug}`),
+    ...catalogBrandSlugs().map((brandSlug) => ({
+      url: absoluteUrl(`/catalog-kvarca/${brandSlug}`),
       changeFrequency: "monthly" as const,
-      priority: 0.7
+      priority: 0.6
     })),
-
+    ...catalogStoneRoutes().map((stone) => ({
+      url: absoluteUrl(`/catalog-kvarca/${stone.brandSlug}/${stone.slug}`),
+      changeFrequency: "monthly" as const,
+      priority: 0.5
+    }))
   ];
 }

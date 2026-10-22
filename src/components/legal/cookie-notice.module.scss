@@ -3,54 +3,57 @@
   inset-inline: 0;
   bottom: 0;
   z-index: 120;
-  border-top: 1px solid var(--border);
-  background: var(--surface);
-  padding-block: clamp(14px, 2.5vw, 18px);
-  padding-bottom: max(clamp(14px, 2.5vw, 18px), env(safe-area-inset-bottom));
-  box-shadow: 0 -4px 24px rgba(42, 34, 24, 0.08);
+  background: var(--parchment);
+  border-top: 1px solid var(--hairline);
+  padding: 12px 32px max(12px, env(safe-area-inset-bottom));
 }
 
 .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(12px, 3vw, 24px);
+  gap: 24px;
+  max-width: 1320px;
+  margin-inline: auto;
 }
 
 .text {
   margin: 0;
-  font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
-  line-height: 1.55;
-  color: var(--foreground-soft);
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+  color: var(--ink);
   max-width: 72ch;
 }
 
-.link {
-  color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  white-space: nowrap;
-
-  &:hover {
-    color: var(--accent-hover);
-  }
+.actions {
+  display: flex;
+  flex: none;
+  gap: 8px;
 }
 
 .button {
-  flex-shrink: 0;
-  min-height: 40px;
-  padding-inline: 20px;
-  font-size: 0.875rem;
+  flex: none;
 }
 
-@media (max-width: 639px) {
+@media (max-width: 570px) {
+  .bar {
+    // Над нижней плашкой «Позвонить · ВКонтакте · Заявка»
+    bottom: var(--bar-height);
+    padding-inline: 16px;
+  }
+
   .inner {
     flex-direction: column;
     align-items: stretch;
+    gap: 8px;
+  }
+
+  .actions {
+    flex-direction: column;
   }
 
   .button {
     width: 100%;
-    justify-content: center;
   }
 }

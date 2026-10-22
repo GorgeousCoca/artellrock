@@ -2,61 +2,60 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSyncExternalStore, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+import { readCookieConsent, subscribeCookieConsent, writeCookieConsent, type CookieConsent } from "@/lib/cookie-consent";
 
 import styles from "./cookie-notice.module.scss";
 
-const STORAGE_KEY = "cookie_notice_dismissed";
-
-function readDismissed() {
-  try {
-    return window.localStorage.getItem(STORAGE_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
-
-/**
- * Informational cookie notice for public pages.
- * Future analytics: extend with a CookieConsentProvider and opt-in categories (Phase 6 D-06).
- */
 export function CookieNotice() {
   const pathname = usePathname();
-  const [clientDismissed, setClientDismissed] = useState(false);
+  const barRef = useRef<HTMLDivElement>(null);
+  const [choice, setChoice] = useState<CookieConsent | null | "pending">("pending");
 
-  const storageDismissed = useSyncExternalStore(
-    () => () => {},
-    readDismissed,
-    // Server: assume dismissed so returning visitors don't see a flash before hydration.
-    () => true
-  );
+  useEffect(() => {
+    const sync = () => setChoice(readCookieConsent());
+    sync();
+    return subscribeCookieConsent(sync);
+  }, []);
 
-  const dismiss = () => {
-    try {
-      window.localStorage.setItem(STORAGE_KEY, "1");
-    } catch {
-      // ignore quota / private mode
+  useEffect(() => {
+    const bar = barRef.current;
+    if (!bar) {
+      document.body.style.paddingBottom = "";
+      return;
     }
-    setClientDismissed(true);
-  };
 
-  if (pathname.startsWith("/admin") || storageDismissed || clientDismissed) {
-    return null;
-  }
+    const apply = () => {
+      document.body.style.paddingBottom = `${bar.offsetHeight}px`;
+    };
+    apply();
+    const observer = new ResizeObserver(apply);
+    observer.observe(bar);
+    return () => {
+      observer.disconnect();
+      document.body.style.paddingBottom = "";
+    };
+  }, [choice, pathname]);
+
+  if (pathname.startsWith("/admin") || choice !== null) return null;
 
   return (
-    <div className={styles.bar} role="region" aria-label="Уведомление о файлах cookie">
-      <div className={`container ${styles.inner}`}>
+    <div ref={barRef} className={styles.bar} role="region" aria-label="Уведомление о файлах cookie">
+      <div className={styles.inner}>
         <p className={styles.text}>
-          Для статистики посещений используется Яндекс.Метрика. Маркетинговые cookie не
-          применяются. Сохраняется только настройка закрытия этого уведомления.{" "}
-          <Link className={styles.link} href="/privacy#cookies">
-            Подробнее
-          </Link>
+          Сайт запоминает ваш выбор. Статистика Яндекс.Метрики включается только после согласия. Маркетинговые cookie
+          не используются.{" "}
+          <Link href="/politika#cookies">Подробнее</Link>
         </p>
-        <button type="button" className={`button ${styles.button}`} onClick={dismiss}>
-          Понятно
-        </button>
+        <div className={styles.actions}>
+          <button type="button" className={`btn btn--primary ${styles.button}`} onClick={() => writeCookieConsent("analytics")}>
+            Принять
+          </button>
+          <button type="button" className={`btn btn--secondary ${styles.button}`} onClick={() => writeCookieConsent("necessary")}>
+            Только необходимые
+          </button>
+        </div>
       </div>
     </div>
   );

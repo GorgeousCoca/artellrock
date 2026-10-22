@@ -1,0 +1,83 @@
+// Переключатель страниц. Токены берём из globals.scss.
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-sm);
+  margin-top: var(--s-xl);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-pill);
+  background: var(--canvas);
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+
+  &:hover {
+    border-color: var(--ink);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+}
+
+.current {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--on-gold);
+  pointer-events: none;
+}
+
+.step {
+  padding: 0 18px;
+}
+
+.disabled {
+  color: var(--ink-soft);
+  opacity: 0.45;
+}
+
+.gap {
+  min-width: 24px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+@media (max-width: 570px) {
+  // На телефоне «Назад» и «Вперёд» уходят на отдельную строку по краям, номера идут над ними.
+  .pagination {
+    gap: var(--s-md);
+  }
+
+  .list {
+    order: -1;
+    width: 100%;
+  }
+}

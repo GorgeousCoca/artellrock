@@ -1,0 +1,236 @@
+{
+  "edges": [
+    {
+      "slug": "edge-thickness-slab-20",
+      "name": "Сплошной слэб 20 мм",
+      "kind": "thickness",
+      "thicknessMm": 20,
+      "price": 0,
+      "image": "/images/calculator/edges/edge-thickness-slab-20.png",
+      "sortOrder": 1
+    },
+    {
+      "slug": "edge-thickness-slab-30",
+      "name": "Сплошной слэб 30 мм",
+      "kind": "thickness",
+      "thicknessMm": 30,
+      "price": 0,
+      "image": "/images/calculator/edges/edge-thickness-slab-30.jpg",
+      "sortOrder": 2
+    },
+    {
+      "slug": "edge-thickness-sandwich",
+      "name": "Сэндвич",
+      "kind": "thickness",
+      "price": 3500,
+      "image": "/images/calculator/edges/edge-thickness-sandwich.png",
+      "sortOrder": 3
+    },
+    {
+      "slug": "edge-thickness-miter-40",
+      "name": "В ус 40 мм",
+      "kind": "thickness",
+      "thicknessMm": 40,
+      "price": 4000,
+      "image": "/images/calculator/edges/edge-thickness-miter-40.png",
+      "sortOrder": 4
+    },
+    {
+      "slug": "edge-thickness-miter-70",
+      "name": "В ус 70 мм",
+      "kind": "thickness",
+      "thicknessMm": 70,
+      "price": 5000,
+      "image": "/images/calculator/edges/edge-thickness-miter-70.png",
+      "sortOrder": 5
+    },
+    {
+      "slug": "edge-profile-z-2",
+      "name": "Z 2 мм",
+      "kind": "profile",
+      "price": 1500,
+      "image": "/images/calculator/edges/edge-profile-z-2.png",
+      "sortOrder": 6
+    },
+    {
+      "slug": "edge-profile-r-2",
+      "name": "R 2 мм",
+      "kind": "profile",
+      "price": 1500,
+      "image": "/images/calculator/edges/edge-profile-r-2.png",
+      "sortOrder": 7
+    },
+    {
+      "slug": "edge-profile-z",
+      "name": "Z (большой скос)",
+      "kind": "profile",
+      "price": 3000,
+      "image": "/images/calculator/edges/edge-profile-z.png",
+      "sortOrder": 8
+    },
+    {
+      "slug": "edge-profile-r",
+      "name": "R (радиус)",
+      "kind": "profile",
+      "price": 2500,
+      "image": "/images/calculator/edges/edge-profile-r.png",
+      "sortOrder": 9
+    },
+    {
+      "slug": "edge-profile-k",
+      "name": "K (акула)",
+      "kind": "profile",
+      "price": 3000,
+      "image": "/images/calculator/edges/edge-profile-k.png",
+      "sortOrder": 10
+    },
+    {
+      "slug": "edge-profile-zz",
+      "name": "ZZ (верх+низ)",
+      "kind": "profile",
+      "price": 3000,
+      "image": "/images/calculator/edges/edge-profile-zz.png",
+      "sortOrder": 11
+    },
+    {
+      "slug": "edge-profile-rr",
+      "name": "RR (верх+низ)",
+      "kind": "profile",
+      "price": 3500,
+      "image": "/images/calculator/edges/edge-profile-rr.png",
+      "sortOrder": 12
+    },
+    {
+      "slug": "edge-profile-l",
+      "name": "L (выкружка)",
+      "kind": "profile",
+      "price": 3500,
+      "image": "/images/calculator/edges/edge-profile-l.png",
+      "sortOrder": 13
+    },
+    {
+      "slug": "edge-profile-h",
+      "name": "H (радиус с полкой)",
+      "kind": "profile",
+      "price": 3500,
+      "image": "/images/calculator/edges/edge-profile-h.png",
+      "sortOrder": 14
+    },
+    {
+      "slug": "edge-profile-mt",
+      "name": "MT (торцевой)",
+      "kind": "profile",
+      "price": 5000,
+      "image": "/images/calculator/edges/edge-profile-mt.png",
+      "sortOrder": 15
+    },
+    {
+      "slug": "edge-profile-hh",
+      "name": "HH (радиус с 2 полками)",
+      "kind": "profile",
+      "price": 5000,
+      "image": "/images/calculator/edges/edge-profile-hh.png",
+      "sortOrder": 16
+    },
+    {
+      "slug": "edge-profile-f",
+      "name": "F (колокольчик)",
+      "kind": "profile",
+      "price": 4500,
+      "image": "/images/calculator/edges/edge-profile-f.png",
+      "sortOrder": 17
+    }
+  ],
+  "backsplashes": [
+    {
+      "slug": "backsplash-standard",
+      "name": "Стандартный",
+      "price": 1600,
+      "image": "/images/calculator/backsplashes/backsplash-standard.jpg",
+      "sortOrder": 1
+    },
+    {
+      "slug": "backsplash-h",
+      "name": "Фрезеровка Н",
+      "price": 2600,
+      "image": "/images/calculator/backsplashes/backsplash-h.jpg",
+      "sortOrder": 2
+    },
+    {
+      "slug": "backsplash-hh",
+      "name": "Фрезеровка НН",
+      "price": 3400,
+      "image": "/images/calculator/backsplashes/backsplash-hh.jpg",
+      "sortOrder": 3
+    },
+    {
+      "slug": "backsplash-f",
+      "name": "Фрезеровка F",
+      "price": 4200,
+      "image": "/images/calculator/backsplashes/backsplash-f.jpg",
+      "sortOrder": 4
+    }
+  ],
+  "sinks": [
+    {
+      "slug": "sink-cutout",
+      "name": "Вырез для мойки",
+      "type": "cutout",
+      "price": 4000,
+      "image": "/images/calculator/sinks/sink-type-cutout.jpg",
+      "sortOrder": 1
+    },
+    {
+      "slug": "sink-overmount",
+      "name": "Вырез и монтаж накладной мойки",
+      "type": "overmount",
+      "price": 5000,
+      "image": "/images/calculator/sinks/sink-type-overmount.jpg",
+      "sortOrder": 2
+    },
+    {
+      "slug": "sink-undermount",
+      "name": "Вырез для мойки под столешницу",
+      "type": "undermount",
+      "price": 10000,
+      "image": "/images/calculator/sinks/sink-type-undermount.jpg",
+      "sortOrder": 3
+    },
+    {
+      "slug": "sink-integrated-mk1",
+      "name": "МК1 стандарт",
+      "type": "integrated",
+      "description": "X=150–450, Y=150–600 мм",
+      "price": 45000,
+      "image": "/images/calculator/sinks/sink-integrated-mk1.png",
+      "sortOrder": 4
+    },
+    {
+      "slug": "sink-integrated-mk2",
+      "name": "МК2 двойное дно",
+      "type": "integrated",
+      "description": "X=200–450, Y=200–600 мм",
+      "price": 57000,
+      "image": "/images/calculator/sinks/sink-integrated-mk2.png",
+      "sortOrder": 5
+    },
+    {
+      "slug": "sink-integrated-mk3",
+      "name": "МК3 вкладыш",
+      "type": "integrated",
+      "description": "X=200–450, Y=200–600 мм",
+      "price": 67000,
+      "image": "/images/calculator/sinks/sink-integrated-mk3.png",
+      "sortOrder": 6
+    },
+    {
+      "slug": "sink-integrated-mk4",
+      "name": "МК4 щелевая",
+      "type": "integrated",
+      "description": "X=200–450, Y=200–600 мм",
+      "price": 62000,
+      "image": "/images/calculator/sinks/sink-integrated-mk4.png",
+      "sortOrder": 7
+    }
+  ]
+}

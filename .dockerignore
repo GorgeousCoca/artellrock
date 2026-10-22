@@ -2,6 +2,10 @@ node_modules
 .next
 out
 .git
+data
+*.xlsx
+*.docx
+*.pdf
 .github
 .cursor
 *.md

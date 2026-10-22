@@ -44,5 +44,8 @@ jobs:
       - name: Production build
         env:
           NEXT_TELEMETRY_DISABLED: "1"
+          # Заглушки: страницы dynamic, к Postgres при `next build` никто не подключается.
+          PAYLOAD_SECRET: "ci-build-placeholder-secret-0123456789abcdef"
+          DATABASE_URI: "postgres://ci:ci@localhost:5432/ci"
           # При необходимости: secrets.NEXT_PUBLIC_SITE_URL
         run: npm run build

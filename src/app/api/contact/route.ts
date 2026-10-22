@@ -2,22 +2,35 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { createContactRequest, patchContactRequest } from "@/lib/cms/store";
-import { sendContactMail } from "@/lib/email";
-import { saveLeadAttachment } from "@/lib/leads/save-attachment";
+import { inspectLeadAttachment } from "@/lib/leads/attachment-rules";
+import { acceptLead } from "@/lib/leads/record-lead";
+import { normalizePhone, PHONE_PATTERN } from "@/lib/leads/phone";
+import { normalizeTelegram } from "@/lib/leads/telegram";
 import { getClientIp } from "@/lib/security/request";
 import { checkRateLimit } from "@/lib/security/rate-limit";
 import { withApiErrorHandling } from "@/lib/server/with-api-error-handling";
 
+/** Имя -> name, телефон -> phone, изделие -> message в коллекции contact-requests. */
 const schema = z.object({
-  name: z.string().min(2),
-  phone: z.string().min(6),
-  email: z.string().min(1),
-  source: z.string().min(2),
-  productType: z.string().min(1),
-  dimensions: z.string().min(1),
-  comment: z.string().min(1),
-  botCheck: z.literal(true),
+  name: z.string().trim().min(2).max(120),
+  phone: z.string().trim().min(6).max(40),
+  product: z.string().trim().max(300).optional().default(""),
+  note: z.string().trim().max(2000).optional().default(""),
+  source: z.string().trim().max(80).optional().default("site"),
+  consent: z.literal(true),
+  /** Скрытое поле-приманка: у человека всегда пустое. */
+  website: z.string().max(0).optional().default("")
+});
+
+const drawingSchema = z.object({
+  kind: z.literal("drawing"),
+  telegram: z.string().trim().max(64).optional().default(""),
+  phone: z.string().trim().max(40).optional().default(""),
+  note: z.string().trim().max(2000).optional().default(""),
+  delivery: z.boolean().optional().default(false),
+  install: z.boolean().optional().default(false),
+  source: z.string().trim().max(80).optional().default("Загрузка чертежа"),
+  consent: z.literal(true),
   website: z.string().max(0).optional().default("")
 });
 
@@ -36,23 +49,6 @@ function getLeadDedupStore() {
     globalThis.__leadDedupStore__ = { recent: new Map() };
   }
   return globalThis.__leadDedupStore__;
-}
-
-function normalizePhone(value: string) {
-  const digits = value.replace(/\D/g, "");
-  if (digits.length === 11 && digits.startsWith("8")) {
-    return `+7${digits.slice(1)}`;
-  }
-  if (digits.length === 11 && digits.startsWith("7")) {
-    return `+${digits}`;
-  }
-  if (digits.length === 10) {
-    return `+7${digits}`;
-  }
-  if (value.trim().startsWith("+")) {
-    return value.trim();
-  }
-  return `+${digits}`;
 }
 
 function isDuplicateLead(key: string, windowMs: number) {
@@ -74,57 +70,6 @@ function isDuplicateLead(key: string, windowMs: number) {
   return false;
 }
 
-function buildMessage(data: LeadPayload) {
-  return [
-    `Тип изделия: ${data.productType}`,
-    `Материал: Кварцевый агломерат`,
-    `Размеры: ${data.dimensions}`,
-    `Комментарий: ${data.comment}`
-  ].join("\n");
-}
-
-async function parseLeadPayload(request: NextRequest): Promise<
-  | { ok: true; data: LeadPayload; attachment: File | null }
-  | { ok: false; error: string }
-> {
-  const contentType = request.headers.get("content-type") ?? "";
-
-  if (contentType.includes("multipart/form-data")) {
-    const formData = await request.formData();
-    const botRaw = formData.get("botCheck");
-    const payload = {
-      name: String(formData.get("name") ?? ""),
-      phone: String(formData.get("phone") ?? ""),
-      email: String(formData.get("email") ?? ""),
-      source: String(formData.get("source") ?? ""),
-      productType: String(formData.get("productType") ?? ""),
-      dimensions: String(formData.get("dimensions") ?? ""),
-      comment: String(formData.get("comment") ?? formData.get("message") ?? ""),
-      botCheck: botRaw === "true",
-      website: String(formData.get("website") ?? "")
-    };
-    const parsed = schema.safeParse(payload);
-    if (!parsed.success) {
-      return { ok: false, error: "Проверьте корректность полей формы." };
-    }
-    const attachment = formData.get("attachment");
-    const file = attachment instanceof File && attachment.size > 0 ? attachment : null;
-    return { ok: true, data: parsed.data, attachment: file };
-  }
-
-  let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return { ok: false, error: "Некорректный JSON в запросе" };
-  }
-  const parsed = schema.safeParse(body);
-  if (!parsed.success) {
-    return { ok: false, error: "Проверьте корректность полей формы." };
-  }
-  return { ok: true, data: parsed.data, attachment: null };
-}
-
 export const POST = withApiErrorHandling(async (request: NextRequest) => {
   const ip = getClientIp(request);
   const limit = checkRateLimit({
@@ -137,93 +82,139 @@ export const POST = withApiErrorHandling(async (request: NextRequest) => {
   if (!limit.allowed) {
     return NextResponse.json(
       { error: "Too many requests. Please try again later." },
-      {
-        status: 429,
-        headers: {
-          "Retry-After": String(limit.retryAfterSec)
-        }
-      }
+      { status: 429, headers: { "Retry-After": String(limit.retryAfterSec) } }
     );
   }
 
-  const parsedPayload = await parseLeadPayload(request);
-  if (!parsedPayload.ok) {
-    return NextResponse.json({ error: parsedPayload.error }, { status: 400 });
+  let body: unknown;
+  let file: File | null = null;
+  const contentType = request.headers.get("content-type") ?? "";
+
+  try {
+    if (contentType.includes("multipart/form-data")) {
+      const form = await request.formData();
+      const entry = form.get("file");
+      file = entry instanceof File && entry.size > 0 ? entry : null;
+      const kind = form.get("kind");
+      body =
+        kind === "drawing"
+          ? {
+              kind: "drawing",
+              telegram: form.get("telegram") ?? "",
+              phone: form.get("phone") ?? "",
+              note: form.get("note") ?? "",
+              delivery: form.get("delivery") === "on",
+              install: form.get("install") === "on",
+              source: form.get("source") ?? "Загрузка чертежа",
+              consent: form.get("consent") === "true" || form.get("consent") === "on",
+              website: form.get("website") ?? ""
+            }
+          : {
+              name: form.get("name"),
+              phone: form.get("phone"),
+              product: form.get("product") ?? "",
+              note: form.get("note") ?? "",
+              source: form.get("source") ?? "site",
+              consent: form.get("consent") === "true" || form.get("consent") === "on",
+              website: form.get("website") ?? ""
+            };
+    } else {
+      body = await request.json();
+    }
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { data, attachment } = parsedPayload;
-
-  const normalizedPhone = normalizePhone(data.phone);
-  if (!/^\+?[1-9]\d{9,14}$/.test(normalizedPhone)) {
-    return NextResponse.json({ error: "Телефон указан в неверном формате." }, { status: 400 });
+  // Бот заполнил скрытое поле: отвечаем «успешно», но ничего не сохраняем.
+  if (
+    typeof body === "object" &&
+    body !== null &&
+    typeof (body as { website?: unknown }).website === "string" &&
+    (body as { website: string }).website.length > 0
+  ) {
+    return NextResponse.json({ ok: true }, { status: 201 });
   }
 
-  const dedupKey = [
-    normalizedPhone.toLowerCase(),
-    data.email.trim().toLowerCase(),
-    data.comment.trim().toLowerCase()
-  ].join("|");
-  if (isDuplicateLead(dedupKey, 2 * 60 * 1000)) {
-    return NextResponse.json({ error: "Похожая заявка уже отправлена. Подождите 1-2 минуты." }, { status: 409 });
-  }
-
-  const record = await createContactRequest({
-    name: data.name,
-    phone: normalizedPhone,
-    email: data.email,
-    source: data.source,
-    message: buildMessage(data)
-  });
-
-  if (attachment) {
-    const saved = await saveLeadAttachment(record.id, attachment);
-    if (saved) {
-      await patchContactRequest(record.id, {
-        attachmentUrl: saved.url,
-        attachmentName: saved.name,
-        attachmentSize: saved.size
-      });
-      record.attachmentUrl = saved.url;
-      record.attachmentName = saved.name;
-      record.attachmentSize = saved.size;
+  if (file) {
+    const problem = inspectLeadAttachment(file);
+    if (problem) {
+      return NextResponse.json({ error: problem }, { status: 400 });
     }
   }
 
-  let mailStatus: { delivered: boolean; reason?: string };
-  try {
-    mailStatus = await sendContactMail(data);
-  } catch {
-    mailStatus = { delivered: false, reason: "mail-send-error" };
+  const isDrawing =
+    typeof body === "object" && body !== null && (body as { kind?: unknown }).kind === "drawing";
+
+  let name = "";
+  let phone = "";
+  let telegram = "";
+  let product = "";
+  let note = "";
+  let source = "site";
+
+  if (isDrawing) {
+    const parsed = drawingSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Invalid form data" }, { status: 400 });
+    }
+
+    const normalizedTelegram = normalizeTelegram(parsed.data.telegram);
+    if (normalizedTelegram == null) {
+      return NextResponse.json({ error: "invalid-telegram" }, { status: 400 });
+    }
+
+    const rawPhone = parsed.data.phone.replace(/\D/g, "");
+    const phoneDigits = rawPhone.startsWith("7") || rawPhone.startsWith("8") ? rawPhone.slice(1) : rawPhone;
+    if (phoneDigits.length > 0) {
+      phone = normalizePhone(parsed.data.phone);
+      if (!PHONE_PATTERN.test(phone)) {
+        return NextResponse.json({ error: "Invalid phone" }, { status: 400 });
+      }
+    }
+
+    if (!normalizedTelegram && !phone) {
+      return NextResponse.json({ error: "contact-required" }, { status: 400 });
+    }
+
+    telegram = normalizedTelegram;
+    note = parsed.data.note;
+    source = parsed.data.source;
+    const options = [
+      parsed.data.delivery ? "Доставка" : "",
+      parsed.data.install ? "Установка под ключ" : ""
+    ].filter((item) => item.length > 0);
+    product = options.join("\n");
+    name = telegram || phone;
+  } else {
+    const parsed = schema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Invalid form data" }, { status: 400 });
+    }
+
+    const data: LeadPayload = parsed.data;
+    phone = normalizePhone(data.phone);
+    if (!PHONE_PATTERN.test(phone)) {
+      return NextResponse.json({ error: "Invalid phone" }, { status: 400 });
+    }
+
+    name = data.name;
+    product = data.product;
+    note = data.note;
+    source = data.source;
   }
 
-  if (!mailStatus.delivered) {
-    await patchContactRequest(record.id, {
-      deliveryStatus: "failed_mail",
-      mailError: mailStatus.reason
-    });
-    const messageByReason: Record<string, string> = {
-      "mail-config-missing":
-        "SMTP не настроен. Заполните SMTP_HOST, SMTP_USER, SMTP_PASSWORD, MAIL_TO и перезапустите сервер.",
-      "mail-auth-error":
-        "SMTP авторизация не прошла. Проверьте SMTP_USER и пароль приложения SMTP_PASSWORD в Яндексе.",
-      "mail-send-error":
-        "Не удалось отправить письмо через SMTP. Проверьте настройки почтового сервера."
-    };
-    return NextResponse.json(
-      {
-        ok: true,
-        warning:
-          messageByReason[mailStatus.reason ?? ""] ??
-          "Заявка сохранена, но письмо не отправилось. Проверьте SMTP-настройки.",
-        record,
-        mailStatus,
-        persistedOnly: true
-      },
-      { status: 201 }
-    );
+  const dedupKey = [phone, telegram.toLowerCase(), product.toLowerCase(), note.toLowerCase(), file?.name ?? "", String(file?.size ?? 0)].join("|");
+  if (isDuplicateLead(dedupKey, 2 * 60 * 1000)) {
+    // Повторная отправка тех же данных: заявка уже принята, клиенту показываем успех.
+    return NextResponse.json({ ok: true, duplicate: true }, { status: 200 });
   }
 
-  await patchContactRequest(record.id, { deliveryStatus: "delivered" });
+  const message = [product, note].filter((part) => part.length > 0).join("\n\n");
+  const { id, delivered } = await acceptLead(
+    { name, phone, telegram, source, message, mail: { product, note } },
+    file
+  );
 
-  return NextResponse.json({ ok: true, record, mailStatus }, { status: 201 });
+  // Заявка сохранена в админке в любом случае; письмо — дополнительное уведомление.
+  return NextResponse.json({ ok: true, id, delivered }, { status: 201 });
 });

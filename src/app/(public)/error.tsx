@@ -14,12 +14,5 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
     console.error("App route error boundary:", error.digest ?? error.message);
   }, [error]);
 
-  return (
-    <AppErrorFallback
-      eyebrow="Ошибка"
-      title="Что-то пошло не так"
-      description="Мы уже разбираемся. Обновите страницу или вернитесь на главную — так стабильнее всего."
-      reset={reset}
-    />
-  );
+  return <AppErrorFallback eyebrow="Ошибка" title="Что-то пошло не так" reset={reset} />;
 }

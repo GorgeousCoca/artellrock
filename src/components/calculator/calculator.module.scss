@@ -1,0 +1,1560 @@
+// Калькулятор. Токены цвета, скруглений и отступов — из globals.scss (:root), своих значений не вводим,
+// кроме цвета линии бортика на чертеже (контраст с фоном камня).
+
+.wizard {
+  --calc-backsplash: #8a6a3a;
+  --calc-stone: var(--parchment);
+  // Заливка чертежа шага 1 и превью форм: тёплый «камень» из токенов и цвета бортика.
+  // Запасной сплошной цвет для браузеров без color-mix (= смесь 60% parchment и 40% бортика, считана вручную).
+  --calc-granite: #c7b8a1;
+  padding-bottom: var(--s-xl);
+
+  @supports (color: color-mix(in srgb, red 50%, blue)) {
+    --calc-granite: color-mix(in srgb, var(--parchment) 60%, var(--calc-backsplash));
+  }
+}
+
+// ---------- Вкладки шагов ----------
+
+.stepper {
+  display: flex;
+  gap: var(--s-xs);
+  margin: 0 0 var(--s-xl);
+  padding: 0 0 var(--s-xs);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.stepTab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-xs);
+  min-height: 44px;
+  padding: 8px 16px 8px 10px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 15px;
+  white-space: nowrap;
+
+  &[aria-current="step"] {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: var(--on-gold);
+  }
+
+  &[data-done="true"] {
+    color: var(--ink);
+    background: var(--brass);
+    border-color: var(--brass);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.stepNumber {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--pearl);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+
+  .stepTab[aria-current="step"] & {
+    background: var(--on-gold);
+    color: var(--gold);
+  }
+}
+
+.panel {
+  min-height: 320px;
+  scroll-margin-top: calc(var(--nav-height) + 16px);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.step {
+  display: grid;
+  gap: var(--s-lg);
+  padding: var(--s-lg);
+  background: var(--parchment);
+  border-radius: var(--r-lg);
+}
+
+.stepLead {
+  max-width: 70ch;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.notice {
+  display: grid;
+  gap: var(--s-sm);
+  justify-items: start;
+  padding: var(--s-lg);
+  border: 1px dashed var(--field-border);
+  border-radius: var(--r-md);
+  color: var(--ink-soft);
+}
+
+// ---------- Нижняя панель с живой суммой ----------
+
+.bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-sm) var(--s-lg);
+  margin-top: var(--s-xl);
+  padding: var(--s-sm) 0 max(var(--s-sm), env(safe-area-inset-bottom));
+  border-top: 1px solid var(--hairline);
+  background: var(--canvas);
+}
+
+.barTotal {
+  display: grid;
+  gap: 2px;
+
+  span {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  strong {
+    display: inline-flex;
+    width: fit-content;
+    padding: 2px 10px;
+    border-radius: var(--r-sm);
+    background: var(--gold);
+    color: var(--on-gold);
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.4px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  small {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+}
+
+.barActions {
+  display: flex;
+  gap: var(--s-xs);
+}
+
+.barReason {
+  flex-basis: 100%;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+// ---------- Чертёж ----------
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  overflow: visible;
+}
+
+.canvasBody {
+  fill: var(--calc-stone);
+  stroke: var(--ink);
+  stroke-linejoin: round;
+}
+
+.sideLine {
+  fill: none;
+  stroke-linecap: round;
+  pointer-events: none;
+
+  &[data-role="edge"] {
+    stroke: var(--ink);
+  }
+
+  &[data-role="backsplash"] {
+    stroke: var(--calc-backsplash);
+  }
+
+  &[data-role="none"] {
+    stroke: var(--field-border);
+    stroke-dasharray: 4 4;
+  }
+}
+
+.sideHit {
+  fill: none;
+  stroke: transparent;
+  cursor: pointer;
+  pointer-events: stroke;
+}
+
+.sideBadge {
+  stroke: var(--canvas);
+  stroke-width: 0.6;
+  pointer-events: none;
+
+  &[data-role="edge"] {
+    fill: var(--ink);
+  }
+
+  &[data-role="backsplash"] {
+    fill: var(--calc-backsplash);
+  }
+
+  &[data-role="none"] {
+    fill: var(--body-muted);
+  }
+}
+
+.sideBadgeText {
+  fill: var(--on-primary);
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-md);
+  font-size: 13px;
+  color: var(--ink-soft);
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    &::before {
+      content: "";
+      width: 22px;
+      border-top: 3px solid var(--ink);
+    }
+
+    &[data-role="backsplash"]::before {
+      border-color: var(--calc-backsplash);
+    }
+
+    &[data-role="none"]::before {
+      border-top: 2px dashed var(--field-border);
+    }
+  }
+}
+
+// ---------- Шаг 1 ----------
+
+.itemsBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-xs);
+  align-items: stretch;
+}
+
+.itemTab {
+  display: grid;
+  gap: 0;
+  min-height: 44px;
+  padding: 6px 16px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  background: transparent;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.25;
+
+  small {
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  &[aria-pressed="true"] {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: var(--on-gold);
+    box-shadow: none;
+  }
+
+  &[data-invalid="true"] {
+    border-color: #b3261e;
+  }
+}
+
+.addItem {
+  min-height: 44px;
+  padding-block: 6px;
+}
+
+.shapeLayout {
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr);
+  gap: var(--s-lg);
+  align-items: start;
+}
+
+// Список форм: квадратик с галочкой + название + превью. Семантика — радио-кнопки, одна форма выбрана.
+.shapePicker {
+  display: grid;
+  align-content: start;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.shapeOption {
+  position: relative;
+  display: grid;
+  gap: var(--s-xs);
+  padding: var(--s-sm) var(--s-xs);
+  border-bottom: 1px solid var(--hairline);
+  cursor: pointer;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  // Фокус с клавиатуры: атрибут выставляет React (focus-visible.ts), без :has().
+  &[data-focus-visible="true"] {
+    outline: 2px solid var(--primary);
+    outline-offset: -2px;
+    border-radius: var(--r-sm);
+  }
+}
+
+.shapeHead {
+  display: flex;
+  align-items: center;
+  gap: var(--s-sm);
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.shapeMark {
+  position: relative;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--field-border);
+  border-radius: var(--r-xs);
+  background: var(--canvas);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 3px;
+    width: 6px;
+    height: 12px;
+    border: solid var(--on-primary);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+  }
+
+  .shapeOption[data-checked="true"] & {
+    border-color: var(--gold);
+    background: var(--gold);
+
+    &::after {
+      opacity: 1;
+      border-color: var(--on-gold);
+    }
+  }
+}
+
+.shapePreview {
+  display: block;
+  width: 100%;
+  height: 64px;
+
+  path {
+    stroke: var(--ink);
+    stroke-linejoin: round;
+  }
+}
+
+.drawingColumn {
+  display: grid;
+  gap: var(--s-sm);
+  min-width: 0;
+}
+
+.itemHead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-xs);
+}
+
+.itemTitle {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.374px;
+}
+
+.trashButton {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: var(--pearl);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.35;
+  }
+}
+
+.radiusRow {
+  max-width: 340px;
+}
+
+.drawing {
+  padding: var(--s-md) var(--s-md) var(--s-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  background: var(--canvas);
+  min-width: 0;
+}
+
+// ---------- Чертёж шага 1: размерные линии, поля на линиях, чекбоксы «R» ----------
+
+.stoneBase {
+  fill: var(--calc-granite);
+}
+
+.canvasStone {
+  stroke: var(--ink);
+  stroke-linejoin: round;
+}
+
+.dimStage {
+  display: grid;
+  gap: var(--s-sm);
+  min-width: 0;
+}
+
+// Поля на вертикальных линиях выступают за чертёж на пол-ширины поля: этот запас — padding обёртки.
+.dimFrame {
+  padding: 32px 72px;
+
+  .dimStage[data-narrow="true"] & {
+    padding: 12px 8px;
+  }
+}
+
+// Размеры бокса задаёт пропорция viewBox, поэтому проценты слоя полей совпадают с координатами SVG при любом масштабе.
+.dimBox {
+  position: relative;
+  width: 100%;
+  margin-inline: auto;
+  aspect-ratio: var(--ratio);
+  // Высота чертежа не больше половины экрана (и 480px): изделие с размерами и панелью суммы видно целиком, без прокрутки.
+  max-width: calc(var(--ratio) * max(280px, min(480px, 50vh)));
+}
+
+.dimSvg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.dimLine {
+  line,
+  path {
+    stroke: var(--ink);
+    stroke-linecap: butt;
+  }
+}
+
+.dimArrow {
+  fill: var(--ink);
+  stroke: none;
+}
+
+.dimText {
+  fill: var(--ink);
+  stroke: var(--canvas);
+  paint-order: stroke;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+.dimField {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.lineField {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-sizing: border-box;
+  width: 98px;
+  height: 36px;
+  padding: 0 8px 0 4px;
+  border-radius: var(--r-sm);
+  background: var(--canvas);
+
+  input {
+    width: 58px;
+    height: 30px;
+    padding: 2px 6px;
+    border: 1px solid var(--field-border);
+    border-radius: var(--r-sm);
+    background: var(--canvas);
+    color: var(--ink);
+    font-size: 16px;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    appearance: textfield;
+    -moz-appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      margin: 0;
+      -webkit-appearance: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 1px;
+    }
+  }
+
+  span {
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+
+  &[data-invalid="true"] input {
+    border-color: #b3261e;
+    box-shadow: 0 0 0 1px #b3261e;
+  }
+}
+
+.cornerCheck {
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  // Зона нажатия — вся площадь label, не меньше 44×44 (CORNER_HIT_SIZE в overlay-layout.ts); видимые
+  // чекбокс и «R» по центру остаются мелкими.
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  text-shadow: 0 0 3px var(--canvas);
+  cursor: pointer;
+  pointer-events: auto;
+
+  input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--gold);
+    cursor: pointer;
+  }
+
+  &[data-focus-visible="true"] {
+    outline: 2px solid var(--primary);
+    outline-offset: -2px;
+    border-radius: var(--r-sm);
+  }
+
+  .dimStage[data-narrow="true"] & {
+    input {
+      width: 22px;
+      height: 22px;
+    }
+  }
+}
+
+.cornerBadge {
+  circle {
+    fill: var(--canvas);
+    stroke: var(--ink);
+  }
+
+  text {
+    fill: var(--ink);
+    font-weight: 600;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  &[data-checked="true"] {
+    circle {
+      fill: var(--gold);
+    }
+
+    text {
+      fill: var(--on-gold);
+    }
+  }
+}
+
+.dimErrors {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.cornerList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-xs);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+
+  legend {
+    width: 100%;
+    margin-bottom: var(--s-xs);
+    padding: 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+.cornerChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 6px 14px 6px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  cursor: pointer;
+
+  input {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--gold);
+  }
+
+  &[data-checked="true"] {
+    background: var(--brass);
+    border-color: var(--gold);
+    box-shadow: none;
+  }
+
+  &[data-focus-visible="true"] {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+.drawingSmall {
+  padding: var(--s-sm);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+
+  .canvas {
+    max-height: 220px;
+  }
+}
+
+.fieldsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: var(--s-md);
+}
+
+.numberField {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.29;
+    color: var(--ink-soft);
+  }
+
+  &[data-invalid="true"] input {
+    border-color: #b3261e;
+  }
+}
+
+.numberFieldLetter {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  padding: 0 4px;
+  border-radius: var(--r-xs);
+  background: var(--gold);
+  color: var(--on-gold);
+  font-size: 12px;
+}
+
+.numberFieldControl {
+  display: flex;
+  align-items: center;
+  gap: var(--s-xs);
+
+  span {
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+}
+
+.fieldError,
+.fieldHint {
+  min-height: 18px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.fieldError {
+  color: #b3261e;
+}
+
+.fieldHint {
+  color: var(--ink-soft);
+}
+
+.itemFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-sm) var(--s-lg);
+  padding-top: var(--s-sm);
+  border-top: 1px solid var(--hairline);
+}
+
+.itemActions {
+  display: flex;
+  gap: var(--s-xs);
+}
+
+// ---------- Общие поля ввода калькулятора ----------
+
+.numberField input,
+.filter input,
+.filter select,
+.sideList select,
+.serviceQuantity input {
+  width: 100%;
+  height: 44px;
+  padding: 10px 16px;
+  border: 1px solid var(--field-border);
+  border-radius: var(--r-pill);
+  background: var(--canvas);
+  color: var(--ink);
+  font-size: 16px;
+}
+
+// ---------- Шаг 2 ----------
+
+.materialLayout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: var(--s-xl);
+  align-items: start;
+  min-width: 0;
+}
+
+.brandList {
+  position: sticky;
+  top: calc(var(--nav-height) + 16px);
+  display: grid;
+  gap: 2px;
+  max-height: calc(100vh - var(--nav-height) - 48px);
+  overflow-y: auto;
+
+  button {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-xs);
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: var(--r-sm);
+    background: transparent;
+    text-align: left;
+    font-size: 15px;
+
+    small {
+      color: var(--ink-soft);
+      font-size: 12px;
+    }
+
+    &:hover {
+      background: var(--canvas);
+    }
+
+    &[aria-pressed="true"] {
+      background: var(--gold);
+      color: var(--on-gold);
+
+      small {
+        color: inherit;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+.materialMain {
+  display: grid;
+  gap: var(--s-md);
+  min-width: 0;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 148px), 1fr));
+  align-items: end;
+  gap: var(--s-sm) var(--s-md);
+  min-width: 0;
+}
+
+.filter {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  input,
+  select {
+    &:focus-visible {
+      outline: 2px solid var(--primary-focus);
+      outline-offset: 2px;
+    }
+  }
+}
+
+.filterSearch {
+  width: 100%;
+  max-width: 320px;
+  justify-self: start;
+}
+
+.resetFilters {
+  grid-column: 1 / -1;
+  justify-self: start;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 15px;
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-focus);
+    outline-offset: 2px;
+  }
+}
+
+.resultCount {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.materialGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
+  gap: var(--s-md);
+  min-width: 0;
+
+  > li {
+    display: grid;
+    min-width: 0;
+  }
+}
+
+.materialCard,
+.optionCard {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  height: 100%;
+  min-height: 44px;
+  padding: 8px 8px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  background: var(--canvas);
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--field-border);
+  }
+
+  &[data-selected="true"] {
+    background: var(--brass);
+    border-color: var(--gold);
+    box-shadow: none;
+  }
+
+  // Недоступная толщина: серая и без нажатия. Пометка «нет у этого камня» остаётся читаемой.
+  &[data-disabled="true"] {
+    background: var(--pearl);
+    color: var(--ink-soft);
+    cursor: not-allowed;
+    filter: grayscale(1);
+
+    &:hover {
+      border-color: var(--hairline);
+    }
+  }
+
+  &[data-focus-visible="true"] {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+.materialMedia,
+.optionMedia {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--r-sm);
+  background: var(--pearl);
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.optionMedia {
+  background: var(--canvas);
+
+  img {
+    object-fit: contain;
+  }
+}
+
+.check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--field-border);
+  border-radius: 50%;
+  background: var(--canvas);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 3px;
+    width: 6px;
+    height: 12px;
+    border: solid var(--on-primary);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+  }
+
+  [data-selected="true"] > * > & {
+    border-color: var(--gold);
+    background: var(--gold);
+
+    &::after {
+      opacity: 1;
+      border-color: var(--on-gold);
+    }
+  }
+}
+
+.materialBrand {
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.materialName,
+.optionTitle {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.materialSku,
+.optionMeta {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.materialPrice {
+  margin-top: 2px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.showMore {
+  justify-self: center;
+}
+
+.formatLegend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-xxs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+.formatTags,
+.specChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-xxs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 0;
+}
+
+.formatTags li,
+.specChips li {
+  max-width: 100%;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  background: var(--parchment);
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.formatTags li {
+  font-weight: 600;
+}
+
+.materialCard .materialBrand,
+.materialCard .materialName,
+.materialCard .materialSku,
+.materialCard .materialPrice {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.keptSelection {
+  display: grid;
+  gap: var(--s-sm);
+  min-width: 0;
+
+  > p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+// ---------- Шаги 3–4: карточки выбора ----------
+
+.thicknessNotice {
+  margin: 0;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.4;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.optionGroup {
+  display: grid;
+  gap: var(--s-sm);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+
+  legend {
+    margin-bottom: var(--s-sm);
+    padding: 0;
+  }
+}
+
+.optionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: var(--s-md);
+}
+
+.sidePickers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: var(--s-lg);
+}
+
+.sidePicker {
+  display: grid;
+  gap: var(--s-sm);
+  padding: var(--s-md);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+
+  h3 small {
+    margin-left: 6px;
+    font-weight: 400;
+    color: var(--ink-soft);
+  }
+}
+
+.sidePickerBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--s-md);
+  align-items: start;
+}
+
+.sideList {
+  display: grid;
+  gap: var(--s-xs);
+
+  li {
+    display: grid;
+    grid-template-columns: 24px auto minmax(0, 1fr);
+    align-items: center;
+    gap: var(--s-xs);
+  }
+
+  select {
+    height: 40px;
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+.sideNumber {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: var(--on-primary);
+  font-size: 12px;
+  font-weight: 600;
+
+  &[data-role="edge"] {
+    background: var(--ink);
+  }
+
+  &[data-role="backsplash"] {
+    background: var(--calc-backsplash);
+  }
+
+  &[data-role="none"] {
+    background: var(--body-muted);
+  }
+}
+
+.sideLength {
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sideTotals {
+  font-size: 14px;
+}
+
+// ---------- Шаг 5 ----------
+
+.serviceList {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.serviceRow {
+  display: grid;
+  gap: var(--s-xs);
+  padding: var(--s-sm) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.serviceMain {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--s-sm);
+
+  input {
+    width: 20px;
+    height: 20px;
+    margin: 2px 0 0;
+    accent-color: var(--gold);
+  }
+
+  label {
+    display: grid;
+    gap: 2px;
+    cursor: pointer;
+
+    small {
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+  }
+}
+
+.servicePrice {
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.serviceQuantity {
+  display: flex;
+  align-items: center;
+  gap: var(--s-xs);
+  padding-left: 36px;
+  font-size: 14px;
+
+  input {
+    width: 110px;
+  }
+}
+
+.serviceComputed {
+  padding-left: 36px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+// ---------- Шаг 6 ----------
+
+.estimateFacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-lg);
+  margin: 0 0 var(--s-lg);
+
+  dt {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  dd {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.estimateTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+
+  th,
+  td {
+    padding: 12px 8px;
+    border-bottom: 1px solid var(--hairline);
+    text-align: right;
+    vertical-align: top;
+  }
+
+  thead th {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    border-bottom-color: var(--primary);
+  }
+
+  th:first-child,
+  tbody th {
+    text-align: left;
+    font-weight: 400;
+  }
+
+  tfoot {
+    th,
+    td {
+      padding-top: var(--s-md);
+      border-bottom: 0;
+      background: var(--gold);
+      color: var(--on-gold);
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    th {
+      text-align: right;
+    }
+  }
+}
+
+.warnings {
+  display: grid;
+  gap: 4px;
+  margin-top: var(--s-md);
+  padding-left: 18px;
+  list-style: disc;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.disclaimer {
+  margin-top: var(--s-md);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.leadForm {
+  display: grid;
+  gap: var(--s-md);
+  margin-top: var(--s-xl);
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--parchment);
+  justify-items: start;
+
+  :global(.consent) {
+    margin-top: 0;
+  }
+}
+
+.leadFields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-md);
+  width: 100%;
+  max-width: 620px;
+}
+
+.leadDone {
+  display: grid;
+  gap: var(--s-xs);
+  margin-top: var(--s-xl);
+  padding: var(--s-lg);
+  border-radius: var(--r-lg);
+  background: var(--parchment);
+}
+
+// ---------- Адаптив ----------
+
+@media (max-width: 1000px) {
+  .shapeLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .shapePicker {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--s-xs);
+  }
+
+  .shapeOption {
+    padding: var(--s-xs);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+
+    &:last-child {
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    &[data-checked="true"] {
+      background: var(--brass);
+      border-color: var(--gold);
+      box-shadow: none;
+    }
+  }
+
+  .shapeHead {
+    gap: 6px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 800px) {
+  .materialLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brandList {
+    position: static;
+    display: flex;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: var(--s-xs);
+
+    button {
+      flex: none;
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-pill);
+      white-space: nowrap;
+    }
+  }
+
+  .sidePickerBody {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 570px) {
+  .shapePicker {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .drawing {
+    padding: var(--s-xxs);
+  }
+
+  .trashButton {
+    width: 44px;
+    height: 44px;
+  }
+
+  .bar {
+    // Над нижней плашкой сайта «Позвонить · ВКонтакте · Заявка»
+    bottom: var(--bar-height);
+  }
+
+  .barTotal strong {
+    font-size: 24px;
+  }
+
+  .barActions {
+    width: 100%;
+
+    :global(.btn) {
+      flex: 1;
+    }
+  }
+
+  .leadFields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .materialGrid,
+  .optionGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-sm);
+  }
+
+  .estimateTable {
+    thead {
+      display: none;
+    }
+
+    tbody tr {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2px var(--s-sm);
+      padding: var(--s-sm) 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    tbody th,
+    tbody td {
+      padding: 0;
+      border: 0;
+      text-align: left;
+    }
+
+    tbody th {
+      grid-column: 1 / -1;
+      font-weight: 600;
+    }
+
+    tbody td::before {
+      content: attr(data-label) ": ";
+      color: var(--ink-soft);
+    }
+
+    tfoot tr {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--s-sm);
+    }
+
+    tfoot th {
+      text-align: left;
+    }
+  }
+}

@@ -1,0 +1,1860 @@
+[
+  {
+    "id": "148",
+    "brand": "Belenco",
+    "sku": "1010",
+    "name": "Premium White Seta",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [
+      "shades"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf"
+    ],
+    "notes": "Вариант Seta артикула 1010 в разделе Seta Collection каталога 2023 не назван. Формат, толщина и полировка базового Premium White не переносились. Оттенок выведен из названия White; в листинге NSF/ANSI 51 артикула 1010 нет."
+  },
+  {
+    "id": "149",
+    "brand": "Belenco",
+    "sku": "1010",
+    "name": "Premium White",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [
+      "shades"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf"
+    ],
+    "notes": "Коллекция Pure, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 1010 Premium White стоит в коллекции Pure каталога 2023. Карточка с однозначной полировкой не найдена: у коллекции перечислены сразу Polished, Seta и Soft Touch. Оттенок выведен из названия; в NSF артикула 1010 нет."
+  },
+  {
+    "id": "150",
+    "brand": "Belenco",
+    "sku": "1110",
+    "name": "Iceberg",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Коллекция Pure, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 1110 Iceberg указан в коллекции Pure. Отдельная карточка с полировкой не найдена, поэтому finish пустой. Цвет в NSF: White."
+  },
+  {
+    "id": "151",
+    "brand": "Belenco",
+    "sku": "1123",
+    "name": "Perla White",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/urun-detay/1007/belenco-pure/1033/perla.aspx"
+    ],
+    "notes": "Коллекция Pure, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. На сайте производителя декор называется 1123 Perla (без White). Карточка: Yüzey İşlemi Parlak, плита Extra & Jumbo. В описании есть «doğal damarlar» / pearl white veins, размер жил не задан, поэтому textures пустые."
+  },
+  {
+    "id": "152",
+    "brand": "Belenco",
+    "sku": "1124",
+    "name": "Amalfi",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Коллекция Natural, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 1124 Amalfi указан в коллекции Natural. Карточка с полировкой именно этого декора не найдена. Цвет NSF: White."
+  },
+  {
+    "id": "153",
+    "brand": "Belenco",
+    "sku": "1189",
+    "name": "Calacatta Garda",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/urun-detay/1012/belenco_prestige/1107/calacatta_garda.aspx"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 1189: коллекция Prestige, Parlak, Extra & Jumbo. Фактура выведена из названия Calacatta и фразы каталога Prestige о технологии long vein."
+  },
+  {
+    "id": "154",
+    "brand": "Belenco",
+    "sku": "1219",
+    "name": "Calacatta Victory",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 1219 Calacatta Victory есть в каталоге Prestige, отдельной карточки с полировкой не найдено (есть карточка другого артикула 3310 Calacatta Victory Gold). Фактура выведена из названия Calacatta и long vein."
+  },
+  {
+    "id": "155",
+    "brand": "Belenco",
+    "sku": "1220",
+    "name": "Calacatta Paletino",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 1220 Calacatta Paletino есть в каталоге Prestige. Полировка на карточке этого декора не найдена. Фактура выведена из названия Calacatta и long vein."
+  },
+  {
+    "id": "156",
+    "brand": "Belenco",
+    "sku": "1221",
+    "name": "Calacatta Valencia",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 1221 Calacatta Valencia есть в каталоге Prestige. Полировка на карточке этого декора не найдена. Фактура выведена из названия Calacatta и long vein."
+  },
+  {
+    "id": "157",
+    "brand": "Belenco",
+    "sku": "1227",
+    "name": "Pixie Wings",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "1227 Pixie Wings есть в NSF (White). В каталоге Belenco 2023 и на индексированных карточках belenco.com формат, толщина и полировка не найдены. Описание дилера не использовалось."
+  },
+  {
+    "id": "158",
+    "brand": "Belenco",
+    "sku": "2214",
+    "name": "Teos",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/urun-detay/1007/belenco-pure/1034/teos.aspx"
+    ],
+    "notes": "Коллекция Pure, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 2214 Teos: Yüzey İşlemi «Parlak & Seta (mat)», поэтому одна полировка для записи без Seta не выбрана. Описание: «çarpıcı uzun damar» — крупные жилы. Матовая версия вынесена отдельно как Teos Seta."
+  },
+  {
+    "id": "159",
+    "brand": "Belenco",
+    "sku": "2219",
+    "name": "Calacatta Venezia",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1012/belenco_prestige/1104/calacatta_venezia.aspx"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 2219: Prestige, Finish Polished, Slab Size Extra & Jumbo. Фактура выведена из названия Calacatta и long vein."
+  },
+  {
+    "id": "160",
+    "brand": "Belenco",
+    "sku": "2229",
+    "name": "Calacatta Venus",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. В каталоге Prestige цвет дан как 2229 Calacatta Venus BM (bookmatch), не как отдельная полировка. Фактура выведена из названия Calacatta и long vein."
+  },
+  {
+    "id": "161",
+    "brand": "Belenco",
+    "sku": "2254",
+    "name": "Aurora",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1008/belenco_natural/1062/aurora.aspx"
+    ],
+    "notes": "Коллекция Natural, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 2254 Aurora есть в коллекции Natural. В индексе карточки поле Finish выглядит как «Belenco® Natural», это не Polished и не Seta, поэтому finish пустой. Цвет NSF: White."
+  },
+  {
+    "id": "162",
+    "brand": "Belenco",
+    "sku": "2543",
+    "name": "Ashen Seta",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": "matte",
+    "shades": [
+      "серый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/urun-detay/1009/belenco_loft/1115/ashen.aspx"
+    ],
+    "notes": "Карточка 2543 Ashen: коллекция Loft, Yüzey İşlemi «Parlak & Seta (mat)». Для записи Seta взята матовая Seta. Размер плиты в индексе карточки не показан, а в развороте Loft каталога 2023 артикула 2543 нет, поэтому формат и толщина пустые. Цвет NSF: Grey."
+  },
+  {
+    "id": "163",
+    "brand": "Belenco",
+    "sku": "2543",
+    "name": "Ashen",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "серый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/urun-detay/1009/belenco_loft/1115/ashen.aspx"
+    ],
+    "notes": "Та же карточка 2543 указывает сразу Parlak и Seta (mat), поэтому для записи без Seta одна полировка не выбрана. Формат и толщина на карточке в индексе не видны и в каталоге 2023 цвет не назван."
+  },
+  {
+    "id": "164",
+    "brand": "Belenco",
+    "sku": "2555",
+    "name": "Artesia",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "2555 Artesia есть в NSF (White). В каталоге 2023 и на карточках belenco.com формат, толщина и полировка не найдены."
+  },
+  {
+    "id": "165",
+    "brand": "Belenco",
+    "sku": "3110",
+    "name": "Polaris Seta",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/urun-detay/1010/belenco_classic/1109/polaris.aspx"
+    ],
+    "notes": "Карточка 3110 Polaris указывает только Parlak, не Seta. В Seta Collection каталога 2023 Polaris Seta нет, поэтому формат, толщина и полировка варианта Seta пустые. Цвет NSF относится к артикулу 3110: White."
+  },
+  {
+    "id": "166",
+    "brand": "Belenco",
+    "sku": "3110",
+    "name": "Polaris",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/urun-detay/1010/belenco_classic/1109/polaris.aspx"
+    ],
+    "notes": "Коллекция Classic, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 3110 Polaris: Classic, Parlak, Extra & Jumbo. Цвет NSF: White. Отдельного описания рисунка нет."
+  },
+  {
+    "id": "167",
+    "brand": "Belenco",
+    "sku": "3113",
+    "name": "Daphne Crack",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/urun-detay/1007/belenco_pure/1035/daphne_crack.aspx"
+    ],
+    "notes": "Коллекция Pure, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 3113: Pure, Parlak, Extra & Jumbo. Описание — отсылка к лавру, без типа рисунка. Цвет NSF: White."
+  },
+  {
+    "id": "168",
+    "brand": "Belenco",
+    "sku": "3333",
+    "name": "Boletus Seta",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [
+      "бежевый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Seta Collection, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 3333 Boletus Seta назван в Seta Collection каталога 2023 под заголовком Seta (matte). Цвет NSF для 3333 Boletus: Beige. Рисунок в тексте каталога не описан."
+  },
+  {
+    "id": "169",
+    "brand": "Belenco",
+    "sku": "3333",
+    "name": "Boletus",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "бежевый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1010/belenco_classic/1025/boletus.aspx"
+    ],
+    "notes": "Коллекция Classic, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 3333 Boletus: Finish «Polished & Seta (matte)», поэтому для записи без Seta одна полировка не выбрана. Матовая версия отдельно в Seta Collection. Цвет NSF: Beige."
+  },
+  {
+    "id": "170",
+    "brand": "Belenco",
+    "sku": "3516",
+    "name": "Hypnose",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "3516 Hypnose есть в NSF (White). В каталоге 2023 и на карточках belenco.com формат, толщина и полировка не найдены."
+  },
+  {
+    "id": "171",
+    "brand": "Belenco",
+    "sku": "3555",
+    "name": "Parma Seta",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "бежевый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1008/belenco_natural/1058/parma.aspx"
+    ],
+    "notes": "Карточка 3555 Parma указывает Finish Polished, не Seta. В Seta Collection каталога 2023 Parma Seta нет. Цвет NSF: Beige. Формат и толщина варианта Seta не переносились."
+  },
+  {
+    "id": "172",
+    "brand": "Belenco",
+    "sku": "3555",
+    "name": "Parma",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "бежевый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1008/belenco_natural/1058/parma.aspx"
+    ],
+    "notes": "Коллекция Natural, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 3555 Parma: Natural, Polished, Extra & Jumbo. Описание «autumn colors / moving design» не сводится к одному коду фактуры. Цвет NSF: Beige."
+  },
+  {
+    "id": "173",
+    "brand": "Belenco",
+    "sku": "3618",
+    "name": "Olympos",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/urun-detay/1010/belenco_classic/1027/olympos.aspx"
+    ],
+    "notes": "Коллекция Classic, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка Olympos: Classic, Parlak, Extra & Jumbo; в каталоге Classic это 3618 Olympos. Описание про снежные вершины не задаёт код фактуры. Цвет NSF: White."
+  },
+  {
+    "id": "174",
+    "brand": "Belenco",
+    "sku": "3727",
+    "name": "Just Black",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [
+      "монотонный"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "3727 Just Black есть в NSF (Black). Формат, толщина и полировка в каталоге 2023 и на карточках не найдены. Фактура «монотонный» выведена из названия Just Black."
+  },
+  {
+    "id": "175",
+    "brand": "Belenco",
+    "sku": "4043",
+    "name": "Aizano Seta",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [
+      "серый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/urun-detay/1002/belenco_seta_collection/1041/aizano_seta.aspx",
+      "https://www.belenco.com/urun-detay/1009/belenco_loft/1004/aizano.aspx"
+    ],
+    "notes": "Seta Collection, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 4043 Aizano Seta: Seta (mat). В описании базового Aizano — антрацитово-серая основа и белые жилы, масштаб жил не указан, textures пустые. Цвет NSF: Grey."
+  },
+  {
+    "id": "178",
+    "brand": "Belenco",
+    "sku": "4120",
+    "name": "Calacatta Alya",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "4120 Calacatta Alya есть в NSF (White). В каталоге 2023 и на карточках формат, толщина и полировка не найдены. Фактура выведена из названия Calacatta."
+  },
+  {
+    "id": "179",
+    "brand": "Belenco",
+    "sku": "4123",
+    "name": "Kashmera White",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1007/belenco_pure/1029/kashmera_white.aspx"
+    ],
+    "notes": "Коллекция Pure, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 4123: Pure, Polished, Extra & Jumbo. В описании veins / cashmere без масштаба жил. На сайте написание Kahmera в одном предложении, артикул 4123. Цвет NSF: White."
+  },
+  {
+    "id": "180",
+    "brand": "Belenco",
+    "sku": "4217",
+    "name": "Rapture",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Коллекция Classic, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 4217 Rapture указан в коллекции Classic. Карточка с полировкой не найдена. Цвет NSF: White."
+  },
+  {
+    "id": "182",
+    "brand": "Belenco",
+    "sku": "4242",
+    "name": "Statuario Volga",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 4242 Statuario Volga есть в каталоге Prestige. Полировка на карточке не найдена. Фактура выведена из названия Statuario и формулировки long vein."
+  },
+  {
+    "id": "184",
+    "brand": "Belenco",
+    "sku": "4444",
+    "name": "Sahara Beige",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "бежевый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Коллекция Classic, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 4444 Sahara Beige указан в коллекции Classic. Полировка на карточке не найдена. Цвет NSF: Beige. Из названия Sahara фактура не выводилась."
+  },
+  {
+    "id": "185",
+    "brand": "Belenco",
+    "sku": "4456",
+    "name": "Cadiz",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "серый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "4456 Cadiz есть в NSF (Grey). В каталоге 2023 и на карточках формат, толщина и полировка не найдены."
+  },
+  {
+    "id": "186",
+    "brand": "Belenco",
+    "sku": "4458",
+    "name": "Chakra Beige",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "бежевый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Коллекция Classic, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 4458 Chakra Beige указан в коллекции Classic. Полировка на карточке не найдена. Цвет NSF: Beige."
+  },
+  {
+    "id": "187",
+    "brand": "Belenco",
+    "sku": "4524",
+    "name": "La Luna",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "светлосерый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Коллекция Pure, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 4524 La Luna указан в коллекции Pure. Полировка на карточке не найдена. Цвет NSF: Light Grey."
+  },
+  {
+    "id": "188",
+    "brand": "Belenco",
+    "sku": "4535",
+    "name": "Terre Grey",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "серый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1008/belenco_natural/1073/terre_grey.aspx"
+    ],
+    "notes": "Коллекция Natural, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 4535: Natural, Polished, Extra & Jumbo. Описание «valleys and slopes» не задаёт код фактуры. Цвет NSF: Grey."
+  },
+  {
+    "id": "189",
+    "brand": "Belenco",
+    "sku": "4558",
+    "name": "Babilon Seta",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [
+      "серый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Seta Collection, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 4558 Babilon Seta назван в Seta Collection каталога 2023 (Seta matte). На сайте производителя написание может быть Babylon; сопоставление по артикулу 4558. Цвет NSF: Grey."
+  },
+  {
+    "id": "190",
+    "brand": "Belenco",
+    "sku": "4558",
+    "name": "Babilon",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "серый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Коллекция Loft, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 4558 Babilon указан в коллекции Loft. Отдельная карточка только с Polished не найдена; матовая версия вынесена в Seta Collection. Цвет NSF: Grey."
+  },
+  {
+    "id": "191",
+    "brand": "Belenco",
+    "sku": "5050",
+    "name": "Forza Fume",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "серый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Коллекция Loft, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 5050 Forza Fume указан в коллекции Loft. Полировка на карточке не найдена. Цвет NSF: Grey. У дилеров встречается Forza Smoke — то же имя не подменялось."
+  },
+  {
+    "id": "192",
+    "brand": "Belenco",
+    "sku": "5113",
+    "name": "Minta",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "5113 Minta есть в NSF (White). В каталоге 2023 и на карточках формат, толщина и полировка не найдены."
+  },
+  {
+    "id": "193",
+    "brand": "Belenco",
+    "sku": "5114",
+    "name": "Carola",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1007/belenco_pure/1030/carola.aspx"
+    ],
+    "notes": "Коллекция Pure, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 5114: Pure, Polished, Extra & Jumbo. Описание говорит о gold veins без масштаба. Цвет NSF: White."
+  },
+  {
+    "id": "195",
+    "brand": "Belenco",
+    "sku": "5219",
+    "name": "Statuario Crux",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 5219 Statuario Crux есть в каталоге Prestige. Полировка на карточке не найдена. Фактура выведена из названия Statuario и long vein."
+  },
+  {
+    "id": "196",
+    "brand": "Belenco",
+    "sku": "5224",
+    "name": "Elegance",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [],
+    "textures": [],
+    "inferred": [],
+    "confidence": "none",
+    "sources": [],
+    "notes": "Артикул 5224 Elegance не найден ни в каталоге Belenco 2023, ни в листинге NSF/ANSI 51 Lotte Chemical Turkey DBA Belenco, ни на индексированных карточках belenco.com. Совпадение по одному слову Elegance не принималось."
+  },
+  {
+    "id": "197",
+    "brand": "Belenco",
+    "sku": "5250",
+    "name": "Elexir White Seta",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "вкрапления"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1011/belenco_essential/1012/elixir_white.aspx"
+    ],
+    "notes": "На сайте имя Elixir White, не Elexir. Карточка 5250 указывает только Polished, в Seta Collection каталога 2023 варианта нет, поэтому формат, толщина и полировка Seta пустые. Кристаллические зёрна («crystal sand grains») описаны для этого артикула."
+  },
+  {
+    "id": "198",
+    "brand": "Belenco",
+    "sku": "5250",
+    "name": "Elexir White",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "вкрапления"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1011/belenco_essential/1012/elixir_white.aspx"
+    ],
+    "notes": "Коллекция Essential, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 5250 Elixir White: Essential, Polished, Extra & Jumbo. Описание: crystal sand grains on a white background. Локальное написание Elexir. Цвет NSF: White."
+  },
+  {
+    "id": "199",
+    "brand": "Belenco",
+    "sku": "5329",
+    "name": "Mocca Mousse",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "бежевый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Коллекция Classic, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 5329 Mocca Mousse указан в коллекции Classic. В NSF имя MOCCA MOUSE, артикул тот же. Полировка на карточке не найдена. Цвет NSF: Beige."
+  },
+  {
+    "id": "201",
+    "brand": "Belenco",
+    "sku": "6114",
+    "name": "Belluno Honed",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "мелкие жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1008/belenco_natural/1074/belluno.aspx"
+    ],
+    "notes": "Карточка 6114 Belluno: Polished & Seta (matte) и «Carrara marble», отсюда мелкие жилы. В каталоге отдельно назван 6114 Belluno Soft Touch, не Honed. Soft Touch не приравнен к matte: в каталоге это третья поверхность рядом с Polished и Seta. Формат и толщина на запись Honed не переносились."
+  },
+  {
+    "id": "204",
+    "brand": "Belenco",
+    "sku": "6214",
+    "name": "Stardust",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "вкрапления"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/product-category/1012/belenco_prestige.aspx",
+      "https://www.belenco.com/urun-detay/1012/belenco_prestige/1111/stardust.aspx"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка Stardust: Prestige, Parlak, Extra & Jumbo. Артикул 6214 сопоставлен со списком коллекции Prestige на belenco.com. В текстовом слое PDF Prestige имя Stardust не извлеклось. Фактура выведена из названия Stardust, не из long vein."
+  },
+  {
+    "id": "205",
+    "brand": "Belenco",
+    "sku": "6229",
+    "name": "Aspendos",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Коллекция Natural, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 6229 Aspendos указан в коллекции Natural (в том числе на обложке каталога). Полировка на карточке не найдена. Цвет NSF: White."
+  },
+  {
+    "id": "206",
+    "brand": "Belenco",
+    "sku": "7119",
+    "name": "Calacatta Venatino",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "7119 Calacatta Venatino есть в NSF (White). В каталоге 2023 и на карточках формат, толщина и полировка не найдены. Фактура выведена из названия Calacatta."
+  },
+  {
+    "id": "207",
+    "brand": "Belenco",
+    "sku": "7123",
+    "name": "Carrara Bela",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "мелкие жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "В NSF имя 7123 CARRARA BELLA, цвет White. Локальное Bela сопоставлено с Bella по артикулу. Формат, толщина и полировка в каталоге 2023 не найдены. Фактура выведена из названия Carrara."
+  },
+  {
+    "id": "208",
+    "brand": "Belenco",
+    "sku": "7220",
+    "name": "Pantheon",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 7220 Pantheon есть в каталоге Prestige. Полировка на карточке не найдена. Фактура выведена из формулировки коллекции long vein, не из отдельного описания декора."
+  },
+  {
+    "id": "209",
+    "brand": "Belenco",
+    "sku": "7227",
+    "name": "Armilla",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "7227 Armilla есть в NSF (White). В каталоге 2023 и на карточках формат, толщина и полировка не найдены."
+  },
+  {
+    "id": "211",
+    "brand": "Belenco",
+    "sku": "7458",
+    "name": "Granada",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [],
+    "finish": "polished",
+    "shades": [
+      "коричневый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "http://belenco.com/urun-detay/1008/belenco_natural/1061/granada.aspx"
+    ],
+    "notes": "На карточке декора указано Extra & Jumbo. По техническому блоку каталога Belenco это 310×152 см (N+) и 330×165 см (J+). Карточка Granada: Natural, Parlak, Extra & Jumbo. Миллиметры Extra/Jumbo взяты из технического блока того же каталога Belenco (310×152 и 330×165 см). В развороте Natural каталога 2023 Granada не названа, поэтому толщины 15/20/30 мм не переносились. Цвет NSF: Brown."
+  },
+  {
+    "id": "212",
+    "brand": "Belenco",
+    "sku": "7537",
+    "name": "Metropol Grey Seta",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [
+      "серый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1009/belenco_loft/1024/metropol_grey.aspx"
+    ],
+    "notes": "Seta Collection, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 7537 Metropol Grey Seta назван в Seta Collection (Seta matte). Карточка базового Metropol Grey дополнительно указывает Polished & Seta (matte). Цвет NSF: Grey. Рисунок в тексте не описан."
+  },
+  {
+    "id": "213",
+    "brand": "Belenco",
+    "sku": "7537",
+    "name": "Metropol Grey",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "серый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1009/belenco_loft/1024/metropol_grey.aspx"
+    ],
+    "notes": "Коллекция Loft, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 7537: Loft, Finish «Polished & Seta (matte)», Extra & Jumbo. Для записи без Seta одна полировка не выбрана. Цвет NSF: Grey."
+  },
+  {
+    "id": "214",
+    "brand": "Belenco",
+    "sku": "7543",
+    "name": "Montana",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "серый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1009/belenco_loft/1018/montana.aspx"
+    ],
+    "notes": "Коллекция Loft, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 7543: Loft, Polished, Extra & Jumbo. Описание «grey accents / rocky slopes» не задаёт код фактуры. Цвет NSF: Grey."
+  },
+  {
+    "id": "215",
+    "brand": "Belenco",
+    "sku": "8113",
+    "name": "Anemon",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1010/belenco_classic/1003/anemon.aspx"
+    ],
+    "notes": "Коллекция Classic, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 8113: Classic, Polished, Extra & Jumbo. Описание «cloudy air» не задаёт код фактуры. Цвет NSF: White."
+  },
+  {
+    "id": "216",
+    "brand": "Belenco",
+    "sku": "8119",
+    "name": "Calacatta Verona",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "8119 Calacatta Verona есть в NSF (White). В каталоге 2023 и на карточках формат, толщина и полировка не найдены. Фактура выведена из названия Calacatta."
+  },
+  {
+    "id": "217",
+    "brand": "Belenco",
+    "sku": "8123",
+    "name": "Carrara Luca",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "мелкие жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1008/belenco_natural/1088/carrara_luca.aspx"
+    ],
+    "notes": "Коллекция Natural, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 8123: Natural, Polished, Extra & Jumbo. Описание: fine vein structure on white. Цвет NSF: White."
+  },
+  {
+    "id": "220",
+    "brand": "Belenco",
+    "sku": "8727",
+    "name": "Spa Black Seta",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [
+      "мелкие жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1002/belenco_seta_collection/1046/spa_black_seta.aspx"
+    ],
+    "notes": "Seta Collection, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 8727 Spa Black Seta: Seta (matte), Extra & Jumbo. Описание: delicate white lines on a matte black finish. Цвет NSF: Black."
+  },
+  {
+    "id": "221",
+    "brand": "Belenco",
+    "sku": "8727",
+    "name": "Spa Black",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [
+      "мелкие жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1009/belenco_loft/1028/spa_black.aspx"
+    ],
+    "notes": "Коллекция Loft, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 8727 Spa Black: Loft, «Polished & Seta (matte)». Для записи без Seta одна полировка не выбрана. Описание: fine white-veins. Цвет NSF: Black."
+  },
+  {
+    "id": "222",
+    "brand": "Belenco",
+    "sku": "8765",
+    "name": "Volcano Black Seta",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "matte",
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1002/belenco_seta_collection/1040/volcano_black_seta.aspx"
+    ],
+    "notes": "Seta Collection, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 8765 Volcano Black Seta: Seta (matte), Extra & Jumbo. Отдельного описания рисунка нет. Цвет NSF: Black. В коллекции Essential тот же артикул есть и без Seta, в этой выборке только Seta."
+  },
+  {
+    "id": "224",
+    "brand": "Belenco",
+    "sku": "9113",
+    "name": "Alinda",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Product-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1010/belenco_classic/1002/alinda.aspx"
+    ],
+    "notes": "Коллекция Classic, каталог Belenco 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. Карточка 9113: Classic, Polished, Extra & Jumbo. Описание: golden veins на белом фоне, масштаб жил не указан. Цвет NSF: White."
+  },
+  {
+    "id": "225",
+    "brand": "Belenco",
+    "sku": "9119",
+    "name": "Calacatta Veneto",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 9119 Calacatta Veneto есть в каталоге Prestige. Полировка на карточке не найдена. Фактура выведена из названия Calacatta и long vein."
+  },
+  {
+    "id": "226",
+    "brand": "Belenco",
+    "sku": "9219",
+    "name": "Marquina Tierra Seta",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf"
+    ],
+    "notes": "9219 Marquina Tierra есть в каталоге Prestige, но вариант Seta в Seta Collection 2023 не назван, поэтому формат, толщина и полировка пустые. Цвет NSF: Black. Фактура выведена из названия Marquina."
+  },
+  {
+    "id": "227",
+    "brand": "Belenco",
+    "sku": "9219",
+    "name": "Marquina Tierra",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": null,
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [
+      "крупные жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "partial",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. 9219 Marquina Tierra есть в каталоге Prestige. Полировка на карточке не найдена. Цвет NSF: Black. Фактура выведена из названия Marquina и long vein."
+  },
+  {
+    "id": "228",
+    "brand": "Belenco",
+    "sku": "9242",
+    "name": "Arena Seta",
+    "formats": [],
+    "thicknessesMm": [],
+    "finish": null,
+    "shades": [
+      "белый"
+    ],
+    "textures": [],
+    "inferred": [],
+    "confidence": "partial",
+    "sources": [
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051"
+    ],
+    "notes": "В NSF есть 9242 Arena, цвет White; варианта Arena Seta в каталоге Seta Collection 2023 нет. Формат, толщина и полировка не записывались. Из названия Arena фактура не выводилась."
+  },
+  {
+    "id": "230",
+    "brand": "Belenco",
+    "sku": "9719",
+    "name": "Marquina Lavanga",
+    "formats": [
+      "N+",
+      "J+"
+    ],
+    "thicknessesMm": [
+      15,
+      20,
+      30
+    ],
+    "finish": "polished",
+    "shades": [
+      "чёрный"
+    ],
+    "textures": [
+      "мелкие жилы"
+    ],
+    "inferred": [
+      "textures"
+    ],
+    "confidence": "confirmed",
+    "sources": [
+      "https://mik93.com/wp-content/uploads/2023/05/Belenco-Prestige-Collection-Catalog-EN-2023.pdf",
+      "https://info.nsf.org/Certified/Food/Listings.asp?Company=C0091504&Standard=051",
+      "https://www.belenco.com/en/products/1012/belenco_prestige/1057/marquina_lavagna.aspx"
+    ],
+    "notes": "Каталог Belenco Prestige 2023: Extra 310×152 см (N+) и Jumbo 330×165 см (J+), толщины 15, 20 и 30 мм. 12 мм не указана. На сайте имя 9719 Marquina Lavagna (локально Lavanga). Карточка: Prestige, Polished, Extra & Jumbo. Описание: marginal touches on deep black — мелкие акценты, не крупные жилы. Цвет NSF: Black."
+  }
+]

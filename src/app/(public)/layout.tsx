@@ -1,49 +1,34 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
 
 import "@/app/globals.scss";
-import { buildMetadata } from "@/lib/seo/metadata";
-import { getMetadataBaseUrl } from "@/lib/utils";
-
+import { PageTracker } from "@/components/analytics/page-tracker";
+import { YandexMetrika } from "@/components/analytics/yandex-metrika";
 import { JsonLd } from "@/components/seo/json-ld";
-import { organizationJsonLd } from "@/lib/seo/schema";
-import { getSettings } from "@/lib/site";
-
-const inter = Inter({
-  subsets: ["latin", "cyrillic"],
-  display: "swap",
-  variable: "--font-sans",
-  adjustFontFallback: true,
-  preload: true
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  display: "swap",
-  variable: "--font-display",
-  preload: true
-});
+import { SiteShell } from "@/components/site/site-shell";
+import { seo } from "@/content/artellrock";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/schema";
+import { getMetadataBaseUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
   metadataBase: getMetadataBaseUrl(),
   ...buildMetadata({
-    title: "ArtellRock — изделия из кварцевого агломерата на заказ",
-    description:
-      "Столешницы, подоконники, мойки и коммерческие поверхности из кварцевого агломерата под заказ в Санкт-Петербурге и Ленинградской области.",
+    title: seo.title,
+    description: seo.description,
     path: "/"
   })
 };
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const settings = await getSettings();
-
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ru" className={`${inter.variable} ${cormorant.variable}`} data-scroll-behavior="smooth">
-      <body className={inter.className}>
-        <JsonLd data={organizationJsonLd(settings)} />
-        {children}
+    <html lang="ru">
+      <body>
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+        <SiteShell>
+          <YandexMetrika />
+          <PageTracker />
+          {children}
+        </SiteShell>
       </body>
     </html>
   );

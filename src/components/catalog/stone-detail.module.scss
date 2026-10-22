@@ -1,0 +1,165 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: var(--s-xl);
+  align-items: start;
+}
+
+.gallery {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.stage {
+  position: relative;
+  touch-action: pan-y;
+}
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-lg);
+  background: var(--parchment);
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--canvas) 92%, transparent);
+  color: var(--ink);
+  translate: 0 -50%;
+
+  span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+.prev {
+  left: 12px;
+}
+
+.next {
+  right: 12px;
+}
+
+.thumbs {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 2px 2px 6px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-soft) transparent;
+}
+
+.thumb {
+  position: relative;
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-sm);
+  background: var(--parchment);
+
+  img {
+    object-fit: cover;
+  }
+
+  &[aria-current="true"] {
+    border: 2px solid var(--ink);
+  }
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-md);
+}
+
+.price {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.specs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: grid;
+    grid-template-columns: minmax(140px, 42%) 1fr;
+    gap: 12px;
+  }
+
+  span:first-child {
+    color: var(--ink-soft);
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-sm);
+  max-width: 780px;
+  margin-top: var(--s-xl);
+
+  p {
+    margin: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav {
+    transition-property: scale;
+    transition-duration: 160ms;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+
+    &:active {
+      scale: 0.96;
+    }
+  }
+}

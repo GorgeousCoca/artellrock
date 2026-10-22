@@ -1,146 +1,142 @@
-import { promises as fs } from "fs";
-import path from "path";
+import { unstable_cache } from "next/cache";
 
-import defaultStore from "@/content/default-store.json";
-import type {
-  CmsStore,
-  CompanySettings,
-  ContactRequest,
-  Product,
-  Project,
-  StoneSample
-} from "@/types/content";
-import { uid } from "@/lib/utils";
+import { getPayloadClient } from "@/lib/cms/client";
+import { CMS_CACHE_TTL_SECONDS, cmsTag } from "@/lib/cms/tags";
+import type { ContactRequest, Project, Testimonial } from "@/types/content";
 
-const STORE_PATH = path.join(process.cwd(), "src", "content", "cms-store.json");
+/**
+ * Модуль данных для портфолио, заявок и отзывов (адаптер: Payload CMS, Postgres).
+ * Публичный сайт работает с доменными типами из `@/types/content`, а не с документами Payload.
+ *
+ * Справочники и материалы калькулятора/каталога читает `lib/calculator/server.ts`; тексты и контакты
+ * компании лежат в `src/content/artellrock.ts`.
+ */
 
-async function ensureStoreDir() {
-  await fs.mkdir(path.dirname(STORE_PATH), { recursive: true });
-}
+type DocKey = "projects" | "contactRequests" | "testimonials";
 
-export async function readStore(): Promise<CmsStore> {
-  try {
-    const raw = await fs.readFile(STORE_PATH, "utf-8");
-    return JSON.parse(raw) as CmsStore;
-  } catch {
-    return structuredClone(defaultStore) as CmsStore;
-  }
-}
-
-async function writeStore(store: CmsStore) {
-  await ensureStoreDir();
-  await fs.writeFile(STORE_PATH, JSON.stringify(store, null, 2), "utf-8");
-}
-
-type CollectionKey =
-  | "products"
-  | "stoneSamples"
-  | "projects"
-  | "teamMembers"
-  | "faqItems"
-  | "testimonials"
-  | "certificates"
-  | "contactRequests";
-
-type CollectionMap = {
-  products: Product;
-  stoneSamples: StoneSample;
+type DocMap = {
   projects: Project;
-  teamMembers: CmsStore["teamMembers"][number];
-  faqItems: CmsStore["faqItems"][number];
-  testimonials: CmsStore["testimonials"][number];
-  certificates: CmsStore["certificates"][number];
   contactRequests: ContactRequest;
+  testimonials: Testimonial;
 };
 
-export async function listCollection<K extends CollectionKey>(key: K): Promise<CollectionMap[K][]> {
-  const store = await readStore();
-  return store[key] as CollectionMap[K][];
+/** Поля, которые в типах всегда массивы (в БД у пустых hasMany может быть null). */
+const arrayFields: Partial<Record<DocKey, string[]>> = {
+  projects: ["gallery", "productRefs"]
+};
+
+/** Документы, у которых `createdAt` является частью доменного типа. */
+const keepCreatedAt = new Set<DocKey>(["testimonials", "contactRequests"]);
+
+function normalize<K extends DocKey>(key: K, doc: Record<string, unknown>): DocMap[K] {
+  const result: Record<string, unknown> = {};
+
+  for (const [field, value] of Object.entries(doc)) {
+    if (field === "updatedAt" || field === "_status") continue;
+    if (field === "createdAt" && !keepCreatedAt.has(key)) continue;
+    if (value === null) continue;
+    result[field] = field === "id" ? String(value) : value;
+  }
+
+  for (const field of arrayFields[key] ?? []) {
+    if (!Array.isArray(result[field])) {
+      result[field] = [];
+    }
+  }
+
+  return result as DocMap[K];
 }
 
-export async function getBySlug<K extends "products" | "stoneSamples" | "projects">(
-  key: K,
-  slug: string
-) {
-  const items = await listCollection(key);
-  return items.find((item) => item.slug === slug) ?? null;
+function toPayloadId(id: string): string | number {
+  return /^\d+$/.test(id) ? Number(id) : id;
 }
 
-export async function getCompanySettings(): Promise<CompanySettings> {
-  const store = await readStore();
-  return store.companySettings;
+/**
+ * Проекты кэшируются (`unstable_cache`) с тегом коллекции: страницы рендерятся на запросе,
+ * но в Postgres ходят только после правки в админке (хуки `payload/hooks/revalidate.ts` сбрасывают тег)
+ * или по истечении страховочного TTL. Заявки содержат персональные данные и не кэшируются.
+ */
+async function fetchProjects(): Promise<Project[]> {
+  const payload = await getPayloadClient();
+  const result = await payload.find({ collection: "projects", depth: 0, limit: 0, pagination: false });
+
+  return result.docs.map((doc) => normalize("projects", doc as unknown as Record<string, unknown>));
 }
 
-export async function updateCompanySettings(payload: CompanySettings) {
-  const store = await readStore();
-  store.companySettings = payload;
-  await writeStore(store);
-  return payload;
-}
+export const listProjects = unstable_cache(fetchProjects, ["cms-list", "projects"], {
+  tags: [cmsTag("projects")],
+  revalidate: CMS_CACHE_TTL_SECONDS
+});
 
 export async function createContactRequest(input: Omit<ContactRequest, "id" | "createdAt">) {
-  const store = await readStore();
-  const request: ContactRequest = {
-    ...input,
-    id: uid("lead"),
-    createdAt: new Date().toISOString()
-  };
-  store.contactRequests.unshift(request);
-  await writeStore(store);
-  return request;
+  const payload = await getPayloadClient();
+  const doc = await payload.create({
+    collection: "contact-requests",
+    data: input,
+    depth: 0
+  });
+
+  return normalize("contactRequests", doc as unknown as Record<string, unknown>);
 }
 
 export async function patchContactRequest(
   id: string,
-  patch: Partial<Pick<ContactRequest, "attachmentUrl" | "attachmentName" | "attachmentSize" | "deliveryStatus" | "mailError">>
+  patch: Partial<
+    Pick<
+      ContactRequest,
+      "attachmentUrl" | "attachmentName" | "attachmentSize" | "deliveryStatus" | "mailError"
+    >
+  >
 ) {
-  const store = await readStore();
-  const index = store.contactRequests.findIndex((r) => r.id === id);
-  if (index < 0) {
+  const payload = await getPayloadClient();
+
+  try {
+    const doc = await payload.update({
+      collection: "contact-requests",
+      id: toPayloadId(id),
+      data: patch,
+      depth: 0
+    });
+    return normalize("contactRequests", doc as unknown as Record<string, unknown>);
+  } catch {
     return null;
   }
-  store.contactRequests[index] = { ...store.contactRequests[index], ...patch };
-  await writeStore(store);
-  return store.contactRequests[index];
 }
 
-export async function createItem<K extends CollectionKey>(
-  key: K,
-  item: Omit<CollectionMap[K], "id"> & Partial<Pick<CollectionMap[K], "id">>
-) {
-  const store = await readStore();
-  const nextItem = {
-    ...item,
-    id: item.id ?? uid(key)
-  } as CollectionMap[K];
-  const collection = store[key] as CollectionMap[K][];
-  collection.unshift(nextItem);
-  await writeStore(store);
-  return nextItem;
+/** Только одобренные отзывы, новые сверху. Тег сбрасывается, когда администратор меняет отзыв. */
+async function fetchApprovedTestimonials(): Promise<Testimonial[]> {
+  const payload = await getPayloadClient();
+  const result = await payload.find({
+    collection: "testimonials",
+    where: { status: { equals: "approved" } },
+    sort: "-createdAt",
+    depth: 0,
+    limit: 0,
+    pagination: false
+  });
+
+  return result.docs.map((doc) => normalize("testimonials", doc as unknown as Record<string, unknown>));
 }
 
-export async function updateItem<K extends CollectionKey>(key: K, id: string, updates: Partial<CollectionMap[K]>) {
-  const store = await readStore();
-  const collection = store[key] as CollectionMap[K][];
-  const index = collection.findIndex((item: CollectionMap[K] & { id: string }) => item.id === id);
+export const listApprovedTestimonials = unstable_cache(fetchApprovedTestimonials, ["cms-list", "testimonials-approved"], {
+  tags: [cmsTag("testimonials")],
+  revalidate: CMS_CACHE_TTL_SECONDS
+});
 
-  if (index === -1) {
-    throw new Error("Item not found");
-  }
+/** Создание записи с публичного сайта (отзыв со статусом `pending`). */
+export async function createTestimonial(data: Omit<Testimonial, "id" | "createdAt">) {
+  const payload = await getPayloadClient();
+  const doc = await payload.create({
+    collection: "testimonials",
+    data,
+    depth: 0
+  });
 
-  collection[index] = {
-    ...collection[index],
-    ...updates
-  };
-
-  await writeStore(store);
-  return collection[index];
+  return normalize("testimonials", doc as unknown as Record<string, unknown>);
 }
 
-export async function deleteItem<K extends CollectionKey>(key: K, id: string) {
-  const store = await readStore();
-  const collection = store[key] as CollectionMap[K][];
-  const nextCollection = collection.filter((item: CollectionMap[K] & { id: string }) => item.id !== id);
-  (store[key] as CollectionMap[K][]) = nextCollection;
-  await writeStore(store);
+/** Проверка связи с БД для `/api/health?deep=1`: бросает, если Postgres недоступен. */
+export async function pingDatabase() {
+  const payload = await getPayloadClient();
+  await payload.count({ collection: "projects" });
 }

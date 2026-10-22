@@ -23,7 +23,7 @@ function serializeError(error: unknown) {
  */
 export function logServerInternalError(params: {
   traceId: string;
-  source: "api-route" | "request-lifecycle";
+  source: "api-route" | "request-lifecycle" | "server-action";
   error: unknown;
   path?: string;
   method?: string;

@@ -1,0 +1,188 @@
+[
+  {
+    "uid": 934533812242,
+    "brand": "avarus",
+    "decorName": "R590 Severnoe Siyanie",
+    "decorImage": "/images/Avarus/r590-severnoe-siyanie.webp"
+  },
+  {
+    "uid": 129961992142,
+    "brand": "belenco",
+    "decorName": "2229 Calacatta Venus",
+    "decorImage": "/images/Belenco/2229 Calacatta Venus.webp"
+  },
+  {
+    "uid": 169459955381,
+    "brand": "belenco",
+    "decorName": "5250 Elexir White",
+    "decorImage": "/images/Belenco/5250 Elexir White.webp"
+  },
+  {
+    "uid": 601981452561,
+    "brand": "belenco",
+    "decorName": "5329 Mocca Mousse",
+    "decorImage": "/images/Belenco/5329 Mocca Mousse.webp"
+  },
+  {
+    "uid": 686898876061,
+    "brand": "belenco",
+    "decorName": "6139 Everst White",
+    "decorImage": "/images/Belenco/6139 Everst White.webp"
+  },
+  {
+    "uid": 218501724751,
+    "brand": "belenco",
+    "decorName": "8250 Columbia Gray",
+    "decorImage": "/images/Belenco/8250 Columbia Gray.webp"
+  },
+  {
+    "uid": 128714154311,
+    "brand": "belenco",
+    "decorName": "9719 Marquina Lavanga",
+    "decorImage": "/images/Belenco/9719 Marquina Lavanga.webp"
+  },
+  {
+    "uid": 286969842842,
+    "brand": "caesarstone",
+    "decorName": "3142 While Shimmer",
+    "decorImage": "/images/Caesarstone/3142 While Shimmer.webp"
+  },
+  {
+    "uid": 306521563631,
+    "brand": "caesarstone",
+    "decorName": "4011 Cloudbust Concrete Mat",
+    "decorImage": "/images/Caesarstone/4011-cloudbust-concrete-mat.webp"
+  },
+  {
+    "uid": 228698518591,
+    "brand": "caesarstone",
+    "decorName": "5003 Piatra Grey",
+    "decorImage": "/images/Caesarstone/5003 Piatra Grey.webp"
+  },
+  {
+    "uid": 227092501061,
+    "brand": "caesarstone",
+    "decorName": "5141 Frosty Carina",
+    "decorImage": "/images/Caesarstone/5141 Frosty Carina.webp"
+  },
+  {
+    "uid": 807145407622,
+    "brand": "etna",
+    "decorName": "Eqag 099 Titanium Leather Mat",
+    "decorImage": "/images/Etna_Quartz/eqag-099-titanium-leather-mat.webp"
+  },
+  {
+    "uid": 177457633291,
+    "brand": "etna",
+    "decorName": "EQAM 042 Volakas Extra",
+    "decorImage": "/images/Etna_Quartz/EQAM 042 Volakas Extra.webp"
+  },
+  {
+    "uid": 145686335081,
+    "brand": "etna",
+    "decorName": "EQJC 052 Black Mirror",
+    "decorImage": "/images/Etna_Quartz/EQJC 052 Black Mirror.webp"
+  },
+  {
+    "uid": 556461902872,
+    "brand": "primax",
+    "decorName": "150 Black Satin Mat",
+    "decorImage": "/images/Primax/150-black-satin-mat.webp"
+  },
+  {
+    "uid": 816236753532,
+    "brand": "primax",
+    "decorName": "726 Virtrum Crystal",
+    "decorImage": "/images/Primax/726 Virtrum Crystal.webp"
+  },
+  {
+    "uid": 552687103132,
+    "brand": "primax",
+    "decorName": "796 Noir Satin Mat",
+    "decorImage": "/images/Primax/796-noir-satin-mat.webp"
+  },
+  {
+    "uid": 993889863091,
+    "brand": "still-stone",
+    "decorName": "GT9001 Milk&Honey",
+    "decorImage": "/images/Still_Stone/GT9001 Milk&Honey.webp"
+  },
+  {
+    "uid": 657902654541,
+    "brand": "vicostone",
+    "decorName": "BQ 100 Quasar Light",
+    "decorImage": "/images/Vicostone/BQ 100 Quasar Light.webp"
+  },
+  {
+    "uid": 925338155321,
+    "brand": "vicostone",
+    "decorName": "BQ 8920 Forza",
+    "decorImage": "/images/Vicostone/BQ 8920 Forza.webp"
+  },
+  {
+    "uid": 679727523031,
+    "brand": "vicostone",
+    "decorName": "BQ 9310 Silver Sea",
+    "decorImage": "/images/Vicostone/BQ 9310 Silver Sea.webp"
+  },
+  {
+    "uid": 893904651442,
+    "brand": "vicostone",
+    "decorName": "Bq 3603 Galilea Mat",
+    "decorImage": "/images/Vicostone/bq-3603-galilea-mat.webp"
+  },
+  {
+    "uid": 442262761721,
+    "brand": "vicostone",
+    "decorName": "Bq 5260 Beton 5mm Mat",
+    "decorImage": "/images/Vicostone/bq-5260-beton-5mm-mat.webp"
+  },
+  {
+    "uid": 458565113881,
+    "brand": "vicostone",
+    "decorName": "Bq 5261 Materica 5mm Mat",
+    "decorImage": "/images/Vicostone/bq-5261-materica-5mm-mat.webp"
+  },
+  {
+    "uid": 695653714351,
+    "brand": "vicostone",
+    "decorName": "Bq 5290 Nube 5mm Mat",
+    "decorImage": "/images/Vicostone/bq-5290-nube-5mm-mat.webp"
+  },
+  {
+    "uid": 705821380831,
+    "brand": "vicostone",
+    "decorName": "Bq 5291 Rusty 5mm Mat",
+    "decorImage": "/images/Vicostone/bq-5291-rusty-5mm-mat.webp"
+  },
+  {
+    "uid": 749188230161,
+    "brand": "vicostone",
+    "decorName": "Bq 5860 Corazon 5mm Mat",
+    "decorImage": "/images/Vicostone/bq-5860-corazon-5mm-mat.webp"
+  },
+  {
+    "uid": 155561896711,
+    "brand": "vicostone",
+    "decorName": "Bq 5862 Oceanid 5mm Mat",
+    "decorImage": "/images/Vicostone/bq-5862-oceanid-5mm-mat.webp"
+  },
+  {
+    "uid": 963129393051,
+    "brand": "vicostone",
+    "decorName": "BS 124 Satined",
+    "decorImage": "/images/Vicostone/BS 124 Satined.webp"
+  },
+  {
+    "uid": 194878937371,
+    "brand": "etna",
+    "decorName": "EQHG 004 Canvas",
+    "decorImage": "/images/Etna_Quartz/EQHG 004 Canvas.webp"
+  },
+  {
+    "uid": 818265712702,
+    "brand": "primax",
+    "decorName": "340 Taj Mahal",
+    "decorImage": "/images/Primax/340 Taj Mahal.webp"
+  }
+]

@@ -1,26 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { createItem } from "@/lib/cms/store";
+import { createTestimonial } from "@/lib/cms/store";
+import { checkRateLimit } from "@/lib/security/rate-limit";
+import { getClientIp } from "@/lib/security/request";
 import type { Testimonial } from "@/types/content";
 
-// Rate limit: 3 reviews per IP per 10 minutes
-const rateMap = new Map<string, number[]>();
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const windowMs = 10 * 60 * 1000;
-  const hits = (rateMap.get(ip) ?? []).filter((t) => now - t < windowMs);
-  if (hits.length >= 3) return true;
-  rateMap.set(ip, [...hits, now]);
-  return false;
-}
-
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  if (isRateLimited(ip)) {
+  // Лимит: 3 отзыва с одного IP за 10 минут.
+  const limit = checkRateLimit({
+    key: `reviews:${getClientIp(req)}`,
+    maxRequests: 3,
+    windowMs: 10 * 60 * 1000
+  });
+  if (!limit.allowed) {
     return NextResponse.json(
       { ok: false, error: "Слишком много запросов. Попробуйте позже." },
-      { status: 429 }
+      { status: 429, headers: { "Retry-After": String(limit.retryAfterSec) } }
     );
   }
 
@@ -47,22 +42,24 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (quote.length < 10) {
     return NextResponse.json({ ok: false, error: "Отзыв слишком короткий (минимум 10 символов)" }, { status: 422 });
   }
+  if (author.length > 120 || role.length > 120 || quote.length > 3000) {
+    return NextResponse.json({ ok: false, error: "Слишком длинный текст" }, { status: 422 });
+  }
   if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
     return NextResponse.json({ ok: false, error: "Некорректная оценка" }, { status: 422 });
   }
 
-  const reviewData: Omit<Testimonial, "id"> = {
+  const reviewData: Omit<Testimonial, "id" | "createdAt"> = {
     author,
     role: role || "Клиент",
     quote,
     rating,
     status: "pending",
-    source: "site",
-    createdAt: new Date().toISOString()
+    source: "site"
   };
 
   try {
-    await createItem("testimonials", reviewData);
+    await createTestimonial(reviewData);
     return NextResponse.json(
       { ok: true, message: "Спасибо! Ваш отзыв будет опубликован после проверки." },
       { status: 201 }

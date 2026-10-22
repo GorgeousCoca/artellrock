@@ -1,13 +1,13 @@
 import nodemailer from "nodemailer";
 
-type ContactMailInput = {
+export type ContactMailInput = {
   name: string;
   phone: string;
-  email: string;
+  product: string;
   source: string;
-  productType: string;
-  dimensions: string;
-  comment: string;
+  note?: string;
+  telegram?: string;
+  attachment?: { filename: string; content: Buffer };
 };
 
 function toBoolean(value: string | undefined, fallback: boolean) {
@@ -39,18 +39,23 @@ export async function sendContactMail(input: ContactMailInput) {
   await transporter.sendMail({
     from: `"ArtellRock сайт" <${user}>`,
     to,
-    subject: `Новая заявка с сайта (${input.productType})`,
+    subject: "Новая заявка с сайта",
     text: [
       "Новая заявка с сайта ArtellRock",
       "",
       `Имя: ${input.name}`,
-      `Телефон: ${input.phone}`,
-      `Email: ${input.email}`,
-      `Источник: ${input.source}`,
-      `Тип изделия: ${input.productType}`,
-      `Размеры: ${input.dimensions}`,
-      `Комментарий: ${input.comment}`
-    ].join("\n")
+      `Телефон: ${input.phone || "не указан"}`,
+      input.telegram ? `Telegram: ${input.telegram}` : "",
+      `Какое изделие нужно: ${input.product || "не указано"}`,
+      input.note ? `Дополнительно: ${input.note}` : "",
+      input.attachment ? `Эскиз: ${input.attachment.filename}` : "",
+      `Источник: ${input.source}`
+    ]
+      .filter(Boolean)
+      .join("\n"),
+    attachments: input.attachment
+      ? [{ filename: input.attachment.filename, content: input.attachment.content }]
+      : undefined
   });
 
   return { delivered: true as const };

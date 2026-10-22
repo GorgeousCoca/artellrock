@@ -1,17 +1,36 @@
-# Full Next.js (включая /admin и API). Данные CMS и загрузки лучше вынести на тома или bind-mount.
-# Подготовка: скопируйте .env.example в .env и задайте ADMIN_* и при необходимости SMTP_*.
+# Next.js + Payload CMS (/admin, REST) + Postgres.
+# Подготовка: скопируйте .env.example в .env и задайте PAYLOAD_SECRET, POSTGRES_PASSWORD, ADMIN_*, SMTP_*.
 #
 # Запуск: docker compose up -d --build
 #
-# Персистентность (раскомментируйте и создайте каталоги):
+# Первый запуск:
 #   mkdir -p ./data/uploads
-#   cp src/content/cms-store.json ./data/cms-store.json   # если нужен текущий снимок
-# Рекомендуется в проде: том на `cms-store.json` и `public/uploads`, иначе данные потеряются при пересоздании контейнера.
-# volumes:
-#   - ./data/cms-store.json:/app/src/content/cms-store.json
-#   - ./data/uploads:/app/public/uploads
+#   docker compose --profile tools run --rm -e ADMIN_CREATE_EMAIL=... -e ADMIN_CREATE_PASSWORD=... tools npm run admin:create
+# Или создайте первого администратора на /admin.
+#
+# Схема БД применяется автоматически при старте web (prodMigrations, см. src/migrations).
+#
+# Данные: Postgres — ./data/postgres, загрузки — ./data/uploads (public/uploads).
 
 services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: artellrock
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: artellrock
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      # Только localhost — для локальной разработки и обслуживания.
+      - "127.0.0.1:5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U artellrock -d artellrock"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
   web:
     build:
       context: .
@@ -19,14 +38,61 @@ services:
         # Должен совпадать с публичным URL (OG, sitemap, JSON-LD). Для локальной сборки: http://localhost:3000
         NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://artellrock.ru}
         NEXT_PUBLIC_BASE_PATH: ${NEXT_PUBLIC_BASE_PATH:-}
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
     ports:
-      - "3000:3000"
+      # НЕ публикуйте 3000 наружу (не "3000:3000" и не "0.0.0.0:3000:3000"). Единственная точка входа — Caddy
+      # (см. Caddyfile, `reverse_proxy web:3000` по внутренней сети compose). Причина: лимит заявок и защита форм
+      # берут IP клиента из X-Forwarded-For (src/lib/security/request.ts), а на открытом порту этот заголовок
+      # подделывается: у каждого запроса «новый» IP, и лимит обходится. Через Caddy заголовок задаёт сам прокси.
+      # Привязка к 127.0.0.1 оставлена для проверки с самого сервера (curl http://127.0.0.1:3000/api/health).
+      - "127.0.0.1:3000:3000"
     env_file:
       - .env
     environment:
       NODE_ENV: production
       NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://artellrock.ru}
       NEXT_PUBLIC_BASE_PATH: ${NEXT_PUBLIC_BASE_PATH:-}
+      DATABASE_URI: postgres://artellrock:${POSTGRES_PASSWORD}@postgres:5432/artellrock
     volumes:
-      - ./data/cms-store.json:/app/src/content/cms-store.json
       - ./data/uploads:/app/public/uploads
+    healthcheck:
+      # Readiness: процесс жив и БД отвечает (/api/health?deep=1 → 503 при недоступном Postgres).
+      test: ["CMD-SHELL", "wget -qO- 'http://127.0.0.1:3000/api/health?deep=1' >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Единственный публичный вход: 80/443. Сертификат artellrock.ru выпускает Caddy.
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./data/caddy:/data
+      - ./data/caddy-config:/config
+
+  # Одноразовые задачи (перенос контента, payload CLI). Не стартует с `up`.
+  tools:
+    profiles: ["tools"]
+    build:
+      context: .
+      target: tools
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      DATABASE_URI: postgres://artellrock:${POSTGRES_PASSWORD}@postgres:5432/artellrock
+    volumes:
+      - ./data:/app/data

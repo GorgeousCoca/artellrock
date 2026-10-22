@@ -30,7 +30,7 @@ export function buildMetadata({
   article
 }: MetaInput): Metadata {
   const metaDescription = excerptText(description, 160);
-  const ogImage = image ? absoluteUrl(image) : absoluteUrl("/images/og-default.svg");
+  const ogImage = image ? absoluteUrl(image) : absoluteUrl("/images/hero-proizvodstvo.png");
   const canonical = skipCanonical ? undefined : absoluteUrl(path);
 
   const openGraph: Metadata["openGraph"] = {
@@ -40,12 +40,9 @@ export function buildMetadata({
     title,
     description: metaDescription,
     images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 630,
-        alt: title
-      }
+      image
+        ? { url: ogImage, alt: title }
+        : { url: ogImage, alt: title, width: 841, height: 726 }
     ],
     ...(!skipCanonical && canonical ? { url: canonical } : {}),
     ...(openGraphType === "article" && article

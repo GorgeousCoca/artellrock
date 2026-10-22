@@ -1,0 +1,177 @@
+// Страница «О компании». Токены берём из globals.scss.
+
+.intro {
+  display: grid;
+  gap: var(--s-md);
+  margin-top: var(--s-lg);
+  text-align: center;
+
+  p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-lg);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-md);
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-text);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    text-transform: uppercase;
+    // Заголовки разной длины не сдвигают фото: под них оставлено две строки.
+    min-height: 2.6em;
+  }
+}
+
+.media {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--parchment);
+
+  img {
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.03);
+  }
+}
+
+.mediaContain img {
+  object-fit: contain;
+  padding: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media img {
+    transition: none;
+  }
+
+  .media:hover img {
+    transform: none;
+  }
+}
+
+// Плитка «Отзывы»: логотипы Авито и ВК на светлом фоне.
+.sources {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-lg);
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--hairline);
+  border-radius: inherit;
+  background: var(--canvas);
+
+  img {
+    position: static;
+    width: auto;
+    height: 44px;
+    object-fit: contain;
+  }
+}
+
+.facts {
+  text-align: center;
+
+  h2 {
+    margin: 0 0 var(--s-xl);
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--s-xl) var(--s-lg);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s-sm);
+  }
+
+  strong {
+    width: 100%;
+    padding-bottom: var(--s-sm);
+    border-bottom: 1px solid var(--hairline);
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 300;
+    line-height: 1.1;
+  }
+
+  p {
+    max-width: 240px;
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 1000px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-xl) var(--s-lg);
+  }
+
+  .facts ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .intro p {
+    font-size: 17px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card h2 {
+    min-height: 0;
+  }
+
+  .facts {
+    h2 {
+      font-size: 26px;
+    }
+
+    strong {
+      font-size: 44px;
+    }
+  }
+}
