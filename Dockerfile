@@ -11,6 +11,7 @@ WORKDIR /app
 RUN apk add --no-cache libc6-compat
 COPY package.json package-lock.json ./
 RUN npm i -g npm@11.16.0
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 RUN npm ci
 
 # Инструменты обслуживания: payload CLI, создание администратора (docker compose run --rm tools npm run admin:create)
