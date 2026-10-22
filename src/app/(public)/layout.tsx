@@ -10,6 +10,9 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/schema";
 import { getMetadataBaseUrl } from "@/lib/utils";
 
+/** Цены и отзывы читаются из Postgres на запросе, поэтому сборка образа не требует базы. */
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   metadataBase: getMetadataBaseUrl(),
   ...buildMetadata({

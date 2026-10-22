@@ -39,6 +39,7 @@ type PageProps = {
   params: Promise<{ type: string }>;
 };
 
+export const dynamic = "force-dynamic";
 export const dynamicParams = false;
 
 export function generateStaticParams() {

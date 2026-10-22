@@ -18,6 +18,7 @@ type PageProps = {
   params: Promise<{ brand: string }>;
 };
 
+export const dynamic = "force-dynamic";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
